@@ -11,7 +11,7 @@
                         </div>
                     @endif
 
-                    @if (session('success'))
+                        @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
@@ -23,19 +23,19 @@
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="categoryBtn">
-                                                <a class="btn  btn-lg  " href="{{ route('create.category') }}"><b>ADD
-                                                        CATEGORY</b></a>
+                                                <a class="btn  btn-lg  " href="{{ route('create.Size') }}"><b>ADD
+                                                        SIZE</b></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-bordered " id="category-table">
+                                        <table class="table table-bordered " id="size-table">
                                             <thead>
                                                 <tr>
-                                                    <th>Category &nbsp; Name</th>
-                                                    <th>Category &nbsp; Icon</th>
+
+                                                    <th>Property &nbsp; Size</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -57,20 +57,16 @@
 
     <script type="text/javascript">
         $(function() {
-            var table = $('#category-table').DataTable({
+            var table = $('#size-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('index.category') }}",
+                ajax: "{{ route('index.Size') }}",
                 columns: [
 
 
                     {
-                        data: 'category_name',
-                        name: 'category_name'
-                    },
-                    {
-                        data: 'category_icon',
-                        name: 'category_icon'
+                        data: 'property_size',
+                        name: 'property_size'
                     },
                     {
                         data: 'action',

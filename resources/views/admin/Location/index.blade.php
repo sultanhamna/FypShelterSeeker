@@ -23,19 +23,19 @@
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="categoryBtn">
-                                                <a class="btn  btn-lg  " href="{{ route('create.category') }}"><b>ADD
-                                                        CATEGORY</b></a>
+                                                <a class="btn  btn-lg  " href="{{ route('create.location') }}"><b>ADD
+                                                        LOCATION</b></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-bordered " id="category-table">
+                                        <table class="table table-bordered " id="location-table">
                                             <thead>
                                                 <tr>
-                                                    <th>Category &nbsp; Name</th>
-                                                    <th>Category &nbsp; Icon</th>
+
+                                                    <th>Property &nbsp; Location</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -57,20 +57,15 @@
 
     <script type="text/javascript">
         $(function() {
-            var table = $('#category-table').DataTable({
+            var table = $('#location-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('index.category') }}",
+                ajax: "{{ route('index.location') }}",
                 columns: [
 
-
                     {
-                        data: 'category_name',
-                        name: 'category_name'
-                    },
-                    {
-                        data: 'category_icon',
-                        name: 'category_icon'
+                        data: 'property_location',
+                        name: 'property_location'
                     },
                     {
                         data: 'action',

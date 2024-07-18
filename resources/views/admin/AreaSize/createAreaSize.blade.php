@@ -21,10 +21,9 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    {{-- {{dd($data)}} --}}
-                    <form action="{{ route('update.Category',$data->id) }}" enctype="multipart/form-data" method="post">
-                        @csrf
-                        @include('admin/category/fields')
+                    <form action="{{ route('store.Size') }}" enctype="multipart/form-data" method="post">
+                      @csrf
+                        @include('admin/AreaSize/fields')
                     </form>
                 </div>
             </div>

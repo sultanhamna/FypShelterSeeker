@@ -24,7 +24,8 @@ class UserController extends Controller
                 "name"=> 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
                 'email' => 'required|string|max:255|email|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/',
                 'password' => 'required|min:8|confirmed|string|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+{};:,<.>])/u',
-            ]
+                'password_confirmation' =>'required|string|min:8|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+{};:,<.>])/u'
+                ]
             );
        $dataEntered= User::create([
             "name"=> $request->name,

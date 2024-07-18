@@ -64,17 +64,43 @@
             background-color: #43CBAC;
             color:#191645 ;
         }
+        .submitCategory
+        {
+            background-color: #191645;
+            color: #43CBAC;
+        }
+        .submitCategory:hover
+        {
+            background-color: #191645;
+            color: #43CBAC;
+        }
         .categoryCard
         {
             background-color: #43CBAC;
             width: 70%;
-            margin-top: 110px;
+
         }
+
         .cardContainer
         {
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+        }
+        .productContainer
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .productCard
+        {
+            background-color: #43CBAC;
+            width: 70%;
+            margin-bottom: 50px;
+            margin-top: 50px;
         }
     </style>
 </head>

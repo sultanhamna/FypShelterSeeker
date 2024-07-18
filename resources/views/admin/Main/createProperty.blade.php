@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 @section('content')
-    <div class="container cardContainer">
-        <div class="card  categoryCard">
+    <div class="container productContainer">
+        <div class="card   productCard">
             <div class="card-header mt-3">
                 <div class="navbar-brand-box" style="text-align: center">
                     <a href="index.html">
@@ -21,10 +21,9 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    {{-- {{dd($data)}} --}}
-                    <form action="{{ route('update.Category',$data->id) }}" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('store.Property') }}" enctype="multipart/form-data" method="post">
                         @csrf
-                        @include('admin/category/fields')
+                        @include('admin/Main/fields')
                     </form>
                 </div>
             </div>

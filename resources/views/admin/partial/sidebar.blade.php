@@ -11,30 +11,42 @@
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-list"></i></div>
                     <b class="sidecontent"> Category</b>
                 </a>
-                <a class="nav-link " href="">
+                <a class="nav-link " href="{{ route('index.Product') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-landmark"></i></div>
                     <b class="sidecontent"> Product</b>
                 </a>
-                <a class="nav-link " href="">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-edit"></i></div>
-                    <b class="sidecontent"> Content</b>
+                <a class="nav-link " href="{{ route('index.Size') }}">
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-ruler"></i></div>
+                    <b class="sidecontent"> Size</b>
                 </a>
                 <a class="nav-link " href="{{ route('user.data') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-users"></i></div>
                     <b class="sidecontent"> Users</b>
                 </a>
-                <a class="nav-link " href="">
-                    <div class="sb-nav-link-icon sidecontent"><i class="  fas fa-user-alt"></i></div>
-                    <b class="sidecontent"> Agent</b>
+
+                <a class="nav-link " href="{{ route('index.location') }}">
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-map-marker"></i></div>
+                    <b class="sidecontent"> Location</b>
                 </a>
 
-                <a class="nav-link " href="">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-calculator"></i></div>
-                    <b class="sidecontent"> Calculator</b>
+                 <a class="nav-link " href="{{route('index.Status')}}">
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-check-circle"></i></div>
+                    <b class="sidecontent">Status</b>
                 </a>
-                <a class="nav-link " href="">
+
+                <a class="nav-link " href="{{ route('index.Type') }}">
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-home"></i></div>
+                    <b class="sidecontent">Type</b>
+                </a>
+
+                <a class="nav-link " href="{{ route('index.Post') }}">
                     <div class="sb-nav-link-icon sidecontent "><i class="fas fa-chart-bar"></i></div>
-                    <b class="sidecontent"> Charts</b>
+                    <b class="sidecontent"> Post</b>
+                </a>
+
+                <a class="nav-link " href="{{ route('index.Property') }}">
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-landmark"></i></div>
+                    <b class="sidecontent"> Property</b>
                 </a>
             </div>
         </div>

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container cardContainer">
         <div class="card  categoryCard">
-            <div class="card-header">
+            <div class="card-header mt-3">
                 <div class="navbar-brand-box" style="text-align: center">
                     <a href="index.html">
                         <span><img src="{{ asset('assets/admin/img/seeker.png') }}" alt="" width="80px"
@@ -10,19 +10,20 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form action="" method="">
-                        @csrf
-                        <div class="form-group mb-3">
-                            <label for="categoryName" class="form-label"> <b> Category Name</b></label>
-                            <input type="text" class="form-control" id="categoryName" name="category_name" />
-
+                    @if (session('error'))
+                        <div class="alert alert-success">
+                            {{ session('error') }}
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="categoryIcon" class="form-label"> <b> Category Icon </b></label>
-                            <input type="file" class="form-control" id="categoryIcon" name="category_icon" />
+                    @endif
 
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
                         </div>
-
+                    @endif
+                    <form action="{{ route('store.category') }}" enctype="multipart/form-data" method="post">
+@csrf
+                        @include('admin/category/fields')
                     </form>
                 </div>
             </div>

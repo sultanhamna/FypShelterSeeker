@@ -79,8 +79,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label"> <b> Enter Password </b></label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                 value="{{ old('password') }}" />
+                            <input type="password" class="form-control" id="password" name="password"/>
                             <span class="text-danger">
                                 @error('password')
                                     {{ $message }}
@@ -88,11 +87,10 @@
                             </span>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label"> <b> Confirm Password </b></label>
-                            <input type="password" class="form-control" id="password" name="password_confirmation"
-                                 value="{{ old('password') }}" />
+                            <label for="password_confirmation" class="form-label"> <b> Confirm Password </b></label>
+                            <input type="password" class="form-control" id="password" name="password_confirmation" />
                             <span class="text-danger">
-                                @error('password')
+                                @error('password_confirmation')
                                     {{ $message }}
                                 @enderror
                             </span>

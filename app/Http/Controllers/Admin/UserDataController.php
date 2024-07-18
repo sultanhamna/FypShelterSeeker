@@ -13,13 +13,17 @@ class UserDataController extends Controller
     {
         if ($request->ajax())
         {
-            $data = User::select('*');
+            $data = User::where('role' ,'user')->get();
             return Datatables::of($data)
             ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="" class="edit btn btn-success btn-sm">Edit</a> <a href="j" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
-                })
+                    $action = '';
+                    $action .= '<a href="" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
+                    $action .= '&nbsp
+
+                <button data-href="" class="btn btn-xs btn-danger delete_user_button"><i class="fas fa-trash-alt" ></i> Delete</button>';
+                return $action;
+            })
                 ->rawColumns(['action'])
                 ->make(true);
         }

@@ -5,17 +5,6 @@
             <div class="col-xl-12 col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        @if (session('error'))
-                        <div class="alert alert-success">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between mt-3">
@@ -23,19 +12,27 @@
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="categoryBtn">
-                                                <a class="btn  btn-lg  " href="{{ route('create.category') }}"><b>ADD
-                                                        CATEGORY</b></a>
+                                                <a class="btn  btn-lg  " href="{{ route('create.Product') }}"><b>ADD
+                                                        PROPERTY</b></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-bordered " id="category-table">
+                                        <table class="table table-bordered data-table" id="data-table">
                                             <thead>
                                                 <tr>
-                                                    <th>Category &nbsp; Name</th>
-                                                    <th>Category &nbsp; Icon</th>
+
+                                                    <th> Type</th>
+                                                    <th> Address</th>
+                                                    <th> Price</th>
+                                                    <th>  Size </th>
+                                                    <th>  Status</th>
+                                                    <th>  Build</th>
+                                                    <th> Discription</th>
+                                                    <th>Images</th>
+                                                    <th> Category Name</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -57,20 +54,50 @@
 
     <script type="text/javascript">
         $(function() {
-            var table = $('#category-table').DataTable({
+            var table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('index.category') }}",
+                ajax: "{{ route('index.Product') }}",
                 columns: [
 
 
                     {
-                        data: 'category_name',
-                        name: 'category_name'
+                        data: 'product_type',
+                        name: 'product_type'
                     },
                     {
-                        data: 'category_icon',
-                        name: 'category_icon'
+                        data: 'product_address',
+                        name: 'product_address'
+                    },
+                    {
+                        data: 'product_price',
+                        name: 'product_price'
+                    },
+                    {
+                        data: 'product_size',
+                        name: 'product_size'
+                    },
+                    {
+                        data: 'product_status',
+                        name: 'product_status'
+                    },
+                    {
+                        data: 'product_year_built',
+                        name: 'product_year_built'
+                    },
+                    {
+                        data: 'product_discription',
+                        name: 'product_discription'
+                    },
+                    {
+                        data: 'images',
+                        name: 'images'
+
+                    },
+                    {
+                        data: 'category_name',
+                        name: 'category_name'
+
                     },
                     {
                         data: 'action',
