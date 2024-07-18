@@ -75,7 +75,7 @@ class CategoryController extends Controller
             $categoryEntered->update([
             "category_icon"=>$categoryFilePath]);
 
-       return redirect()->back()->with("success","Category is  Created");
+            return redirect()->route('index.category')->with('success', 'Category created successfully');
         }
     }
 
