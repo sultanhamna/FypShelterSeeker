@@ -20,7 +20,7 @@ class Category extends Model
     return  $this->hasMany(Product::class);
    }
 
-   public function properties()
+   public function property()
    {
        return $this->hasMany(Property::class);
    }

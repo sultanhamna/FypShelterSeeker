@@ -2,6 +2,8 @@
     <b>
         {!! Form::label('propertyType', 'Property Type',['class' => 'form-label',]) !!}
     </b>
+    &nbsp;
+    <b> <small>** Home ,Office ,WareHouse **</small></b>
         {!! Form::text('property_type', !empty($data->property_type) ? $data->property_type : null, [
              'class' => 'form-control',
              'id' => 'propertyType',

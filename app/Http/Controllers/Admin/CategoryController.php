@@ -27,14 +27,15 @@ class CategoryController extends Controller
                 return  $icon;
             })
 
-                ->addColumn('action', function($row){
+
+                    ->addColumn('action', function ($row) {
                     $action = '';
                     $editUrl = route('edit.category', $row->id);
                     $deleteUrl = route('delete.Category', $row->id);
                     $action .= '<a href=" ' . $editUrl  . '" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
                     $action .= '&nbsp';
-                    $action .= '<a href="' . $deleteUrl . ' " class="btn btn-sm btn-danger" onclick="return confirm(\'Are you sure you want to delete this category?\')"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>';
-                return $action;
+                    $action .= '<button data-href="' . $deleteUrl . ' " class="delete_cat_button btn btn-sm btn-danger"<i class="fas fa-trash" aria-hidden="true"></i> Delete</button>';
+                    return $action;
                 })
                 ->removecolumn('id')
                 ->rawColumns(['action' ,'category_icon'])
@@ -128,17 +129,23 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::with('property')->findorfail($id);
+        try
+        {
+            // Find the category by its ID with properties eager loaded
+            $category = Category::with('property')->findOrFail($id);
 
+            if ($category->property()->count() > 0) {
+                return response()->json(['error' => 'Category is not deleted because it has related properties']);
+            }
 
-        if ($category->property()->count() > 0) {
+            $category->delete();
 
-            return redirect()->route('index.category')->with("error","Category  is not Deleted bcz it has related property");
+            return response()->json(['success' => 'Category deleted successfully']);
         }
-
-        $category->delete();
-
-        return redirect()->route('index.category')->with("success","Category  is  Deleted ");
+        catch (\Exception $e)
+        {
+            return response()->json(['error' => 'Failed to delete category: ' . $e->getMessage()], 500);
+        }
     }
 
 }

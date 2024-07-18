@@ -65,6 +65,7 @@
                         <div class="form-group mb-3">
                             <label for="category_id" class="form-label"><b> Select category</b></label>
                             <select class="form-control" id="category_id" name="category_id">
+                                <option>Select any category</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach

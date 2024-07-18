@@ -2,6 +2,8 @@
     <b>
         {!! Form::label('propertyPost', 'Property Post',['class' => 'form-label',]) !!}
     </b>
+    &nbsp;
+    <b> <small>** Buy , Rent **</small></b>
         {!! Form::text('property_post', !empty($data->property_post) ? $data->property_post : null, [
              'class' => 'form-control',
              'id' => 'propertyPost',

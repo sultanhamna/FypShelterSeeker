@@ -2,6 +2,8 @@
  <b>
     {!! Form::label('propertyLocation', 'Property Location',['class' => 'form-label',]) !!}
  </b>
+ &nbsp;
+<b> <small>** WapdaTown, SatelliteTown, CityHousing **</small></b>
      {!! Form::text('property_location', !empty($data->property_location) ? $data->property_location : null, [
          'class' => 'form-control',
          'id' => 'propertyLocation',

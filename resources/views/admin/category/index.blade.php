@@ -80,7 +80,7 @@
             $(document).on('click', 'button.delete_cat_button', function() {
                 swal({
                     title: 'Sure',
-                    text: 'Confirm Delete User',
+                    text: 'Confirm Delete Catagory',
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -106,7 +106,7 @@
                             },
                             error: function(result) {
                                 toastr.error(
-                                    'An error occurred while deleting the user.');
+                                    'An error occurred while deleting the Catagory.');
                             }
                         });
                     }

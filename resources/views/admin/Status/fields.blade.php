@@ -2,6 +2,8 @@
     <b>
         {!! Form::label('propertyStatus', 'Property Status',['class' => 'form-label',]) !!}
     </b>
+    &nbsp;
+    <b> <small>** Avaliable , Sold ,Under Construction **</small></b>
         {!! Form::text('property_status', !empty($data->property_status) ? $data->property_status : null, [
              'class' => 'form-control',
              'id' => 'propertyStatus',

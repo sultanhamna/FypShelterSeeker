@@ -2,6 +2,8 @@
     <b>
         {!! Form::label('propertySize', 'Area Size',['class' => 'form-label',]) !!}
     </b>
+    &nbsp;
+    <b> <small>** 5 Marla , 3 Kanal , 2 Acr **</small></b>
         {!! Form::text('property_size', !empty($data->property_size) ? $data->property_size : null, [
              'class' => 'form-control',
              'id' => 'propertySize',
