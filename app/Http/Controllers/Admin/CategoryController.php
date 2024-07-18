@@ -60,7 +60,7 @@ class CategoryController extends Controller
 
         $request->validate([
             'category_name' => 'required|string|max:255',
-            'category_icon' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'category_icon' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
         $categoryEntered=Category::create($request->except('category_icon'));
