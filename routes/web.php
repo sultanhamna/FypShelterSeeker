@@ -82,7 +82,7 @@ Route::get('/createCategory',[CategoryController::class,'create'])->name('create
 Route::post('/storeCategory',[CategoryController::class,'store'])->name('store.category');
 Route::get('/editCategory/{id}',[CategoryController::class,'edit'])->name('edit.category');
 Route::post('/updateCategory/{id}',[CategoryController::class,'update'])->name('update.Category');
-Route::get('/deleteCategory/{id}',[CategoryController::class,'destroy'])->name('delete.Category');
+Route::any('/deleteCategory/{id}',[CategoryController::class,'destroy'])->name('delete.Category');
 
 /////////////////// Product  Routes  ///////////////
 

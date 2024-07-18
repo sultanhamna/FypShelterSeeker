@@ -105,7 +105,7 @@ class CategoryController extends Controller
         // Validate the incoming request data
             $request->validate([
                 'category_name' => 'required|string|max:255',
-                'category_icon' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+                'category_icon' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
             ]);
             $categoryUpdate = Category::findOrFail($id);
 
