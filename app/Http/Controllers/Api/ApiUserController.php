@@ -44,14 +44,11 @@ class ApiUserController extends Controller
             'password' => 'required|min:8|confirmed|string|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+{};:,<.>])/u',
         ]
         );
-
-
-
-   $dataEntered= User::create([
-    "name"=> $request->name,
-    "email"=> $request->email,
-    "password"=> $request->password
-]);
+            $dataEntered= User::create([
+             "name"=> $request->name,
+             "email"=> $request->email,
+             "password"=> $request->password
+            ]);
 
     if ($dataEntered == null)
      {
@@ -69,3 +66,11 @@ class ApiUserController extends Controller
     }
 }
 }
+
+
+
+
+
+
+
+

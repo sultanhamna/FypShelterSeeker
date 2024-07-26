@@ -5,17 +5,6 @@
             <div class="col-xl-12 col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        @if (session('error'))
-                        <div class="alert alert-success">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between mt-3">
@@ -31,16 +20,18 @@
                                 </div>
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-bordered " id="main-table">
+                                        <table class="table table-bordered " id="main_table">
                                             <thead>
                                                 <tr>
-                                                    <th>Property Type</th>
-                                                    <th>Property Location</th>
-                                                    <th>Property  Status</th>
-                                                    <th>Property  Size</th>
-                                                    <th>Property  Post</th>
-                                                    <th>Category   Name</th>
-                                                    <th>Property  Image</th>
+                                                    <th> Type</th>
+                                                    <th> Location</th>
+                                                    <th>  Status</th>
+                                                    <th>  Size</th>
+                                                    <th> Post</th>
+                                                    <th>   Name</th>
+                                                    <th>  Image</th>
+                                                    <th> Price</th>
+                                                    <th> Description</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -59,10 +50,17 @@
     </div>
 @endsection
 @section('script')
-
+<script>
+    @if(session('success'))
+        toastr.success('{{ session('success') }}');
+    @endif
+    @if(session('error'))
+        toastr.error('{{ session('error') }}');
+    @endif
+</script>
     <script type="text/javascript">
         $(function() {
-            var table = $('#main-table').DataTable({
+            var main_table = $('#main_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('index.Property') }}",
@@ -96,6 +94,14 @@
                         name: 'property_images'
                     },
                     {
+                        data: 'price',
+                        name: 'price'
+                    },
+                    {
+                        data: 'description',
+                        name: 'description'
+                    },
+                    {
                         data: 'action',
                         name: 'action',
                         orderable: false,
@@ -103,7 +109,41 @@
                     },
                 ]
             });
+            $(document).on('click', 'button.delete_main_button', function() {
+                swal({
+                    title: 'Sure',
+                    text: 'Confirm Delete Main Table',
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        var href = $(this).data('href');
+                        var data = {
+                            _token: '{{ csrf_token() }}' // Ensure the CSRF token is included
+                        };
 
+                        $.ajax({
+                            method: "DELETE",
+                            url: href,
+                            dataType: "json",
+                            data: data,
+                            success: function(result) {
+                                if (result.success) {
+                                    toastr.success(result.success);
+                                    main_table.ajax.reload();
+                                } else {
+                                    toastr.error(result.error);
+                                }
+                            },
+                            error: function(result) {
+                                toastr.error(
+                                    'An error occurred while deleting the Main Table.');
+                            }
+                        });
+                    }
+                });
+            });
         });
     </script>
 @endsection

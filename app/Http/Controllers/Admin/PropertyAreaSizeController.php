@@ -25,10 +25,9 @@ class PropertyAreaSizeController extends Controller
                     $editUrl = route('edit.Size', $row->id);
                     $deleteUrl = route('delete.Size', $row->id);
                     $action .= '<a href=" ' . $editUrl  . '" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
-                    $action .= '&nbsp';
-
-                    $action .= '<a href="' .     $deleteUrl  . ' " class="btn btn-sm btn-danger"><i class="fas fa-trash " aria-hidden="true"></i> Delete</a>';
-                return $action;
+                    $action .= '&nbsp;
+                               <button data-href="' . $deleteUrl . '" class="btn btn-sm btn-danger delete_size_button"><i class=" fas fa-trash-alt" ></i> Delete</button>';
+                    return $action;
                 })
                 ->removecolumn('id')
                 ->rawColumns(['action'])
@@ -58,11 +57,11 @@ class PropertyAreaSizeController extends Controller
 
       if($sizeEntered==null)
       {
-         return redirect()->back()->with("error","Size is not Entered");
+        return redirect()->route('index.Size')->with('error","Size is not Created');
       }
       else
       {
-          return redirect()->back()->with("success","Size is  Entered");
+        return redirect()->route('index.Size')->with('successs","Post is Created Successful');
       }
     }
 
@@ -111,20 +110,26 @@ class PropertyAreaSizeController extends Controller
 
 
 
-    public function destroy($id)
-{
-    $areaSize = AreaSize::with('property')->findorfail($id);
+     public function destroy($id)
+     {
+         try
+        {
+             $areaSize = AreaSize::with('property')->findOrFail($id);
 
+             if ($areaSize->property()->count() > 0)
+            {
+                 return response()->json(['error' => 'AreaSize is not deleted because it has related property']);
+            }
 
-    if ($areaSize->property()->count() > 0) {
+             $areaSize->delete();
 
-        return redirect()->route('index.Size')->with("error","AreaSize  is not Deleted bcz it has related property");
-    }
-
-    $areaSize->delete();
-
-    return redirect()->route('index.Size')->with("success","AreaSize  is  Deleted ");
-}
+             return response()->json(['success' => 'AreaSize deleted successfully']);
+        }
+         catch (\Exception $e)
+        {
+             return response()->json(['error' => 'Failed to delete AreaSize: '. $e->getMessage()], 500);
+        }
+     }
 
 }
 

@@ -19,15 +19,15 @@ class PropertyStatusController extends Controller
             return Datatables::of($data)
             ->addIndexColumn()
 
-                ->addColumn('action', function($row){
+                ->addColumn('action', function($row)
+                {
                     $action = '';
                     $editUrl = route('edit.Status', $row->id);
                     $deleteUrl = route('delete.Status', $row->id);
                     $action .= '<a href=" ' . $editUrl  . '" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
-                    $action .= '&nbsp';
-
-                    $action .= '<a href="' .     $deleteUrl  . ' " class="btn btn-sm btn-danger"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>';
-                return $action;
+                    $action .= '&nbsp;
+                                <button data-href="' . $deleteUrl . '" class="btn btn-sm btn-danger delete_status_button"><i class=" fas fa-trash-alt" ></i> Delete</button>';
+                    return $action;
                 })
                 ->removecolumn('id')
                 ->rawColumns(['action'])
@@ -57,11 +57,11 @@ class PropertyStatusController extends Controller
 
         if($statusEntered==null)
         {
-           return redirect()->back()->with("error","Status is not Entered");
+            return redirect()->route('index.Status')->with('error","Status is not Created');
         }
         else
         {
-            return redirect()->back()->with("success","Status is  Entered");
+            return redirect()->route('index.Status')->with('success","Status is  Created Successful');
         }
     }
 
@@ -105,17 +105,23 @@ class PropertyStatusController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+{
+    try
     {
-        $status = Status::with('property')->findorfail($id);
+        $status = Status::with('property')->findOrFail($id);
 
-
-        if ($status->property()->count() > 0) {
-
-            return redirect()->route('index.Status')->with("error","Status  is not Deleted bcz it has related property");
+        if ($status->property()->count() > 0)
+         {
+            return response()->json(['error' => 'Status is not deleted because it has related property']);
         }
 
         $status->delete();
 
-        return redirect()->route('index.Status')->with("success","Status  is  Deleted ");
+        return response()->json(['success' => 'Status deleted successfully']);
     }
+    catch (\Exception $e)
+    {
+        return response()->json(['error' => 'Failed to delete status: '. $e->getMessage()], 500);
+    }
+}
 }

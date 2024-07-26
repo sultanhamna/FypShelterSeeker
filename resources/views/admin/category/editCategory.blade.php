@@ -10,17 +10,6 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    @if (session('error'))
-                        <div class="alert alert-success">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
                     {{-- {{dd($data)}} --}}
                     <form action="{{ route('update.Category',$data->id) }}" enctype="multipart/form-data" method="post">
                         @csrf

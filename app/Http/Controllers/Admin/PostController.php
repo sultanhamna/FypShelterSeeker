@@ -20,15 +20,15 @@ class PostController extends Controller
             return Datatables::of($data)
             ->addIndexColumn()
 
-                ->addColumn('action', function($row){
+                ->addColumn('action', function($row)
+                {
                     $action = '';
                     $editUrl = route('edit.Post', $row->id);
                     $deleteUrl = route('delete.Post', $row->id);
                     $action .= '<a href=" ' . $editUrl  . '" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
-                    $action .= '&nbsp';
-
-                    $action .= '<a href="' .     $deleteUrl  . ' " class="btn btn-sm btn-danger"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>';
-                return $action;
+                    $action .= '&nbsp;
+                                <button data-href="' . $deleteUrl . '" class="btn btn-sm btn-danger delete_post_button"><i class=" fas fa-trash-alt" ></i> Delete</button>';
+                    return $action;
                 })
                 ->removecolumn('id')
                 ->rawColumns(['action'])
@@ -58,11 +58,11 @@ class PostController extends Controller
 
       if($PostEntered==null)
       {
-         return redirect()->back()->with("error","Post is not Entered");
+         return redirect()->route('index.Post')->with('error","Post is not Entered');
       }
       else
       {
-          return redirect()->back()->with("success","Post is  Entered");
+        return redirect()->route('index.Post')->with('success', 'Post created successfully');
       }
     }
 
@@ -107,16 +107,22 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::with('property')->findorfail($id);
+        try
+        {
+            // Find the post by its ID with property eager loaded
+            $post = Post::with('property')->findOrFail($id);
 
+            if ($post->property()->count() > 0)
+            {
+                return response()->json(['error' => 'Post is not deleted because it has related property']);
+            }
 
-    if ($post->property()->count() > 0) {
+            $post->delete();
 
-        return redirect()->route('index.Post')->with("error","Post  is not Deleted bcz it has related property");
-    }
-
-    $post->delete();
-
-    return redirect()->route('index.Post')->with("success","Post  is  Deleted ");
+            return response()->json(['success' => 'Post deleted successfully']);
+        } catch (\Exception $e)
+        {
+            return response()->json(['error' => 'Failed to delete post: '. $e->getMessage()], 500);
+        }
     }
 }

@@ -28,15 +28,16 @@ class CategoryController extends Controller
             })
 
 
-                    ->addColumn('action', function ($row) {
-                    $action = '';
-                    $editUrl = route('edit.category', $row->id);
-                    $deleteUrl = route('delete.Category', $row->id);
-                    $action .= '<a href=" ' . $editUrl  . '" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
-                    $action .= '&nbsp';
-                    $action .= '<button data-href="' . $deleteUrl . ' " class="delete_cat_button btn btn-sm btn-danger"<i class="fas fa-trash" aria-hidden="true"></i> Delete</button>';
-                    return $action;
-                })
+                    ->addColumn('action', function ($row)
+                    {
+                        $action = '';
+                        $editUrl = route('edit.category', $row->id);
+                        $deleteUrl = route('delete.Category', $row->id);
+                        $action .= '<a href=" ' . $editUrl  . '" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
+                        $action .= '&nbsp;
+                                <button data-href="' . $deleteUrl . '" class="btn btn-sm btn-danger delete_cat_button"><i class=" fas fa-trash-alt" ></i> Delete</button>';
+                        return $action;
+                    })
                 ->removecolumn('id')
                 ->rawColumns(['action' ,'category_icon'])
                 ->make(true);

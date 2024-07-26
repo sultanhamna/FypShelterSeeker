@@ -19,15 +19,15 @@ class PropertyTypeController extends Controller
             return Datatables::of($data)
             ->addIndexColumn()
 
-                ->addColumn('action', function($row){
+                ->addColumn('action', function($row)
+                {
                     $action = '';
                     $editUrl = route('edit.Type', $row->id);
                     $deleteUrl = route('delete.Type', $row->id);
                     $action .= '<a href=" ' . $editUrl  . '" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
-                    $action .= '&nbsp';
-
-                    $action .= '<a href="' .     $deleteUrl  . ' " class="btn btn-sm btn-danger"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>';
-                return $action;
+                    $action .= '&nbsp;
+                                <button data-href="' . $deleteUrl . '" class="btn btn-sm btn-danger delete_type_button"><i class=" fas fa-trash-alt" ></i> Delete</button>';
+                    return $action;
                 })
                 ->removecolumn('id')
                 ->rawColumns(['action'])
@@ -57,11 +57,11 @@ class PropertyTypeController extends Controller
 
         if($typeEntered==null)
         {
-           return redirect()->back()->with("error","Type is not Entered");
+            return redirect()->route('index.Type')->with('error","Type is not Created');
         }
         else
         {
-            return redirect()->back()->with("success","Type is  Entered");
+            return redirect()->route('index.Type')->with('error","Type is  Created Successfully');
         }
     }
 
@@ -110,18 +110,24 @@ class PropertyTypeController extends Controller
      */
     public function destroy(string $id)
     {
+        try
         {
             $type = Type::with('property')->findorfail($id);
 
+                if ($type->property()->count() > 0)
+            {
 
-        if ($type->property()->count() > 0) {
+            return response()->json(['error' => 'Type is not deleted because it has related property']);
+            }
 
-            return redirect()->route('index.Type')->with("error","Type  is not Deleted bcz it has related property");
+                 $type->delete();
+
+                  return response()->json(['success' => 'Type deleted successfully']);
+        }
+           catch (\Exception $e)
+        {
+        return response()->json(['error' => 'Failed to delete Type: '. $e->getMessage()], 500);
         }
 
-        $type->delete();
-
-        return redirect()->route('index.Type')->with("success","Type  is  Deleted ");
-        }
     }
 }

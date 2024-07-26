@@ -23,6 +23,8 @@ class Property extends Model
         'status_id',
         'area_size_id',
         'post_id',
+        'price',
+        'description',
 
     ];
 

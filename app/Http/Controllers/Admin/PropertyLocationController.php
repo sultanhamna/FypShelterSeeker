@@ -24,10 +24,9 @@ class PropertyLocationController extends Controller
                     $editUrl = route('edit.location', $row->id);
                     $deleteUrl = route('delete.location', $row->id);
                     $action .= '<a href=" ' . $editUrl  . '" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
-                    $action .= '&nbsp';
-
-                    $action .= '<a href="' .     $deleteUrl  . ' " class="btn btn-sm btn-danger"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>';
-                return $action;
+                    $action .= '&nbsp;
+                               <button data-href="' . $deleteUrl . '" class="btn btn-sm btn-danger delete_location_button"><i class=" fas fa-trash-alt" ></i> Delete</button>';
+                    return $action;
                 })
                 ->removecolumn('id')
                 ->rawColumns(['action'])
@@ -57,11 +56,11 @@ class PropertyLocationController extends Controller
 
       if($locationEntered==null)
       {
-         return redirect()->back()->with("error","Location is not Entered");
+        return redirect()->route('index.location')->with('error","Location is not Created');
       }
       else
       {
-          return redirect()->back()->with("success","Location is  Entered");
+        return redirect()->route('index.location')->with('success","Location is  Created Successful');
       }
     }
 
@@ -106,16 +105,22 @@ class PropertyLocationController extends Controller
      */
     public function destroy($id)
     {
-        $location = Location::with('property')->findorfail($id);
+        try
+        {
+            $location = Location::with('property')->findOrFail($id);
 
+            if ($location->property()->count() > 0)
+            {
+                return response()->json(['error' => 'Location is not deleted because it has related property']);
+            }
 
-        if ($location->property()->count() > 0) {
+            $location->delete();
 
-            return redirect()->route('index.location')->with("error","Location  is not Deleted bcz it has related property");
+            return response()->json(['success' => 'Location deleted successfully']);
         }
-
-        $location->delete();
-
-        return redirect()->route('index.location')->with("success","Location  is  Deleted ");
+         catch (\Exception $e)
+        {
+            return response()->json(['error' => 'Failed to delete location: '. $e->getMessage()], 500);
+        }
     }
 }

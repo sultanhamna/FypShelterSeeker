@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-bordered " id="size-table">
+                                        <table class="table table-bordered " id="size_table">
                                             <thead>
                                                 <tr>
 
@@ -54,10 +54,17 @@
     </div>
 @endsection
 @section('script')
-
+<script>
+    @if(session('success'))
+        toastr.success('{{ session('success') }}');
+    @endif
+    @if(session('error'))
+        toastr.error('{{ session('error') }}');
+    @endif
+</script>
     <script type="text/javascript">
         $(function() {
-            var table = $('#size-table').DataTable({
+            var size_table = $('#size_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('index.Size') }}",
@@ -75,6 +82,42 @@
                         searchable: false
                     },
                 ]
+            });
+
+            $(document).on('click', 'button.delete_size_button', function() {
+                swal({
+                    title: 'Sure',
+                    text: 'Confirm Delete Catagory',
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        var href = $(this).data('href');
+                        var data = {
+                            _token: '{{ csrf_token() }}' // Ensure the CSRF token is included
+                        };
+
+                        $.ajax({
+                            method: "DELETE",
+                            url: href,
+                            dataType: "json",
+                            data: data,
+                            success: function(result) {
+                                if (result.success) {
+                                    toastr.success(result.success);
+                                    size_table.ajax.reload();
+                                } else {
+                                    toastr.error(result.error);
+                                }
+                            },
+                            error: function(result) {
+                                toastr.error(
+                                    'An error occurred while deleting the Size.');
+                            }
+                        });
+                    }
+                });
             });
 
         });

@@ -33,19 +33,15 @@ class MainPropertyController extends Controller
                 return $row->category->category_name;
            })
 
-            ->addColumn('property_images', function ($row)
-            {
-                $images = '';
-                if ($row->Images)
-                 {
-                    foreach ($row->Images as $image)
-                    {
-                        $images .= '<img src="' . asset('storage/' . $image->property_images) . '" style="width: 50px; height: 50px; margin-right: 5px;" />';
-                    }
-                }
-                return $images;
-            })
-
+           ->addColumn('property_images', function ($row)
+           {
+               $image = '';
+               if ($row->Images)
+               {
+                   $image = '<img src="' . asset('storage/' . $row->Images->first()->property_images) . '" style="width: 50px; height: 50px; margin-right: 5px;" />';
+               }
+               return $image;
+           })
             ->addColumn('property_type', function ($row)
             {
                 return $row->type->property_type;
@@ -71,16 +67,16 @@ class MainPropertyController extends Controller
                 return $row->post->property_post;
             })
 
-                ->addColumn('action', function($row){
+                ->addColumn('action', function($row)
+                {
                     $action = '';
                     $editUrl = route('edit.Property', $row->id);
                     $deleteUrl = route('delete.Property', $row->id);
                     $action .= '<a href=" ' . $editUrl  . ' " class="btn btn-sm btn-primary"><i class="fa fa-eye" ></i> Edit</a>';
-                    $action .= '&nbsp';
-
-                    $action .= '<a href="' .     $deleteUrl  . ' " class="btn btn-sm btn-danger"><i class="fas fa-trash" aria-hidden="true"></i> Delete</a>';
-                return $action;
-                        })
+                    $action .= '&nbsp;
+                                <button data-href="' . $deleteUrl . '" class="btn btn-sm btn-danger delete_main_button"><i class=" fas fa-trash-alt" ></i> Delete</button>';
+                    return $action;
+                })
                 ->rawColumns(['action','property_post','property_images','property_type','category_name','property_location','property_status','property_size'])
                 ->make(true);
         }
@@ -108,23 +104,29 @@ class MainPropertyController extends Controller
      */
     public function store(Request $request)
     {
+        $PropertyEntered = Property::create($request->except('property_images'));
 
-        $PropertyEntered = Property ::create($request->except('property_images'));
+        if ($PropertyEntered == null) {
+            return redirect()->back()->with("error", "Property is not Entered");
+        } else {
+            $images = [];
 
-        if($PropertyEntered==null)
-        {
-           return redirect()->back()->with("error","Property is not Entered");
-        }
-        else
-        {
-            $propertyFilePath = $request->file('property_images')->storeAs('adminCategory', time() . '.' . $request->file('property_images')->getClientOriginalExtension(), 'public');
+            foreach ($request->file('property_images') as $file) {
 
-            Image::create(
-            [
-             'property_id' =>  $PropertyEntered->id,
-             'property_images' => $propertyFilePath,
-            ]);
-            return redirect()->back()->with("success","Property is  Entered");
+
+                $filename =  time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                // dd($filename);
+                $propertyFilePath = $file->storeAs('adminCategory', $filename, 'public');
+
+                // dd($propertyFilePath);
+                $images[] = Image::create([
+                    'property_id' => $PropertyEntered->id,
+                    'property_images' => $propertyFilePath,
+                ]);
+            }
+
+           // dd($PropertyEntered);
+            return redirect()->route('index.Property')->with('success', 'Property created successfully');
         }
     }
 
@@ -157,43 +159,54 @@ class MainPropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
+        $PropertyEntered = Property::findOrFail($id);
 
-        $property = Property::findOrFail($id);
-
-        $property->update($request->except('property_images'));
+        $PropertyEntered->update($request->except('property_images'));
 
         if ($request->hasFile('property_images'))
         {
-            $existingImage = $property->Images()->latest()->first();
-            if ($existingImage)
-            {
+            // Delete existing images
+            $PropertyEntered->images()->delete();
 
-               $existingImage->property_images = $request->file('property_images')->storeAs('adminCategory', time(). '.'. $request->file('property_images')->getClientOriginalExtension(), 'public');
-               $existingImage->save();
+            $images = [];
+            foreach ($request->file('property_images') as $file) {
+
+
+                $filename =  time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $propertyFilePath = $file->storeAs('adminCategory', $filename, 'public');
+                $images[] = Image::create([
+                    'property_id' => $PropertyEntered->id,
+                    'property_images' => $propertyFilePath,
+                ]);
+            }
+            return redirect()->route('index.Property')->with('success', 'Property updated successfully');
 
             }
-        }
-        return redirect()->route('index.Property')->with("success","Property  is  Updated ");
-
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $property = Property::with('Images')->findorfail($id);
+        try
+        {
+            // Find the category by its ID with properties eager loaded
+            $property = Property::with('Images')->findOrFail($id);
 
+            if ($property->Images()->count() > 0)
+            {
+                return response()->json(['error' => 'property is not deleted because it has related Images']);
+            }
 
-        if ($property->Images()->count() > 0) {
+            $property->delete();
 
-            return redirect()->route('index.Property')->with("error","Property  is not Deleted bcz it has related Images");
+            return response()->json(['success' => 'property deleted successfully']);
         }
-
-        $property->delete();
-
-        return redirect()->route('index.Property')->with("success","Property  is  Deleted ");
+        catch (\Exception $e)
+        {
+            return response()->json(['error' => 'Failed to delete property: ' . $e->getMessage()], 500);
+        }
     }
 }

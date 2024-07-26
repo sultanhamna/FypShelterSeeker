@@ -17,7 +17,7 @@ class Type extends Model
 
     public function property()
     {
-        return $this->hasMany(Property::class)->onDelete('cascade');
+        return $this->hasMany(Property::class);
     }
 
 

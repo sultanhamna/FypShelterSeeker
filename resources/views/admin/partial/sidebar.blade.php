@@ -11,10 +11,6 @@
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-list"></i></div>
                     <b class="sidecontent"> Category</b>
                 </a>
-                <a class="nav-link " href="{{ route('index.Product') }}">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-landmark"></i></div>
-                    <b class="sidecontent"> Product</b>
-                </a>
                 <a class="nav-link " href="{{ route('index.Size') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-ruler"></i></div>
                     <b class="sidecontent"> Size</b>

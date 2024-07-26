@@ -16,7 +16,9 @@ use App\Http\Controllers\Admin\PropertyStatusController;
 use App\Http\Controllers\Admin\PropertyAreaSizeController;
 use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\Admin\MainPropertyController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\CalculatorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,8 +92,6 @@ Route::get('/indexProduct',[ProductController::class,'index'])->name('index.Prod
 Route::get('/createProduct',[ProductController::class,'create'])->name('create.Product');
 Route::post('/storeProduct',[ProductController::class,'store'])->name('store.Product');
 Route::get('/editProduct/{id}',[ProductController::class,'edit'])->name('edit.Product');
-Route::post('/updatelocation/{id}',[PropertyLocationController::class,'update'])->name('update.location');
-Route::get('/deletelocation/{id}',[PropertyLocationController::class,'destroy'])->name('delete.location');
 
 /////////////////// Location  Routes  ///////////////
 
@@ -100,7 +100,7 @@ Route::get('/createlocation',[PropertyLocationController::class,'create'])->name
 Route::post('/storelocation',[PropertyLocationController::class,'store'])->name('store.location');
 Route::get('/editlocation/{id}',[PropertyLocationController::class,'edit'])->name('edit.location');
 Route::post('/updatelocation/{id}',[PropertyLocationController::class,'update'])->name('update.location');
-Route::get('/deletelocation/{id}',[PropertyLocationController::class,'destroy'])->name('delete.location');
+Route::any('/deletelocation/{id}',[PropertyLocationController::class,'destroy'])->name('delete.location');
 
 
 /////////////////// Status  Routes  ///////////////
@@ -110,7 +110,7 @@ Route::get('/createStatus',[PropertyStatusController::class,'create'])->name('cr
 Route::post('/storeStatus',[PropertyStatusController::class,'store'])->name('store.Status');
 Route::get('/editStatus/{id}',[PropertyStatusController::class,'edit'])->name('edit.Status');
 Route::post('/updateStatus/{id}',[PropertyStatusController::class,'update'])->name('update.Status');
-Route::get('/deleteStatus/{id}',[PropertyStatusController::class,'destroy'])->name('delete.Status');
+Route::any('/deleteStatus/{id}',[PropertyStatusController::class,'destroy'])->name('delete.Status');
 
 
 /////////////////// AreaSize  Routes  ///////////////
@@ -120,7 +120,7 @@ Route::get('/createSize',[PropertyAreaSizeController::class,'create'])->name('cr
 Route::post('/storeSize',[PropertyAreaSizeController::class,'store'])->name('store.Size');
 Route::get('/editSize/{id}',[PropertyAreaSizeController::class,'edit'])->name('edit.Size');
 Route::post('/updateSize/{id}',[PropertyAreaSizeController::class,'update'])->name('update.Size');
-Route::get('/deleteSize/{id}',[PropertyAreaSizeController::class,'destroy'])->name('delete.Size');
+Route::any('/deleteSize/{id}',[PropertyAreaSizeController::class,'destroy'])->name('delete.Size');
 
 /////////////////// Type  Routes  ///////////////
 
@@ -129,7 +129,7 @@ Route::get('/createType',[PropertyTypeController::class,'create'])->name('create
 Route::post('/storeType',[PropertyTypeController::class,'store'])->name('store.Type');
 Route::get('/editType/{id}',[PropertyTypeController::class,'edit'])->name('edit.Type');
 Route::post('/updateType/{id}',[PropertyTypeController::class,'update'])->name('update.Type');
-Route::get('/deleteType/{id}',[PropertyTypeController::class,'destroy'])->name('delete.Type');
+Route::any('/deleteType/{id}',[PropertyTypeController::class,'destroy'])->name('delete.Type');
 
 
 
@@ -140,7 +140,7 @@ Route::get('/createPost',[PostController::class,'create'])->name('create.Post');
 Route::post('/storePost',[PostController::class,'store'])->name('store.Post');
 Route::get('/editPost/{id}',[PostController::class,'edit'])->name('edit.Post');
 Route::post('/updatePost/{id}',[PostController::class,'update'])->name('update.Post');
-Route::get('/deletePost/{id}',[PostController::class,'destroy'])->name('delete.Post');
+Route::any('/deletePost/{id}',[PostController::class,'destroy'])->name('delete.Post');
 
 
 /////////////////// MainProperty  Routes  ///////////////
@@ -150,5 +150,17 @@ Route::get('/createProperty',[MainPropertyController::class,'create'])->name('cr
 Route::post('/storeProperty',[MainPropertyController::class,'store'])->name('store.Property');
 Route::get('/editProperty/{id}',[MainPropertyController::class,'edit'])->name('edit.Property');
 Route::post('/updateProperty/{id}',[MainPropertyController::class,'update'])->name('update.Property');
-Route::get('/deleteProperty/{id}',[MainPropertyController::class,'destroy'])->name('delete.Property');
+Route::any('/deleteProperty/{id}',[MainPropertyController::class,'destroy'])->name('delete.Property');
 
+
+
+
+Route::get('/Property',[PropertyController::class,'displayProperty'])->name('Property');
+
+
+
+////////////// Calculator Route ///////////////
+
+
+Route::get('/indexCalculator',[CalculatorController::class,'index'])->name('Calculator.index');
+Route::post('/storeCalculator',[CalculatorController::class,'store'])->name('Calculator.store');

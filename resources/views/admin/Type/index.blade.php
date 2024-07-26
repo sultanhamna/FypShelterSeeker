@@ -5,17 +5,6 @@
             <div class="col-xl-12 col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        @if (session('error'))
-                        <div class="alert alert-success">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between mt-3">
@@ -31,7 +20,7 @@
                                 </div>
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <table class="table table-bordered " id="type-table">
+                                        <table class="table table-bordered " id="type_table">
                                             <thead>
                                                 <tr>
 
@@ -54,16 +43,21 @@
     </div>
 @endsection
 @section('script')
-
+<script>
+    @if(session('success'))
+        toastr.success('{{ session('success') }}');
+    @endif
+    @if(session('error'))
+        toastr.error('{{ session('error') }}');
+    @endif
+</script>
     <script type="text/javascript">
         $(function() {
-            var table = $('#type-table').DataTable({
+            var type_table = $('#type_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('index.Type') }}",
                 columns: [
-
-
                     {
                         data: 'property_type',
                         name: 'property_type'
@@ -76,7 +70,41 @@
                     },
                 ]
             });
+            $(document).on('click', 'button.delete_type_button', function() {
+                swal({
+                    title: 'Sure',
+                    text: 'Confirm Delete Type',
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        var href = $(this).data('href');
+                        var data = {
+                            _token: '{{ csrf_token() }}' // Ensure the CSRF token is included
+                        };
 
+                        $.ajax({
+                            method: "DELETE",
+                            url: href,
+                            dataType: "json",
+                            data: data,
+                            success: function(result) {
+                                if (result.success) {
+                                    toastr.success(result.success);
+                                    type_table.ajax.reload();
+                                } else {
+                                    toastr.error(result.error);
+                                }
+                            },
+                            error: function(result) {
+                                toastr.error(
+                                    'An error occurred while deleting the Type.');
+                            }
+                        });
+                    }
+                });
+            });
         });
     </script>
 @endsection
