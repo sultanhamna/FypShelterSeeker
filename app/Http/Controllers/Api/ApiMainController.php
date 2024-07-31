@@ -10,25 +10,31 @@ class ApiMainController extends Controller
 {
     public function getAllData()
     {
-        $properties = Property::with('type', 'category', 'status', 'areaSize', 'location', 'post')->get();
+        $properties = Property::with('Images')->get(); // Eager load images
 
         if ($properties->isEmpty()) {
             return response()->json(['error' => 'Properties not found'], 404);
         }
 
         $propertiesData = $properties->map(function ($property) {
-            return [
+            return[
                 'id' => $property->id,
-                'category_id' => $property->category->category_name,
-                'type_id' => $property->type->property_type,
-                'location_id' => $property->location->property_location,
-                'status_id' => $property->status->property_status,
-                'area_size_id' => $property->areaSize->property_size,
-                'post_id' => $property->post->property_post,
+                'category' => $property->category->category_name,
+                'type' => $property->type->property_type,
+                'location' => $property->location->property_location,
+                'status' => $property->status->property_status,
+                'area_size' => $property->areaSize->property_size,
+                'post' => $property->post->property_post,
                 'price' => $property->price,
                 'description' => $property->description,
                // 'created_at' => $property->created_at,
                // 'updated_at' => $property->updated_at,
+                'Images' => $property->Images->map(function ($image) {
+                return[
+                    //'id' => $image->id,
+                    'images' => $image->property_images, // Assuming the Image model has a  attribute
+                ];
+            }),
             ];
         });
 

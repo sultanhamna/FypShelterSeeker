@@ -18,7 +18,8 @@ use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\Admin\MainPropertyController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\CalculatorController;
+//use App\Http\Controllers\CalculatorController;
+//use App\Http\Controllers\Api\FilterSearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +35,7 @@ use App\Http\Controllers\CalculatorController;
   //  return view('front.Content.content');
 //});
 
-/////////////////  User Routes /////////////////
+/////////////////  FrontEnd Routes /////////////////
 
 Route::get('/',[ContentController::class,'index'])->name('home.main');
 
@@ -159,8 +160,3 @@ Route::get('/Property',[PropertyController::class,'displayProperty'])->name('Pro
 
 
 
-////////////// Calculator Route ///////////////
-
-
-Route::get('/indexCalculator',[CalculatorController::class,'index'])->name('Calculator.index');
-Route::post('/storeCalculator',[CalculatorController::class,'store'])->name('Calculator.store');

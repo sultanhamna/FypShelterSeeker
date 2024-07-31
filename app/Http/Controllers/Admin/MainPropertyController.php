@@ -168,7 +168,7 @@ class MainPropertyController extends Controller
         if ($request->hasFile('property_images'))
         {
             // Delete existing images
-            $PropertyEntered->images()->delete();
+            $PropertyEntered->Images()->delete();
 
             $images = [];
             foreach ($request->file('property_images') as $file) {
@@ -181,9 +181,9 @@ class MainPropertyController extends Controller
                     'property_images' => $propertyFilePath,
                 ]);
             }
+        }
             return redirect()->route('index.Property')->with('success', 'Property updated successfully');
 
-            }
     }
     /**
      * Remove the specified resource from storage.

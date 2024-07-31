@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\Admin;
-use App\Models\Admin\Product;
+use App\Models\Admin\Post;
 use App\Models\Admin\Property;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,9 +15,9 @@ class Category extends Model
         'category_icon',
     ];
 
-    public function products()
+    public function post()
    {
-    return  $this->hasMany(Product::class);
+    return  $this->hasMany(Post::class);
    }
 
    public function property()

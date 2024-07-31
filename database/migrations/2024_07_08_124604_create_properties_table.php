@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger("status_id")->nullable();
             $table->unsignedBigInteger("area_size_id")->nullable();
             $table->unsignedBigInteger("post_id")->nullable();
-            $table->decimal('price')->nullable();
+            $table->decimal('price',15,2)->nullable();
             $table->string("description")->nullable();
             $table->timestamps();
         });

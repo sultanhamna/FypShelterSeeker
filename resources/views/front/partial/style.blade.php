@@ -1,8 +1,11 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqk1w27o4v4bF2pmn5u0e47P60fntCjLCwcxNxAzax0ryPFkX+cCdUlFAOvDheMWL8yHqQ+kc=" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href=" {{asset('assets/front/css/open-iconic-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/animate.css')}}">
-    
+
     <link rel="stylesheet" href="{{asset('assets/front/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('asset/front/css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/magnific-popup.css')}}">
@@ -14,10 +17,9 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap-datepicker.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/jquery.timepicker.css')}}">
 
-    
+
     <link rel="stylesheet" href="{{asset('assets/front/css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/icomoon.css')}}">
     <link rel="stylesheet" href=  "{{asset('assets/front/css/style.css')}}">
 
 
-   
