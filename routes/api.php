@@ -34,9 +34,21 @@ Route::get('main',[ApiMainController::class,'getAlldata'])->name('api.main');
 Route::get('image',[ApiImageController::class,'getAllimages'])->name('api.image');
 
 
-Route::get('category/{id}',[FilterSearchController::class,'getAllCategory'])->name('api.category');
+Route::get('location',[FilterSearchController::class,'getLocation'])->name('api.Location');
+Route::get('size',[FilterSearchController::class,'getSize'])->name('api.size');
+Route::get('post',[FilterSearchController::class,'getPost'])->name('api.post');
+Route::get('category',[FilterSearchController::class,'getCategory'])->name('api.category');
+Route::get('type',[FilterSearchController::class,'getType'])->name('api.type');
 
 Route::get('post/{id}',[FilterSearchController::class,'getAllpost'])->name('api.post');
 
 Route::get('location/{id}',[FilterSearchController::class,'getAlllocation'])->name('api.location');
 
+Route::get('properties',[FilterSearchController::class,'getPropertiesByFilters'])->name('api.properties');
+
+
+
+
+Route::options('{any}', function() {
+    return response()->json([]);
+})->where('any', '.*');

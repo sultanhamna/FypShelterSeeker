@@ -24,7 +24,7 @@
 	    	    <div class="row">
 					<div class="col-md-12">
 						<div class="search-wrap-1 ftco-animate">
-                            <form action="{{ route('properties.filter') }}" method="GET" class="search-property-1">
+                            <form action="" method="" class="search-property-1">
                                 @csrf
                                 <div class="row">
                                     <!-- Property Type Field -->
