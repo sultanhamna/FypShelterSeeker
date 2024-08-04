@@ -36,7 +36,7 @@
                                                     <select name="property_location" id="property_location" class="form-control">
                                                         <option value="">Location</option>
                                                         @foreach ($locations as $location)
-                                                            <option value="{{ $location->property_location }}">{{ $location->property_location }}</option>
+                                                            <option value="{{ $location->id }}">{{ $location->property_location }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -46,35 +46,20 @@
                                     <!-- Property Type Field -->
                                     <div class="col-lg align-items-end">
                                         <div class="form-group">
-                                            <label for="#">Property Type</label>
+                                            <label for="#">Property post</label>
                                             <div class="form-field">
                                                 <div class="select-wrap">
-                                                    <select name="property_type" id="property_type" class="form-control">
-                                                        <option value="">Type</option>
-                                                        @foreach ($types as $type)
-                                                            <option value="{{ $type->property_type }}">{{ $type->property_type }}</option>
+                                                    <select name="property_post" id="property_post" class="form-control">
+                                                        <option value="">Post</option>
+                                                        @foreach ($posts as $post)
+                                                            <option value="{{ $post->id }}">{{ $post->property_post }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Property Status Field -->
-                                    <div class="col-lg align-items-end">
-                                        <div class="form-group">
-                                            <label for="#">Property Status</label>
-                                            <div class="form-field">
-                                                <div class="select-wrap">
-                                                    <select name="property_status" id="property_status" class="form-control">
-                                                        <option value="">Status</option>
-                                                        @foreach ($statuses as $status)
-                                                            <option value="{{ $status->property_status }}">{{ $status->property_status }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <!-- Submit Button -->
                                     <div class="col-lg align-self-end">
                                         <div class="form-group">

@@ -63,46 +63,7 @@ public function getSize()
     return response()->json(['size' => $size]);
 }
 
-
-
-
-public function getAllpost($id)
-{
-    // Fetch properties where related 'post' has a specific value
-    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize') // Include related models
-        ->whereHas('post', function ($query) use ($id) {
-            $query->where('id', $id); // Filter based on the provided 'post_id'
-        })
-        ->get()
-
-        ->transform(function ($property) {
-            return[
-                'id' => $property->id,
-                'category' => $property->category->category_name,
-                'type' => $property->type->property_type,
-                'location' => $property->location->property_location,
-                'status' => $property->status->property_status,
-                'area_size' => $property->areaSize->property_size,
-                'post' => $property->post->property_post,
-                'price' => $property->price,
-                'description' => $property->description,
-               // 'created_at' => $property->created_at,
-               // 'updated_at' => $property->updated_at,
-                'Images' => $property->Images->map(function ($image) {
-                return[
-                    //'id' => $image->id,
-                    'images' => $image->property_images, // Assuming the Image model has a  attribute
-                ];
-            }),
-            ];
-        });
-
-    // Return properties with detailed 'post' information as JSON
-    return response()->json(['properties' => $properties]);
-}
-
-
-
+/*
 
 public function getAlllocation($id)
 {
@@ -135,29 +96,23 @@ public function getAlllocation($id)
     return response()->json(['properties' => $properties]);
 }
 
-
+*/
 
 public function getPropertiesByFilters(Request $request)
 {
-    $categoryId = $request->input('category_id');
-    $typeId = $request->input('type_id');
-    $sizeId = $request->input('area_size_id');
+    $postId = $request->input('post_id');
+    $locationId = $request->input('location_id');
 
-    // Fetch properties where related 'category', 'type', and 'location' match the filters
-    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize')
-        ->when($categoryId, function ($query) use ($categoryId) {
-            $query->whereHas('category', function ($query) use ($categoryId) {
-                $query->where('id', $categoryId);
+    // Fetch properties where related 'post' and 'location' match the filters
+    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize', 'Images')
+        ->when($postId, function ($query) use ($postId) {
+            $query->whereHas('post', function ($query) use ($postId) {
+                $query->where('id', $postId);
             });
         })
-        ->when($typeId, function ($query) use ($typeId) {
-            $query->whereHas('type', function ($query) use ($typeId) {
-                $query->where('id', $typeId);
-            });
-        })
-        ->when($sizeId, function ($query) use ($sizeId) {
-            $query->whereHas('areaSize', function ($query) use ($sizeId) {
-                $query->where('id', $sizeId);
+        ->when($locationId, function ($query) use ($locationId) {
+            $query->whereHas('location', function ($query) use ($locationId) {
+                $query->where('id', $locationId);
             });
         })
         ->get()
@@ -184,5 +139,7 @@ public function getPropertiesByFilters(Request $request)
     return response()->json(['properties' => $properties]);
 }
 
-
 }
+
+
+
