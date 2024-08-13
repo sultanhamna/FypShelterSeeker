@@ -4,27 +4,24 @@
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
             class="fas fa-bars"></i></button>
-    <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                aria-describedby="btnNavbarSearch" />
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-        </div>
-    </form>
+
     <!-- Navbar-->
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+    <ul class="navbar-nav ms-auto ">
         <li class="nav-item dropdown ">
             @if (Auth::check() && Auth::user()->role == 'admin')
         <li class="nav-item px-1 dropdown ">
-            <a class="nav-link dropdown-toggle sidecontent" id="navbarDropdownMenuLink" href="#" data-bs-toggle="dropdown"
+            <a class="nav-link px-4 dropdown-toggle sidecontent" id="navbarDropdownMenuLink" href="#" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
               <b class="sidecontent">{{ Auth::user()->name }}</b>
             </a>
-            <div class="dropdown-menu text-center text-lg-start shadow-sm" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu  text-center text-lg-start shadow-sm" aria-labelledby="navbarDropdownMenuLink">
 
                 <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                <a class="dropdown-item" href="{{ route('admin.edit') }}">Edit</a>
             </div>
+
+
+
         </li>
     @else
         <li class="nav-item px-1">

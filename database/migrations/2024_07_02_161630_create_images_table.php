@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('property_images')->nullable();
             $table->unsignedBigInteger("property_id")->nullable();
             $table->timestamps();
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
         });
     }
 

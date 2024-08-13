@@ -195,18 +195,19 @@ class MainPropertyController extends Controller
             // Find the category by its ID with properties eager loaded
             $property = Property::with('Images')->findOrFail($id);
 
-            if ($property->Images()->count() > 0)
+            if ($property)
             {
-                return response()->json(['error' => 'property is not deleted because it has related Images']);
-            }
 
             $property->delete();
 
             return response()->json(['success' => 'property deleted successfully']);
+            }
+
         }
         catch (\Exception $e)
         {
             return response()->json(['error' => 'Failed to delete property: ' . $e->getMessage()], 500);
         }
     }
+
 }

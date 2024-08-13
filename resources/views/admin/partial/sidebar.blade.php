@@ -15,10 +15,6 @@
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-ruler"></i></div>
                     <b class="sidecontent"> Size</b>
                 </a>
-                <a class="nav-link " href="{{ route('user.data') }}">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-users"></i></div>
-                    <b class="sidecontent"> Users</b>
-                </a>
 
                 <a class="nav-link " href="{{ route('index.location') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-map-marker"></i></div>
@@ -45,10 +41,6 @@
                     <b class="sidecontent"> Property</b>
                 </a>
             </div>
-        </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            <b> Shelter Seeker</b>
         </div>
     </nav>
 </div>

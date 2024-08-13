@@ -139,6 +139,48 @@ public function getPropertiesByFilters(Request $request)
     return response()->json(['properties' => $properties]);
 }
 
+
+public function getPropertiesByFiltersCategoryandType(Request $request)
+{
+    $categoryId = $request->input('category_id');
+    $typeId = $request->input('type_id');
+
+    // Fetch properties where related 'category' and 'type' match the filters
+    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize', 'Images')
+        ->when($categoryId, function ($query) use ($categoryId) {
+            $query->whereHas('category', function ($query) use ($categoryId) {
+                $query->where('id', $categoryId);
+            });
+        })
+        ->when($typeId, function ($query) use ($typeId) {
+            $query->whereHas('type', function ($query) use ($typeId) {
+                $query->where('id', $typeId);
+            });
+        })
+        ->get()
+        ->transform(function ($property) {
+            return [
+                'id' => $property->id,
+                'category' => $property->category->category_name,
+                'type' => $property->type->property_type,
+                'location' => $property->location->property_location,
+                'status' => $property->status->property_status,
+                'area_size' => $property->areaSize->property_size,
+                'post' => $property->post->property_post,
+                'price' => $property->price,
+                'description' => $property->description,
+                'images' => $property->Images->map(function ($image) {
+                    return [
+                        'images' => $image->property_images,
+                    ];
+                }),
+            ];
+        });
+
+    // Return properties with detailed information as JSON
+    return response()->json(['properties' => $properties]);
+}
+
 }
 
 

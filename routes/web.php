@@ -51,13 +51,7 @@ Route::get('/agent',[AgentController::class,'index'])->name('home.agent');
 });
 
 
-//////////////  Admin Routes ///////////////////
 
-
-Route::group(['prefix' => 'admin','middleware'=>'admin'], function ()
-{
-Route::get('/dashboard',[AdminDashboardController::class,'index'])->name('admin.dashboard');
-});
 
 ///////// User Data Route///////////////////
 
@@ -76,6 +70,18 @@ Route::get('/register.page',[UserController::class,'showregisterform'])->name('r
 Route::post('/store',[UserController::class,'store'])->name('user.store');
 
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
+
+
+//////////////  Admin Routes ///////////////////
+
+
+Route::group(['prefix' => 'admin','middleware'=>'admin'], function ()
+{
+Route::get('/dashboard',[AdminDashboardController::class,'index'])->name('admin.dashboard');
+
+Route::get('/edit',[AdminDashboardController::class,'edit'])->name('admin.edit');
+Route::post('/update', [AdminDashboardController::class,'update'])->name('admin.update');
+
 
 
 ///////////////////  Category Routes  ///////////////
@@ -154,9 +160,10 @@ Route::post('/updateProperty/{id}',[MainPropertyController::class,'update'])->na
 Route::any('/deleteProperty/{id}',[MainPropertyController::class,'destroy'])->name('delete.Property');
 
 
-
+});
 
 Route::get('/Property',[PropertyController::class,'displayProperty'])->name('Property');
+
 
 
 

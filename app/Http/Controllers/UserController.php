@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index()
@@ -30,7 +31,7 @@ class UserController extends Controller
        $dataEntered= User::create([
             "name"=> $request->name,
             "email"=> $request->email,
-            "password"=> $request->password
+            "password" => Hash::make($request->password)
         ]);
        // dd( $dataEntered);
         if($dataEntered==null)

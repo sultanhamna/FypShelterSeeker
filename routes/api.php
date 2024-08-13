@@ -46,9 +46,8 @@ Route::get('type',[FilterSearchController::class,'getType'])->name('api.type');
 
 Route::get('properties',[FilterSearchController::class,'getPropertiesByFilters'])->name('api.properties');
 
+Route::get('propertiesCategoryandType',[FilterSearchController::class,'getPropertiesByFiltersCategoryandType'])->name('api.propertiesCategoryandType');
 
 
 
-Route::options('{any}', function() {
-    return response()->json([]);
-})->where('any', '.*');
+

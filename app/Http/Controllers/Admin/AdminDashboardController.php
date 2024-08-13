@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Admin\Property;
+use Illuminate\Support\Facades\Hash;
 class AdminDashboardController extends Controller
 {
     /**
@@ -13,7 +16,10 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.Content.content');
+        $Users= User::where('role', 'user')->count();
+        $Properties= Property::count();
+
+        return view('admin.Content.content',compact('Users','Properties'));
     }
 
     /**
@@ -44,18 +50,36 @@ class AdminDashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        $admin = Auth::user();
+
+        return view('admin.Profile.edit',compact('admin'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
-    }
+        $admin = Auth::user();
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255,' . $admin->id,
+        'password' => 'nullable|string|min:8|confirmed',
+        'password_confirmation' => 'nullable|string|min:8',
+    ]);
+
+    $admin->name = $request->input('name');
+    $admin->email = $request->input('email');
+    $admin->password = Hash::make($request->input('password'));
+    $admin->save();
+
+    return redirect()->route('admin.dashboard');
+
+}
+
 
     /**
      * Remove the specified resource from storage.
