@@ -63,14 +63,14 @@ public function getSize()
     return response()->json(['size' => $size]);
 }
 
-/*
 
-public function getAlllocation($id)
+
+public function getAllPosts($id)
 {
-   // Fetch properties where related 'location' has a specific value
+    // Fetch properties where related 'post' has a specific value
     $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize')
-        ->whereHas('location', function ($query) use ($id) {
-            $query->where('id', $id); // Filter based on the provided location ID
+        ->whereHas('post', function ($query) use ($id) {
+            $query->where('id', $id); // Filter based on the provided post ID
         })
         ->get()
         ->transform(function ($property) {
@@ -92,72 +92,47 @@ public function getAlllocation($id)
             ];
         });
 
-    // Return properties with detailed 'location' information as JSON
+    // Return properties with detailed 'post' information as JSON
     return response()->json(['properties' => $properties]);
 }
 
-*/
+
 
 public function getPropertiesByFilters(Request $request)
 {
     $postId = $request->input('post_id');
     $locationId = $request->input('location_id');
-
-    // Fetch properties where related 'post' and 'location' match the filters
-    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize', 'Images')
-        ->when($postId, function ($query) use ($postId) {
-            $query->whereHas('post', function ($query) use ($postId) {
-                $query->where('id', $postId);
-            });
-        })
-        ->when($locationId, function ($query) use ($locationId) {
-            $query->whereHas('location', function ($query) use ($locationId) {
-                $query->where('id', $locationId);
-            });
-        })
-        ->get()
-        ->transform(function ($property) {
-            return [
-                'id' => $property->id,
-                'category' => $property->category->category_name,
-                'type' => $property->type->property_type,
-                'location' => $property->location->property_location,
-                'status' => $property->status->property_status,
-                'area_size' => $property->areaSize->property_size,
-                'post' => $property->post->property_post,
-                'price' => $property->price,
-                'description' => $property->description,
-                'images' => $property->Images->map(function ($image) {
-                    return [
-                        'images' => $image->property_images,
-                    ];
-                }),
-            ];
-        });
-
-    // Return properties with detailed information as JSON
-    return response()->json(['properties' => $properties]);
-}
-
-
-public function getPropertiesByFiltersCategoryandType(Request $request)
-{
     $categoryId = $request->input('category_id');
     $typeId = $request->input('type_id');
 
-    // Fetch properties where related 'category' and 'type' match the filters
-    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize', 'Images')
-        ->when($categoryId, function ($query) use ($categoryId) {
-            $query->whereHas('category', function ($query) use ($categoryId) {
-                $query->where('id', $categoryId);
-            });
-        })
-        ->when($typeId, function ($query) use ($typeId) {
-            $query->whereHas('type', function ($query) use ($typeId) {
-                $query->where('id', $typeId);
-            });
-        })
-        ->get()
+    // Fetch properties where related filters match
+    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize', 'Images');
+
+    if ($postId) {
+        $properties->whereHas('post', function ($query) use ($postId) {
+            $query->where('id', $postId);
+        });
+    }
+
+    if ($locationId) {
+        $properties->whereHas('location', function ($query) use ($locationId) {
+            $query->where('id', $locationId);
+        });
+    }
+
+    if ($categoryId) {
+        $properties->whereHas('category', function ($query) use ($categoryId) {
+            $query->where('id', $categoryId);
+        });
+    }
+
+    if ($typeId) {
+        $properties->whereHas('type', function ($query) use ($typeId) {
+            $query->where('id', $typeId);
+        });
+    }
+
+    $properties = $properties->get()
         ->transform(function ($property) {
             return [
                 'id' => $property->id,
@@ -180,6 +155,7 @@ public function getPropertiesByFiltersCategoryandType(Request $request)
     // Return properties with detailed information as JSON
     return response()->json(['properties' => $properties]);
 }
+
 
 }
 

@@ -40,13 +40,13 @@ Route::get('post',[FilterSearchController::class,'getPost'])->name('api.post');
 Route::get('category',[FilterSearchController::class,'getCategory'])->name('api.category');
 Route::get('type',[FilterSearchController::class,'getType'])->name('api.type');
 
-//Route::get('post/{id}',[FilterSearchController::class,'getAllpost'])->name('api.post');
+Route::get('post/{id}',[FilterSearchController::class,'getAllPosts'])->name('api.post');
 
 //Route::get('location/{id}',[FilterSearchController::class,'getAlllocation'])->name('api.location');
 
 Route::get('properties',[FilterSearchController::class,'getPropertiesByFilters'])->name('api.properties');
 
-Route::get('propertiesCategoryandType',[FilterSearchController::class,'getPropertiesByFiltersCategoryandType'])->name('api.propertiesCategoryandType');
+//Route::get('propertiesCategoryandType',[FilterSearchController::class,'getPropertiesByFiltersCategoryandType'])->name('api.propertiesCategoryandType');
 
 
 
