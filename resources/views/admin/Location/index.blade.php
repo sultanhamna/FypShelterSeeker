@@ -25,6 +25,8 @@
                                                 <tr>
 
                                                     <th>Property &nbsp; Location</th>
+                                                    <th>Location &nbsp; Latitude</th>
+                                                    <th>Location &nbsp; Longitude</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -62,6 +64,14 @@
                     {
                         data: 'property_location',
                         name: 'property_location'
+                    },
+                    {
+                        data: 'location_latitude',
+                        name: 'location_latitude'
+                    },
+                    {
+                        data: 'location_longitude',
+                        name: 'location_longitude'
                     },
                     {
                         data: 'action',

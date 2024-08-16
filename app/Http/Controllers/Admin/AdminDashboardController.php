@@ -64,21 +64,21 @@ class AdminDashboardController extends Controller
     {
         $admin = Auth::user();
 
-    $request->validate([
+        $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255,' . $admin->id,
         'password' => 'nullable|string|min:8|confirmed',
         'password_confirmation' => 'nullable|string|min:8',
-    ]);
+        ]);
 
-    $admin->name = $request->input('name');
-    $admin->email = $request->input('email');
-    $admin->password = Hash::make($request->input('password'));
-    $admin->save();
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        $admin->password = Hash::make($request->input('password'));
+        $admin->save();
 
-    return redirect()->route('admin.dashboard');
+         return redirect()->route('admin.dashboard');
 
-}
+    }
 
 
     /**
