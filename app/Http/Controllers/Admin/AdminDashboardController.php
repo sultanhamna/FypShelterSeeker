@@ -73,7 +73,11 @@ class AdminDashboardController extends Controller
 
         $admin->name = $request->input('name');
         $admin->email = $request->input('email');
+        // Check if password is provided before updating
+        if ($request->filled('password'))
+        {
         $admin->password = Hash::make($request->input('password'));
+        }
         $admin->save();
 
          return redirect()->route('admin.dashboard');
