@@ -80,7 +80,7 @@ class AdminDashboardController extends Controller
         }
         $admin->save();
 
-         return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.dashboard');
 
     }
 

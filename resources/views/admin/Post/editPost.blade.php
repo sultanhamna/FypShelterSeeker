@@ -9,6 +9,7 @@
                                 height="40%"></span>
                     </a>
                 </div>
+                <div class="card-body">
                     <form action="{{route('update.Post',$data->id)}}" enctype="multipart/form-data" method="post">
                         @csrf
                         @include('admin/Post/fields')

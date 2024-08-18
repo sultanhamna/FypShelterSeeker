@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 @section('content')
-    <div class="container cardContainer">
+    <div class="container cardContainer" style="max-width: 600px;">
         <div class="card  categoryCard">
             <div class="card-header mt-3">
                 <div class="navbar-brand-box" style="text-align: center">
@@ -44,6 +44,7 @@
                             {!! Form::password('password', [
                                 'class' => 'form-control',
                                 'id' => 'password',
+                               // 'placeholder' => 'Enter new password',
                             ]) !!}
                             <span class="text-danger">
                                 @error('password')
@@ -57,6 +58,7 @@
                             {!! Form::password('password_confirmation', [
                                 'class' => 'form-control',
                                 'id' => 'password_confirmation',
+                               // 'placeholder' => 'Confirm new password',
                             ]) !!}
                             <span class="text-danger">
                                 @error('password_confirmation')
@@ -64,9 +66,8 @@
                                 @enderror
                             </span>
                         </div>
-                    </br>
                         <div class="mb-2 text-center">
-                            <button type="submit" class="btn  login-btn submitCategory "><b>Update</b></button>
+                            <button type="submit" class="btn  login-btn submitCategory "><b>Update Profile</b></button>
                         </div>
                     </form>
                 </div>

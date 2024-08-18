@@ -9,19 +9,16 @@
     <ul class="navbar-nav ms-auto ">
         <li class="nav-item dropdown ">
             @if (Auth::check() && Auth::user()->role == 'admin')
-        <li class="nav-item px-1 dropdown ">
-            <a class="nav-link px-4 dropdown-toggle sidecontent" id="navbarDropdownMenuLink" href="#" data-bs-toggle="dropdown"
+        <li class="nav-item px-1 ">
+            <a class="nav-link px-4  sidecontent" id="navbarDropdownMenuLink" href="#" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-              <b class="sidecontent">{{ Auth::user()->name }}</b>
+                <i class="fas fa-user fa-fw  sidecontent"></i> <b class="sidecontent">{{ Auth::user()->name }}</b>
             </a>
-            <div class="dropdown-menu  text-center text-lg-start shadow-sm" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu  dropdown-menu-end text-center text-lg-start shadow-sm" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item profile" href="{{ route('admin.edit') }}"> <i class="fas fa-user-edit me-2"></i>Edit Profile</a>
+                <a class="dropdown-item profile " href="{{ route('logout') }}">  <i class="fas fa-sign-out-alt me-2"></i>Logout</a>
 
-                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
-                <a class="dropdown-item" href="{{ route('admin.edit') }}">Edit</a>
             </div>
-
-
-
         </li>
     @else
         <li class="nav-item px-1">

@@ -3,143 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Finder</title>
+    <title>Admin Update Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .form-group .cancel-btn {
+            background-color: #6c757d;
+            margin-top: 10px;
+        }
+        .form-group .cancel-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
 </head>
 <body>
-    <h1>Property Finder</h1>
 
-    <!-- Initial Filter Form -->
-    <form id="initial-filter-form">
-        <label for="post_id">Select Post:</label>
-        <select id="post_id" name="post_id">
-            <option value="">Select Post</option>
-        </select>
-
-        <label for="location_id">Select Location:</label>
-        <select id="location_id" name="location_id">
-            <option value="">Select Location</option>
-        </select>
-
-        <button type="submit">Search Properties</button>
+<div class="container">
+    <h2>Update Profile</h2>
+    <form action="/update-profile" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter a new password">
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your new password">
+        </div>
+        <div class="form-group">
+            <button type="submit">Update Profile</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+        </div>
     </form>
+</div>
 
-    <!-- Property List -->
-    <div id="property-list"></div>
-
-    <!-- Filter Properties Button -->
-    <button id="filter-button">Filter Properties</button>
-
-    <!-- Additional Filters Form (Initially Hidden) -->
-    <form id="filter-form" style="display: none;">
-        <label for="category_id">Select Category:</label>
-        <select id="category_id" name="category_id">
-            <option value="">Select Category</option>
-        </select>
-
-        <label for="type_id">Select Type:</label>
-        <select id="type_id" name="type_id">
-            <option value="">Select Type</option>
-        </select>
-
-        <button type="submit">Apply Filters</button>
-    </form>
-
-    <script>
-        const initialFilterForm = document.getElementById('initial-filter-form');
-        const filterForm = document.getElementById('filter-form');
-        const filterButton = document.getElementById('filter-button');
-        const propertyListDiv = document.getElementById('property-list');
-
-        let postId = null;
-        let locationId = null;
-        let categoryId = null;
-        let typeId = null;
-
-        // Function to populate a select dropdown with options
-        const populateSelectOptions = (selectId, data, valueField, textField) => {
-            const selectElement = document.getElementById(selectId);
-            const optionsHtml = data.map(item => `<option value="${item[valueField]}">${item[textField]}</option>`).join('');
-            selectElement.innerHTML += optionsHtml;
-        };
-
-        // Populate post options dynamically
-        fetch('http://localhost:8000/api/post')
-            .then(response => response.json())
-            .then(data => populateSelectOptions('post_id', data.posts, 'id', 'post_name'))
-            .catch(error => console.error('Error fetching post options:', error));
-
-        // Populate location options dynamically
-        fetch('http://localhost:8000/api/location')
-            .then(response => response.json())
-            .then(data => populateSelectOptions('location_id', data.locations, 'id', 'location_name'))
-            .catch(error => console.error('Error fetching location options:', error));
-
-        // Populate category options dynamically
-        fetch('http://localhost:8000/api/category')
-            .then(response => response.json())
-            .then(data => populateSelectOptions('category_id', data.categories, 'id', 'category_name'))
-            .catch(error => console.error('Error fetching category options:', error));
-
-        // Populate type options dynamically
-        fetch('http://localhost:8000/api/type')
-            .then(response => response.json())
-            .then(data => populateSelectOptions('type_id', data.types, 'id', 'type_name'))
-            .catch(error => console.error('Error fetching type options:', error));
-
-        // Handle initial filter form submission
-        initialFilterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            postId = document.getElementById('post_id').value;
-            locationId = document.getElementById('location_id').value;
-            fetchProperties(postId, locationId, null, null);
-        });
-
-        // Show additional filters form
-        filterButton.addEventListener('click', () => {
-            filterForm.style.display = 'block';
-        });
-
-        // Handle additional filters form submission
-        filterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            categoryId = document.getElementById('category_id').value;
-            typeId = document.getElementById('type_id').value;
-            fetchProperties(postId, locationId, categoryId, typeId);
-        });
-
-        // Function to fetch properties based on filters
-        function fetchProperties(postId, locationId, categoryId, typeId) {
-            const url = new URL('http://localhost:8000/api/properties');
-            const params = new URLSearchParams({
-                post_id: postId,
-                location_id: locationId,
-                category_id: categoryId,
-                type_id: typeId
-            });
-            url.search = params.toString();
-
-            fetch(url.toString(), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                const propertyListHtml = data.properties.map(property => `
-                    <div>
-                        <h2>${property.category}</h2>
-                        <p>Type: ${property.type}</p>
-                        <p>Location: ${property.location}</p>
-                        <p>Price: ${property.price}</p>
-                        <p>Description: ${property.description}</p>
-                        <img src="${property.images[0].images}" alt="Property Image" style="max-width: 200px;">
-                    </div>
-                `).join('');
-                propertyListDiv.innerHTML = propertyListHtml;
-            })
-            .catch(error => console.error('Error fetching properties:', error));
-        }
-    </script>
 </body>
 </html>

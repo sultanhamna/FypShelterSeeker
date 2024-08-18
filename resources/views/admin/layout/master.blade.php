@@ -45,13 +45,14 @@
         {
             color: #191645;
         }
-        .adminame
+        .profile
         {
             color: #191645;
         }
-        .adminame:hover
+        .profile:hover
         {
-            color:#191645 ;
+            background-color: #43CBAC;
+            color:#191645;
         }
         .categoryBtn
         {
