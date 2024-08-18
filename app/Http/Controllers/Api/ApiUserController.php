@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ApiUserController extends Controller
@@ -47,7 +48,7 @@ class ApiUserController extends Controller
             $dataEntered= User::create([
              "name"=> $request->name,
              "email"=> $request->email,
-             "password"=> $request->password
+             "password"=>Hash::make( $request->password)
             ]);
 
     if ($dataEntered == null)
