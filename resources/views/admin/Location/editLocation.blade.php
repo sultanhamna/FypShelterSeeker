@@ -10,9 +10,9 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('update.location',$data->id)}}" enctype="multipart/form-data" method="post">
+                    <form action="{{route('update.location',$data->id)}}"  method="post">
                         @csrf
-                        @include('admin/Location/fields')
+                        @include('admin.Location.fields')
                     </form>
                 </div>
             </div>

@@ -23,7 +23,6 @@
                                         <table class="table table-bordered " id="size_table">
                                             <thead>
                                                 <tr>
-
                                                     <th>Property &nbsp; Size</th>
                                                     <th>Action</th>
                                                 </tr>

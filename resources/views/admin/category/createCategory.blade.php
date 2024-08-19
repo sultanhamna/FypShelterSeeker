@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <form action="{{ route('store.category') }}" enctype="multipart/form-data" method="post">
                         @csrf
-                        @include('admin/category/fields')
+                        @include('admin.category.fields')
                     </form>
                 </div>
             </div>
