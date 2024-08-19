@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <form action="{{ route('store.location') }}" method="post">
                         @csrf
-                        @include('admin/Location/fields')
+                        @include('admin.Location.fields')
                     </form>
                 </div>
             </div>

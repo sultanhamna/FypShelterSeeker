@@ -10,9 +10,9 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('store.Post') }}" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('store.Post') }}" method="post">
                         @csrf
-                        @include('admin/Post/fields')
+                        @include('admin.Post/fields')
                     </form>
                 </div>
             </div>
