@@ -124,4 +124,5 @@ class PropertyStatusController extends Controller
         return response()->json(['error' => 'Failed to delete status: '. $e->getMessage()], 500);
     }
 }
+
 }
