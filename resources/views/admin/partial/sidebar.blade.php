@@ -7,6 +7,11 @@
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-tachometer-alt"></i></div>
                     <b class="sidecontent"> Dashboard</b>
                 </a>
+                <a class="nav-link " href="{{ route('user.data') }}">
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-users"></i></div>
+                    <b class="sidecontent"> Users</b>
+                </a>
+
                 <a class="nav-link  " href="{{ route('index.category') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-list"></i></div>
                     <b class="sidecontent"> Category</b>
@@ -14,10 +19,6 @@
                 <a class="nav-link " href="{{ route('index.Size') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-ruler"></i></div>
                     <b class="sidecontent"> Size</b>
-                </a>
-                <a class="nav-link " href="{{ route('user.data') }}">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-users"></i></div>
-                    <b class="sidecontent"> Users</b>
                 </a>
 
                 <a class="nav-link " href="{{ route('index.location') }}">
