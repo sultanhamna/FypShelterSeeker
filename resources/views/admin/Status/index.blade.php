@@ -24,8 +24,8 @@
                                             <thead>
                                                 <tr>
 
-                                                    <th>Property &nbsp; Status</th>
-                                                    <th>Action</th>
+                                                    <th style="color: #6A9C89">Property &nbsp; Status</th>
+                                                    <th style="color: #6A9C89">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

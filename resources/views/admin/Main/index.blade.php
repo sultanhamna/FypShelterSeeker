@@ -23,15 +23,15 @@
                                         <table class="table table-bordered " id="main_table">
                                             <thead>
                                                 <tr>
-                                                    <th> Type</th>
-                                                    <th> Location</th>
-                                                    <th>  Status</th>
-                                                    <th>  Size</th>
-                                                    <th> Post</th>
-                                                    <th>   Name</th>
-                                                    <th>  Image</th>
-                                                    <th> Price</th>
-                                                    <th>Action</th>
+                                                    <th style="color: #6A9C89"> Type</th>
+                                                    <th style="color: #6A9C89"> Location</th>
+                                                    <th style="color: #6A9C89">  Status</th>
+                                                    <th style="color: #6A9C89">  Size</th>
+                                                    <th style="color: #6A9C89"> Post</th>
+                                                    <th style="color: #6A9C89">   Name</th>
+                                                    <th style="color: #6A9C89">  Image</th>
+                                                    <th style="color: #6A9C89"> Price</th>
+                                                    <th style="color: #6A9C89">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

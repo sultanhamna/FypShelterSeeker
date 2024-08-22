@@ -11,73 +11,90 @@
 
         #layoutSidenav_nav
         {
-            background: linear-gradient( #ffff,#191645 );
 
+            background-color:#6A9C89 ;
         }
         .header
         {
-            background-color:#43CBAC ;
+            background-color:#C1D8C3 ;
         }
         .footer
         {
-            background-color:#43CBAC ;
+            background-color:#C1D8C3 ;
         }
         .navbar-brand
         {
-            color:#191645 ;
+            color:#6A9C89 ;
 
         }
         .navbar-brand:hover
         {
-            color: #191645;
+            color: #6A9C89;
 
         }
         .fa-bars
         {
-           color: #191645;
+           color: #6A9C89;
         }
 
         .sidecontent
         {
-            color: #191645;
+            color: #ffffff;
         }
         .sidecontent:hover
         {
-            color: #191645;
+            color: #ffffff;
+        }
+        .admiName
+        {
+            color: #6A9C89;
+        }
+        .admiName:hover
+        {
+            color: #6A9C89;
         }
         .profile
         {
-            color: #191645;
+            color: #6A9C89;
         }
         .profile:hover
         {
-            background-color: #43CBAC;
-            color:#191645;
+            background-color: #C1D8C3;
+            color:#6A9C89;
+        }
+        .form-group
+        {
+            color:#ffffff;
         }
         .categoryBtn
         {
-            background-color: #43CBAC;
-            color:#191645 ;
+            background-color: #C1D8C3;
+            color: #ffffff ;
             border-radius: 5px;
         }
         .categoryBtn:hover
         {
-            background-color: #43CBAC;
-            color:#191645 ;
+            background-color: #C1D8C3;
+            color: #ffffff ;
+        }
+        .btn-lg
+        {
+            background-color: #C1D8C3;
+            color: #ffffff ;
         }
         .submitCategory
         {
-            background-color: #191645;
-            color: #43CBAC;
+            background-color: #6A9C89;
+            color: #ffffff;
         }
         .submitCategory:hover
         {
-            background-color: #191645;
-            color: #43CBAC;
+            background-color: #6A9C89;
+            color: #ffffff;
         }
         .categoryCard
         {
-            background-color: #43CBAC;
+            background-color: #C1D8C3;
             width: 70%;
 
         }
@@ -98,11 +115,12 @@
         }
         .productCard
         {
-            background-color: #43CBAC;
+            background-color: #C1D8C3;
             width: 70%;
             margin-bottom: 50px;
             margin-top: 50px;
         }
+
     </style>
 </head>
 
