@@ -25,7 +25,7 @@
                                                 <tr>
                                                     <th style="color: #6A9C89";>Category &nbsp; Name</th>
                                                     <th style="color: #6A9C89">Category &nbsp; Icon</th>
-                                                    <th style="color: #6A9C89">Action</th>
+                                                    <th style="color: #6A9C89" >Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
