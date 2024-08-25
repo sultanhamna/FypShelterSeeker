@@ -85,13 +85,21 @@
         .submitCategory
         {
             background-color: #6A9C89;
-            color: #ffffff;
+            color: #ffffff !important; /* Force the text color to stay white */
+            font-weight: bold;
+            border: none;
         }
-        .submitCategory:hover
-        {
+
+       .submitCategory:hover,
+       .submitCategory:active,
+       .submitCategory:focus
+       {
             background-color: #6A9C89;
-            color: #ffffff;
-        }
+            color: #ffffff !important; /* Force the text color to stay white */
+            outline: none;
+            box-shadow: none;
+       }
+
         .categoryCard
         {
             background-color: #C1D8C3;

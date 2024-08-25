@@ -22,6 +22,13 @@ class AdminDashboardController extends Controller
         return view('admin.Content.content',compact('Users','Properties'));
     }
 
+    public function profile()
+
+    {
+        $admin = Auth::user();
+        return view('admin.Profile.viewProfile',compact('admin'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -81,6 +81,7 @@ Route::get('/dashboard',[AdminDashboardController::class,'index'])->name('admin.
 
 Route::get('/edit',[AdminDashboardController::class,'edit'])->name('admin.edit');
 Route::post('/update', [AdminDashboardController::class,'update'])->name('admin.update');
+Route::get('/profile', [AdminDashboardController::class,'profile'])->name('admin.profile');
 
 
 
