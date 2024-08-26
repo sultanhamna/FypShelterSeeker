@@ -94,12 +94,7 @@ Route::get('/editCategory/{id}',[CategoryController::class,'edit'])->name('edit.
 Route::post('/updateCategory/{id}',[CategoryController::class,'update'])->name('update.Category');
 Route::any('/deleteCategory/{id}',[CategoryController::class,'destroy'])->name('delete.Category');
 
-/////////////////// Product  Routes  ///////////////
 
-Route::get('/indexProduct',[ProductController::class,'index'])->name('index.Product');
-Route::get('/createProduct',[ProductController::class,'create'])->name('create.Product');
-Route::post('/storeProduct',[ProductController::class,'store'])->name('store.Product');
-Route::get('/editProduct/{id}',[ProductController::class,'edit'])->name('edit.Product');
 
 /////////////////// Location  Routes  ///////////////
 
