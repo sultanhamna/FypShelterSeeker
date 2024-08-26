@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     {{-- {{dd($data)}} --}}
-                    <form action="{{route('admin.update')}}" enctype="multipart/form-data" method="post">
+                    <form action="{{route('admin.update')}}"  method="post">
                         @csrf
                         <div class="form-group mb-3" style="color: #6A9C89">
                             <b>{!! Form::label('name', 'Enter Name',['class' => 'form-label']) !!}</b>

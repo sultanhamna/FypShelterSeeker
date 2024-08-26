@@ -35,7 +35,7 @@
 </div>
 </br>
 <div class="mb-3 text-center">
-    <button class="btn  submitCategory  login-btn" type="submit"> <b> {{ (!empty( $data) ? 'Update Category' : 'Add Category' )}} </b></button>
+    <button class="btn  submitCategory  login-btn" type="submit" > <b> {{ (!empty( $data) ? 'Update Category' : 'Add Category' )}} </b></button>
 </div>
 
 
