@@ -12,7 +12,7 @@
                 <div class="card-body">
                     {{-- {{dd($data)}} --}}
                     <form action="{{ route('update.Category',$data->id) }}" enctype="multipart/form-data" method="post">
-                        @csrf
+                        {{ csrf_field() }}
                         @include('admin.category.fields')
                     </form>
                 </div>

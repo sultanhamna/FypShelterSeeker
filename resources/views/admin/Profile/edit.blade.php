@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 @section('content')
-    <div class="container cardContainer" style="max-width: 600px;">
-        <div class="card  categoryCard">
+    <div class="container productContainer" style="max-width: 700px;">
+        <div class="card   productCard">
             <div class="card-header mt-3">
                 <div class="navbar-brand-box" style="text-align: center">
                     <a href="index.html">
@@ -10,7 +10,6 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    {{-- {{dd($data)}} --}}
                     <form action="{{route('admin.update')}}"  method="post">
                         @csrf
                         <div class="form-group mb-3" style="color: #6A9C89">
