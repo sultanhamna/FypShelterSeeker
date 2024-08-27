@@ -58,7 +58,7 @@ class PostController extends Controller
 
       if($PostEntered==null)
       {
-         return redirect()->route('index.Post')->with('error","Post is not Entered');
+         return redirect()->route('index.Post')->with('error','Post is not Entered');
       }
       else
       {

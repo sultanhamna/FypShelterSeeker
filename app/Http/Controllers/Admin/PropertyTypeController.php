@@ -57,11 +57,11 @@ class PropertyTypeController extends Controller
 
         if($typeEntered==null)
         {
-            return redirect()->route('index.Type')->with('error","Type is not Created');
+            return redirect()->route('index.Type')->with('error','Type is not Created');
         }
         else
         {
-            return redirect()->route('index.Type')->with('error","Type is  Created Successfully');
+            return redirect()->route('index.Type')->with('success','Type is  Created Successfully');
         }
     }
 

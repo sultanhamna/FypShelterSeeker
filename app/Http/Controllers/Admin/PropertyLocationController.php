@@ -56,11 +56,11 @@ class PropertyLocationController extends Controller
 
       if($locationEntered==null)
       {
-        return redirect()->route('index.location')->with('error","Location is not Created');
+        return redirect()->route('index.location')->with('error','Location is not Created');
       }
       else
       {
-        return redirect()->route('index.location')->with('success","Location is  Created Successful');
+        return redirect()->route('index.location')->with('success','Location is  Created Successful');
       }
     }
 

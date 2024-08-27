@@ -57,11 +57,11 @@ class PropertyAreaSizeController extends Controller
 
       if($sizeEntered==null)
       {
-        return redirect()->route('index.Size')->with('error","Size is not Created');
+        return redirect()->route('index.Size')->with('error','Size is not Created');
       }
       else
       {
-        return redirect()->route('index.Size')->with('successs","Post is Created Successful');
+        return redirect()->route('index.Size')->with('success','Size is Created Successful');
       }
     }
 

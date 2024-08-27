@@ -57,11 +57,11 @@ class PropertyStatusController extends Controller
 
         if($statusEntered==null)
         {
-            return redirect()->route('index.Status')->with('error","Status is not Created');
+            return redirect()->route('index.Status')->with('error','Status is not Created');
         }
         else
         {
-            return redirect()->route('index.Status')->with('success","Status is  Created Successful');
+            return redirect()->route('index.Status')->with('success','Status is  Created Successful');
         }
     }
 
