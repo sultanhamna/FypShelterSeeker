@@ -106,7 +106,14 @@
             width: 70%;
 
         }
-
+        .info-panel
+        {
+            width: 250px; /* or any fixed width you want */
+            margin: 20px; /* or any margin you want */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .cardContainer
         {
             display: flex;

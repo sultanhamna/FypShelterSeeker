@@ -25,7 +25,7 @@
 
         body {
 
-            background-image: url("https://img.freepik.com/premium-photo/seamless-mint-green-illustration-style-background-very-large-blank-background-area-mint-green-illustration-style-ar-32-v-52-job-id-d0c8e8dd63ea448f885ebe328f0fc872_941600-385265.jpg?w=740");
+            background-image: url('{{ asset('assets/admin/img/login.jpg') }}');
             background-repeat: no-repeat;
             background-size: cover;
         }

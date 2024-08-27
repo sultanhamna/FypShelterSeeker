@@ -8,6 +8,8 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Property;
+use App\Models\Admin\Category;
+use App\Models\Admin\Location;
 use Illuminate\Support\Facades\Hash;
 class AdminDashboardController extends Controller
 {
@@ -18,8 +20,9 @@ class AdminDashboardController extends Controller
     {
         $Users= User::where('role', 'user')->count();
         $Properties= Property::count();
-
-        return view('admin.Content.content',compact('Users','Properties'));
+        $Categories= Category::count();
+        $Location= Location::count();
+        return view('admin.Content.content',compact('Users','Properties','Categories','Location'));
     }
 
     public function profile()

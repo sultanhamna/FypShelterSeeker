@@ -13,31 +13,31 @@
                 </a>
 
                 <a class="nav-link  " href="{{ route('index.category') }}">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-list"></i></div>
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-building"></i></div>
                     <b class="sidecontent"> Category</b>
                 </a>
+                <a class="nav-link " href="{{ route('index.Type') }}">
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-home"></i></div>
+                    <b class="sidecontent"> Type</b>
+                </a>
+
                 <a class="nav-link " href="{{ route('index.Size') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-ruler"></i></div>
                     <b class="sidecontent"> Size</b>
                 </a>
 
                 <a class="nav-link " href="{{ route('index.location') }}">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-map-marker"></i></div>
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-map-marker-alt"></i></div>
                     <b class="sidecontent"> Location</b>
                 </a>
 
                  <a class="nav-link " href="{{route('index.Status')}}">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-check-circle"></i></div>
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-circle"></i></div>
                     <b class="sidecontent">Status</b>
                 </a>
 
-                <a class="nav-link " href="{{ route('index.Type') }}">
-                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-home"></i></div>
-                    <b class="sidecontent">Type</b>
-                </a>
-
                 <a class="nav-link " href="{{ route('index.Post') }}">
-                    <div class="sb-nav-link-icon sidecontent "><i class="fas fa-chart-bar"></i></div>
+                    <div class="sb-nav-link-icon sidecontent "><i class="fas fa-shopping-cart"></i></div>
                     <b class="sidecontent"> Post</b>
                 </a>
 
