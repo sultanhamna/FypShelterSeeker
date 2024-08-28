@@ -40,7 +40,7 @@ class UserController extends Controller
         }
         else
         {
-            return redirect()->route('home.main');
+            return redirect()->route('login.page');
         }
     }
 
@@ -58,12 +58,12 @@ class UserController extends Controller
                 if ( Auth::user()->role=='admin')
                 {
 
-                        return redirect()->route('admin.dashboard');
+                    return redirect()->route('admin.dashboard');
                 }
 
               else
                 {
-                    return redirect()->route('home.main');
+                    return redirect()->back();
                 }
 
             }

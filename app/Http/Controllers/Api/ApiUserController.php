@@ -28,7 +28,9 @@ class ApiUserController extends Controller
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json(['access_token' => $token,
+            'user' => $user,
             'message' => 'You have been successfully logged in. Your access token has been generated.'
+
 
 
         ]);
