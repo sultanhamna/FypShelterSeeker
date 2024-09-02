@@ -50,7 +50,8 @@ class PropertyLocationController extends Controller
     {
         $request->validate([
             'property_location' => 'required|string|max:255',
-
+            'location_latitude' => 'required|numeric',
+            'location_longitude' => 'required|numeric',
         ]);
         $locationEntered = Location::create($request->all());
 
@@ -88,6 +89,11 @@ class PropertyLocationController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'property_location' => 'required|string|max:255',
+            'location_latitude' => 'required|numeric',
+            'location_longitude' => 'required|numeric',
+        ]);
         $locationUpdated=   Location::findorfail($id)->update($request->all());
 
         if( $locationUpdated==null)

@@ -90,6 +90,10 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'property_post' => 'required|string|max:255',
+
+        ]);
         $PostUpdated=   Post::findorfail($id)->update($request->all());
 
         if( $PostUpdated==null)

@@ -89,6 +89,10 @@ class PropertyStatusController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'property_status' => 'required|string|max:255',
+
+        ]);
         $statusUpdated=   Status::findorfail($id)->update($request->all());
 
         if( $statusUpdated==null)

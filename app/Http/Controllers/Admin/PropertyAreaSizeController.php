@@ -89,6 +89,10 @@ class PropertyAreaSizeController extends Controller
      */
     public function update(Request $request,  $id)
     {
+        $request->validate([
+            'property_size' => 'required|string|max:255',
+
+        ]);
         $sizeUpdated=   AreaSize::findorfail($id)->update($request->all());
 
         if( $sizeUpdated==null)

@@ -104,6 +104,7 @@ class MainPropertyController extends Controller
      */
     public function store(Request $request)
     {
+
         $PropertyEntered = Property::create($request->except('property_images'));
 
         if ($PropertyEntered == null) {
