@@ -2,19 +2,17 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <div class="card-header">Manage Users</div>
+            <h1 class="mt-4 text-center" style="color: #6A9C89;">Users Table</h1>
             <div class="card-body">
                 <table class="table table-bordered data-table" id="data-table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th style="color: #6A9C89">Name</th>
+                            <th style="color: #6A9C89">Email</th>
+                            <th style="color: #6A9C89">Role</th>
                         </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
             </div>
@@ -42,12 +40,6 @@
                     {
                         data: 'role',
                         name: 'role'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
                     },
                 ]
             });

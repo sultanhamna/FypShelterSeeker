@@ -114,6 +114,12 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .graph
+        {
+            width: 500px; /* or any fixed width you want */
+            margin-left: auto;
+            margin-right: auto;
+        }
         .cardContainer
         {
             display: flex;

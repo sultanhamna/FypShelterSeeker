@@ -104,6 +104,18 @@ class MainPropertyController extends Controller
      */
     public function store(Request $request)
     {
+         // Validate the incoming request data
+         $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'type_id' => 'required|exists:types,id',
+            'location_id' => 'required|exists:locations,id',
+            'status_id' => 'required|exists:statuses,id',
+            'area_size_id' => 'required|exists:area_sizes,id',
+            'post_id' => 'required|exists:posts,id',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string|max:5000',
+           // 'property_images.*'=> 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
 
         $PropertyEntered = Property::create($request->except('property_images'));
 
@@ -162,6 +174,18 @@ class MainPropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
+         // Validate the incoming request data
+         $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'type_id' => 'required|exists:types,id',
+            'location_id' => 'required|exists:locations,id',
+            'status_id' => 'required|exists:statuses,id',
+            'area_size_id' => 'required|exists:area_sizes,id',
+            'post_id' => 'required|exists:posts,id',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string|max:5000',
+           // 'property_images.*'=> 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
         $PropertyEntered = Property::findOrFail($id);
 
         $PropertyEntered->update($request->except('property_images'));
