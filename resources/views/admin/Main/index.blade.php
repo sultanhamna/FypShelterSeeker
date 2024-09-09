@@ -12,7 +12,7 @@
                                     <div class="row">
                                         <div class="col-md-12 ">
                                             <div class="categoryBtn">
-                                                <a class="btn  btn-lg  " href="{{ route('create.Property') }}"><b>ADD
+                                                <a class="btn  btn-lg  " href="{{ route('create.Property') }}"><b>Add
                                                         Property</b></a>
                                             </div>
                                         </div>

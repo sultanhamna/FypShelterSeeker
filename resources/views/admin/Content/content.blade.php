@@ -11,7 +11,7 @@
                         <div class="card-header" style="background-color: #C1D8C3; color: #6A9C89;"><b>Properties by
                                 Category (Residential , Commercial , Plot)</b></div>
                         <div class="card-body">
-                            <canvas id="propertyTypesChart"></canvas>
+                            <canvas id="propertyCategoryChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
 
     <script>
         // Properties by Category Doughnut Chart
-        const propertyCategoryCtx = document.getElementById('propertyTypesChart').getContext('2d');
+        const propertyCategoryCtx = document.getElementById('propertyCategoryChart').getContext('2d');
         new Chart(propertyCategoryCtx, {
             type: 'bar',
             data: {
@@ -111,7 +111,6 @@
                     label: 'Properties by Post Type',
                     data: [{{ $BuyCount }}, {{ $RentCount }}],
                     backgroundColor: ['#6A9C89', '#C1D8C3'],
-                    hoverBackgroundColor: ['#4D7F69', '#A1B89F']
                 }]
             }
         });
