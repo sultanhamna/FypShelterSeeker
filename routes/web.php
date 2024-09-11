@@ -37,7 +37,7 @@ use App\Http\Controllers\Admin\PostController;
 
 /////////////////  FrontEnd Routes /////////////////
 
-Route::get('/',[ContentController::class,'index'])->name('home.main');
+//Route::get('/',[ContentController::class,'index'])->name('home.main');
 
 Route::group([], function ()
 {
@@ -61,7 +61,7 @@ Route::get('/user',[UserDataController::class,'index'])->name('user.data');
 
 /////////////// Login and Register Routes  ////////////////
 
-Route::get('/admin',[UserController::class,'index'])->name('login.page');
+Route::get('/',[UserController::class,'index'])->name('login.page');
 
 Route::post('/login',[UserController::class,'login'])->name('login');
 
@@ -81,6 +81,7 @@ Route::get('/dashboard',[AdminDashboardController::class,'index'])->name('admin.
 
 Route::get('/edit',[AdminDashboardController::class,'edit'])->name('admin.edit');
 Route::post('/update', [AdminDashboardController::class,'update'])->name('admin.update');
+Route::get('/profile', [AdminDashboardController::class,'profile'])->name('admin.profile');
 
 
 
@@ -93,12 +94,7 @@ Route::get('/editCategory/{id}',[CategoryController::class,'edit'])->name('edit.
 Route::post('/updateCategory/{id}',[CategoryController::class,'update'])->name('update.Category');
 Route::any('/deleteCategory/{id}',[CategoryController::class,'destroy'])->name('delete.Category');
 
-/////////////////// Product  Routes  ///////////////
 
-Route::get('/indexProduct',[ProductController::class,'index'])->name('index.Product');
-Route::get('/createProduct',[ProductController::class,'create'])->name('create.Product');
-Route::post('/storeProduct',[ProductController::class,'store'])->name('store.Product');
-Route::get('/editProduct/{id}',[ProductController::class,'edit'])->name('edit.Product');
 
 /////////////////// Location  Routes  ///////////////
 

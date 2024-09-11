@@ -57,11 +57,11 @@ class PropertyStatusController extends Controller
 
         if($statusEntered==null)
         {
-            return redirect()->route('index.Status')->with('error","Status is not Created');
+            return redirect()->route('index.Status')->with('error','Status is not Created');
         }
         else
         {
-            return redirect()->route('index.Status')->with('success","Status is  Created Successful');
+            return redirect()->route('index.Status')->with('success','Status is  Created Successful');
         }
     }
 
@@ -89,6 +89,10 @@ class PropertyStatusController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'property_status' => 'required|string|max:255',
+
+        ]);
         $statusUpdated=   Status::findorfail($id)->update($request->all());
 
         if( $statusUpdated==null)
@@ -124,4 +128,5 @@ class PropertyStatusController extends Controller
         return response()->json(['error' => 'Failed to delete status: '. $e->getMessage()], 500);
     }
 }
+
 }

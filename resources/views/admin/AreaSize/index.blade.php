@@ -23,9 +23,8 @@
                                         <table class="table table-bordered " id="size_table">
                                             <thead>
                                                 <tr>
-
-                                                    <th>Property &nbsp; Size</th>
-                                                    <th>Action</th>
+                                                    <th style="color: #6A9C89">Property &nbsp; Size</th>
+                                                    <th style="color: #6A9C89">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

@@ -57,11 +57,11 @@ class PropertyTypeController extends Controller
 
         if($typeEntered==null)
         {
-            return redirect()->route('index.Type')->with('error","Type is not Created');
+            return redirect()->route('index.Type')->with('error','Type is not Created');
         }
         else
         {
-            return redirect()->route('index.Type')->with('error","Type is  Created Successfully');
+            return redirect()->route('index.Type')->with('success','Type is  Created Successfully');
         }
     }
 
@@ -91,7 +91,10 @@ class PropertyTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        {
+        $request->validate([
+            'property_type' => 'required|string|max:255',
+
+        ]);
             $TypeUpdated=  Type::findorfail($id)->update($request->all());
 
             if( $TypeUpdated==null)
@@ -102,7 +105,7 @@ class PropertyTypeController extends Controller
           {
               return redirect()->route('index.Type')->with("success","Type is  updated");
           }
-        }
+
     }
 
     /**

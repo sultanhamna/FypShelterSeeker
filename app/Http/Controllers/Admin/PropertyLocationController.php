@@ -50,17 +50,18 @@ class PropertyLocationController extends Controller
     {
         $request->validate([
             'property_location' => 'required|string|max:255',
-
+            'location_latitude' => 'required|numeric',
+            'location_longitude' => 'required|numeric',
         ]);
         $locationEntered = Location::create($request->all());
 
       if($locationEntered==null)
       {
-        return redirect()->route('index.location')->with('error","Location is not Created');
+        return redirect()->route('index.location')->with('error','Location is not Created');
       }
       else
       {
-        return redirect()->route('index.location')->with('success","Location is  Created Successful');
+        return redirect()->route('index.location')->with('success','Location is  Created Successful');
       }
     }
 
@@ -88,6 +89,11 @@ class PropertyLocationController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'property_location' => 'required|string|max:255',
+            'location_latitude' => 'required|numeric',
+            'location_longitude' => 'required|numeric',
+        ]);
         $locationUpdated=   Location::findorfail($id)->update($request->all());
 
         if( $locationUpdated==null)

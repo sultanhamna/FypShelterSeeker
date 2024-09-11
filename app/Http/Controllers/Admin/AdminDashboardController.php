@@ -8,6 +8,8 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Property;
+use App\Models\Admin\Category;
+use App\Models\Admin\Location;
 use Illuminate\Support\Facades\Hash;
 class AdminDashboardController extends Controller
 {
@@ -18,8 +20,39 @@ class AdminDashboardController extends Controller
     {
         $Users= User::where('role', 'user')->count();
         $Properties= Property::count();
+        $Categories= Category::count();
+        $Location= Location::count();
 
-        return view('admin.Content.content',compact('Users','Properties'));
+        // Query to get the count of properties for each category
+    $residentialCount = Property::whereHas('category', function($query) {
+        $query->where('category_name', 'Residential');
+    })->count();
+
+    $commercialCount = Property::whereHas('category', function($query) {
+        $query->where('category_name', 'Commercial');
+    })->count();
+
+    $plotCount = Property::whereHas('category', function($query) {
+        $query->where('category_name', 'Plot Area');
+    })->count();
+
+    $BuyCount = Property::whereHas('post', function($query) {
+        $query->where('property_post', 'Buy');
+    })->count();
+
+    $RentCount = Property::whereHas('post', function($query) {
+        $query->where('property_post', 'Rent');
+    })->count();
+
+
+        return view('admin.Content.content',compact('Users','Properties','Categories','Location','residentialCount','commercialCount','plotCount','RentCount','BuyCount'));
+    }
+
+    public function profile()
+
+    {
+        $admin = Auth::user();
+        return view('admin.Profile.viewProfile',compact('admin'));
     }
 
     /**

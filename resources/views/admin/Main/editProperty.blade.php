@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <form action="{{route('update.Property',$data->id)}}" enctype="multipart/form-data" method="post">
                         @csrf
-                        @include('admin/Main/fields')
+                        @include('admin.Main.fields')
                     </form>
                 </div>
             </div>

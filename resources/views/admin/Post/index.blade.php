@@ -23,8 +23,8 @@
                                         <table class="table table-bordered " id="post_table">
                                             <thead>
                                                 <tr>
-                                                    <th>Property &nbsp; Post</th>
-                                                    <th>Action</th>
+                                                    <th style="color: #6A9C89">Property &nbsp; Post</th>
+                                                    <th style="color: #6A9C89">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

@@ -6,6 +6,11 @@
             !empty($data->category_id) ? $data->category_id : null,
             ['class' => 'form-control', 'id' => 'category_id']
         ) !!}
+        <span class="text-danger">
+            @error('category_id')
+                {{ $message }}
+            @enderror
+        </span>
     </div>
     <div class="col-md-6">
         <b>  {!! Form::label('type_id', 'Select Type', ['class' => 'form-label']) !!}  </b>
@@ -14,6 +19,11 @@
             !empty($data->type_id) ? $data->type_id : null,
             ['class' => 'form-control', 'id' => 'type_id']
         ) !!}
+        <span class="text-danger">
+            @error('type_id')
+                {{ $message }}
+            @enderror
+        </span>
     </div>
 </div>
 
@@ -25,6 +35,11 @@
             !empty($data->location_id) ? $data->location_id : null,
             ['class' => 'form-control', 'id' => 'location_id']
         ) !!}
+        <span class="text-danger">
+            @error('location_id')
+                {{ $message }}
+            @enderror
+        </span>
     </div>
     <div class="col-md-6">
         <b>   {!! Form::label('status_id', 'Select Status', ['class' => 'form-label']) !!}  </b>
@@ -33,6 +48,11 @@
             !empty($data->status_id) ? $data->status_id : null,
             ['class' => 'form-control', 'id' => 'status_id']
         ) !!}
+        <span class="text-danger">
+            @error('status_id')
+                {{ $message }}
+            @enderror
+        </span>
     </div>
 </div>
 
@@ -44,6 +64,11 @@
             !empty($data->area_size_id) ? $data->area_size_id : null,
             ['class' => 'form-control', 'id' => 'area_size_id']
         ) !!}
+        <span class="text-danger">
+            @error('area_size_id')
+                {{ $message }}
+            @enderror
+        </span>
     </div>
     <div class="col-md-6">
         <b>   {!! Form::label('post_id', 'Select Post', ['class' => 'form-label']) !!}   </b>
@@ -52,6 +77,11 @@
             !empty($data->post_id) ? $data->post_id : null,
             ['class' => 'form-control', 'id' => 'post_id']
         ) !!}
+        <span class="text-danger">
+            @error('post_id')
+                {{ $message }}
+            @enderror
+        </span>
     </div>
 </div>
 
@@ -66,6 +96,11 @@
                 'id' => 'price',
             ])
             !!}
+            <span class="text-danger">
+                @error('price')
+                    {{ $message }}
+                @enderror
+            </span>
     </div>
     <div class="col-md-6">
         <b>
@@ -77,6 +112,11 @@
                 'id' => 'description',
             ])
             !!}
+            <span class="text-danger">
+                @error('description')
+                    {{ $message }}
+                @enderror
+            </span>
     </div>
 </div>
 

@@ -48,7 +48,7 @@
 </div>
 
 <div class="mb-3 text-center">
-    <button class="btn submitCategory login-btn" type="submit">
+    <button class="btn submitCategory login-btn" type="submit" >
         <b>{{ !empty($data) ? 'Update Location' : 'Add Location' }}</b>
     </button>
 </div>

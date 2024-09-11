@@ -58,7 +58,7 @@ class PostController extends Controller
 
       if($PostEntered==null)
       {
-         return redirect()->route('index.Post')->with('error","Post is not Entered');
+         return redirect()->route('index.Post')->with('error','Post is not Entered');
       }
       else
       {
@@ -90,6 +90,10 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'property_post' => 'required|string|max:255',
+
+        ]);
         $PostUpdated=   Post::findorfail($id)->update($request->all());
 
         if( $PostUpdated==null)

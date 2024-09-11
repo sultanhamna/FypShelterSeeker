@@ -27,7 +27,7 @@
 
         body
         {
-            background-image: url("https://i.pinimg.com/564x/48/d8/e1/48d8e18a2c8a344a91ba95cf6f51f1bd.jpg");
+            background-image: url('{{ asset('assets/admin/img/login.jpg') }}');
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -63,7 +63,7 @@
                     <form action="{{ route('login') }}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label"> <b> Enter Email</b></label>
+                            <label for="email" class="form-label" style="color: #6A9C89"> <b> Enter Email</b></label>
                             <input type="text" class="form-control" id="email" name="email"
                                 value="{{ old('email') }}" />
                             <span class="text-danger">
@@ -73,7 +73,7 @@
                             </span>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label"> <b> Enter Password </b></label>
+                            <label for="password" class="form-label" style="color: #6A9C89"> <b> Enter Password </b></label>
                             <input type="password" class="form-control" id="password" name="password"
                                 value="{{ old('password') }}" />
                             <span class="text-danger">
@@ -83,12 +83,12 @@
                             </span>
                         </div>
                         <div class="mb-2 text-center">
-                            <button type="submit" class="btn  login-btn btn-block "><b>Submit</b></button>
+                            <button type="submit" class="btn  login-btn btn-block " style="color: #6A9C89"><b>Submit</b></button>
                         </div>
                     </form>
                     <div class="row">
                         <div class=" col-sm-12 text-center ">
-                            <p class="mb-0"> Create an account? <a href="{{ route('register.page') }}">
+                            <p class="mb-0"> Create an account? <a href="{{ route('register.page') }}" style="color: #6A9C89">
                                     <b>Register</b></a></p>
                         </div>
                     </div>

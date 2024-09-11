@@ -10,12 +10,12 @@
         <li class="nav-item dropdown ">
             @if (Auth::check() && Auth::user()->role == 'admin')
         <li class="nav-item px-1 ">
-            <a class="nav-link px-4  sidecontent" id="navbarDropdownMenuLink" href="#" data-bs-toggle="dropdown"
+            <a class="nav-link px-4  admiName" id="navbarDropdownMenuLink" href="#" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user fa-fw  sidecontent"></i> <b class="sidecontent">{{ Auth::user()->name }}</b>
+                <i class="fas fa-user fa-fw  admiName"></i> <b class="admiName">{{ Auth::user()->name }}</b>
             </a>
             <div class="dropdown-menu  dropdown-menu-end text-center text-lg-start shadow-sm" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item profile" href="{{ route('admin.edit') }}"> <i class="fas fa-user-edit me-2"></i>Edit Profile</a>
+                <a class="dropdown-item profile " href="{{ route('admin.profile') }}">  <i class="fas fa-user-edit me-2"></i>View Profile</a>
                 <a class="dropdown-item profile " href="{{ route('logout') }}">  <i class="fas fa-sign-out-alt me-2"></i>Logout</a>
 
             </div>

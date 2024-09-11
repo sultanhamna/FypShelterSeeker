@@ -18,10 +18,10 @@ class UserDataController extends Controller
             ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $action = '';
-                    $action .= '<a href="" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
+                    $action .= '<a href="" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Edit</a>';
                     $action .= '&nbsp
 
-                <button data-href="" class="btn btn-xs btn-danger delete_user_button"><i class="fas fa-trash-alt" ></i> Delete</button>';
+                <button data-href="" class="btn btn-sm btn-danger delete_user_button"><i class="fas fa-trash-alt" ></i> Delete</button>';
                 return $action;
             })
                 ->rawColumns(['action'])

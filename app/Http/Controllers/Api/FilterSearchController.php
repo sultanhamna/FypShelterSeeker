@@ -139,6 +139,8 @@ public function getPropertiesByFilters(Request $request)
                 'category' => $property->category->category_name,
                 'type' => $property->type->property_type,
                 'location' => $property->location->property_location,
+                'location_latitude' => $property->location->location_latitude,
+                'location_longitude' => $property->location->location_longitude,
                 'status' => $property->status->property_status,
                 'area_size' => $property->areaSize->property_size,
                 'post' => $property->post->property_post,

@@ -13,7 +13,7 @@
                     {{-- {{dd($data)}} --}}
                     <form action="{{ route('update.Category',$data->id) }}" enctype="multipart/form-data" method="post">
                         @csrf
-                        @include('admin/category/fields')
+                        @include('admin.category.fields')
                     </form>
                 </div>
             </div>

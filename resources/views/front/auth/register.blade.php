@@ -24,7 +24,8 @@
         }
 
         body {
-            background-image: url("https://i.pinimg.com/564x/48/d8/e1/48d8e18a2c8a344a91ba95cf6f51f1bd.jpg");
+
+            background-image: url('{{ asset('assets/admin/img/login.jpg') }}');
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -58,7 +59,7 @@
                     <form action="{{route('user.store')}}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label"> <b> Enter Name</b></label>
+                            <label for="name" class="form-label" style="color: #6A9C89"> <b> Enter Name</b></label>
                             <input type="text" class="form-control" id="name" name="name"
                                 value="{{ old('name') }}" />
                             <span class="text-danger">
@@ -68,7 +69,7 @@
                             </span>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label"> <b> Enter Email</b></label>
+                            <label for="email" class="form-label" style="color: #6A9C89"> <b> Enter Email</b></label>
                             <input type="email" class="form-control" id="email" name="email"
                                 value="{{ old('email') }}" />
                             <span class="text-danger">
@@ -78,7 +79,7 @@
                             </span>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label"> <b> Enter Password </b></label>
+                            <label for="password" class="form-label" style="color: #6A9C89"> <b> Enter Password </b></label>
                             <input type="password" class="form-control" id="password" name="password"/>
                             <span class="text-danger">
                                 @error('password')
@@ -87,7 +88,7 @@
                             </span>
                         </div>
                         <div class="mb-3">
-                            <label for="password_confirmation" class="form-label"> <b> Confirm Password </b></label>
+                            <label for="password_confirmation" class="form-label" style="color: #6A9C89"> <b> Confirm Password </b></label>
                             <input type="password" class="form-control" id="password" name="password_confirmation" />
                             <span class="text-danger">
                                 @error('password_confirmation')
@@ -96,12 +97,12 @@
                             </span>
                         </div>
                         <div class="mb-2 text-center">
-                            <button type="submit" class="btn  login-btn btn-block "><b>Submit</b></button>
+                            <button type="submit" class="btn  login-btn btn-block " style="color: #6A9C89"><b>Submit</b></button>
                         </div>
                     </form>
                     <div class="row">
                         <div class=" col-sm-12 text-center">
-                            <p class="mb-0"> Already have an account? <a href="{{route('login.page')}}"> <b>Login</b></a></p>
+                            <p class="mb-0"> Already have an account? <a href="{{route('login.page')}}" style="color: #6A9C89"> <b>Login</b></a></p>
                         </div>
                     </div>
                 </div>

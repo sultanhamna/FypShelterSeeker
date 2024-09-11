@@ -24,10 +24,10 @@
                                             <thead>
                                                 <tr>
 
-                                                    <th>Property &nbsp; Location</th>
-                                                    <th>Location &nbsp; Latitude</th>
-                                                    <th>Location &nbsp; Longitude</th>
-                                                    <th>Action</th>
+                                                    <th style="color: #6A9C89">Property &nbsp; Location</th>
+                                                    <th style="color: #6A9C89">Location &nbsp; Latitude</th>
+                                                    <th style="color: #6A9C89">Location &nbsp; Longitude</th>
+                                                    <th style="color: #6A9C89">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
