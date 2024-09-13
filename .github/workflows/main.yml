@@ -26,6 +26,6 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ftp.project.theposgeniee.com
-          username: ShelterSeeker@project.theposgeniee.com
+          server: ftp.projectflux.online
+          username: ShelterSeeker@projectflux.online
           password: ftp_ShelterSeeker
