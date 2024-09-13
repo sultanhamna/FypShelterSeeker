@@ -126,7 +126,15 @@ public function getPropertiesByFilters(Request $request)
     }
 
     // Fetch the filtered properties
-    $properties = $propertiesQuery->get()->transform(function ($property) {
+    $properties = $propertiesQuery->get();
+
+    // Check if the result is empty, return an empty response if no match
+    if ($properties->isEmpty()) {
+        return response()->json(['message' => 'No properties match your criteria'], 404);
+    }
+
+    // Transform the filtered properties into a structured format
+    $properties = $properties->transform(function ($property) {
         return [
             'id' => $property->id,
             'category' => $property->category->category_name,
@@ -150,6 +158,7 @@ public function getPropertiesByFilters(Request $request)
     // Return properties with detailed information as JSON
     return response()->json(['properties' => $properties]);
 }
+
 
 
 
