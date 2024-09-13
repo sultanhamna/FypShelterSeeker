@@ -105,58 +105,52 @@ public function getPropertiesByFilters(Request $request)
     $categoryId = $request->input('category_id');
     $typeId = $request->input('type_id');
 
-    // Fetch properties where related filters match
-    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize', 'Images');
+    // Start querying properties with eager-loaded relationships
+    $propertiesQuery = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize', 'Images');
 
+    // Apply filters based on the provided inputs
     if ($postId) {
-        $properties->whereHas('post', function ($query) use ($postId) {
-            $query->where('id', $postId);
-        });
+        $propertiesQuery->where('post_id', $postId);
     }
 
     if ($locationId) {
-        $properties->whereHas('location', function ($query) use ($locationId) {
-            $query->where('id', $locationId);
-        });
+        $propertiesQuery->where('location_id', $locationId);
     }
 
     if ($categoryId) {
-        $properties->whereHas('category', function ($query) use ($categoryId) {
-            $query->where('id', $categoryId);
-        });
+        $propertiesQuery->where('category_id', $categoryId);
     }
 
     if ($typeId) {
-        $properties->whereHas('type', function ($query) use ($typeId) {
-            $query->where('id', $typeId);
-        });
+        $propertiesQuery->where('type_id', $typeId);
     }
 
-    $properties = $properties->get()
-        ->transform(function ($property) {
-            return [
-                'id' => $property->id,
-                'category' => $property->category->category_name,
-                'type' => $property->type->property_type,
-                'location' => $property->location->property_location,
-                'location_latitude' => $property->location->location_latitude,
-                'location_longitude' => $property->location->location_longitude,
-                'status' => $property->status->property_status,
-                'area_size' => $property->areaSize->property_size,
-                'post' => $property->post->property_post,
-                'price' => $property->price,
-                'description' => $property->description,
-                'images' => $property->Images->map(function ($image) {
-                    return [
-                        'images' => $image->property_images,
-                    ];
-                }),
-            ];
-        });
+    // Fetch the filtered properties
+    $properties = $propertiesQuery->get()->transform(function ($property) {
+        return [
+            'id' => $property->id,
+            'category' => $property->category->category_name,
+            'type' => $property->type->property_type,
+            'location' => $property->location->property_location,
+            'location_latitude' => $property->location->location_latitude,
+            'location_longitude' => $property->location->location_longitude,
+            'status' => $property->status->property_status,
+            'area_size' => $property->areaSize->property_size,
+            'post' => $property->post->property_post,
+            'price' => $property->price,
+            'description' => $property->description,
+            'images' => $property->Images->map(function ($image) {
+                return [
+                    'images' => $image->property_images,
+                ];
+            }),
+        ];
+    });
 
     // Return properties with detailed information as JSON
     return response()->json(['properties' => $properties]);
 }
+
 
 
 }
