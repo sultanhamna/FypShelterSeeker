@@ -147,7 +147,7 @@ public function getPropertiesByFilters(Request $request)
             'post' => $property->post->property_post,
             'price' => $property->price,
             'description' => $property->description,
-            'image' =>$property->first()->property_images,
+            'image' =>$property->Images->first()->property_images,
             'images' => $property->Images->map(function ($image) {
                 return [
                     'images' => $image->property_images,
