@@ -39,7 +39,9 @@ Route::get('size',[FilterSearchController::class,'getSize'])->name('api.size');
 Route::get('post',[FilterSearchController::class,'getPost'])->name('api.post');
 Route::get('category',[FilterSearchController::class,'getCategory'])->name('api.category');
 Route::get('type',[FilterSearchController::class,'getType'])->name('api.type');
-
+Route::get('Firstype',[FilterSearchController::class,'getFirstFiveTypes'])->name('api.Firstype');
+Route::get('Secondtype',[FilterSearchController::class,'getSecondFiveTypes'])->name('Secondtype');
+Route::get('Thirdtype',[FilterSearchController::class,'getThirdFiveTypes'])->name('api.Thirdtype');
 //Route::get('post/{id}',[FilterSearchController::class,'getAllPosts'])->name('api.post');
 
 //Route::get('location/{id}',[FilterSearchController::class,'getAlllocation'])->name('api.location');

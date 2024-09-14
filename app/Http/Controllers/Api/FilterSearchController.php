@@ -47,12 +47,33 @@ public function getCategory()
 
 public function getType()
 {
-   // $Type = Type::where('id', $id)->get();
 
     $type = Type::get();
 
     return response()->json(['Type' => $type]);
 }
+
+public function getFirstFiveTypes()
+{
+    $types = Type::take(5)->get();
+
+    return response()->json(['Types' => $types]);
+}
+
+public function getSecondFiveTypes()
+{
+    $types = Type::skip(5)->take(5)->get();
+
+    return response()->json(['Types' => $types]);
+}
+
+public function getThirdFiveTypes()
+{
+    $types = Type::skip(10)->take(5)->get();
+
+    return response()->json(['Types' => $types]);
+}
+
 
 public function getSize()
 {
