@@ -57,21 +57,21 @@ public function getFirstFiveTypes()
 {
     $types = Type::take(5)->get();
 
-    return response()->json(['Types' => $types]);
+    return response()->json(['FirstFiveTypes' => $types]);
 }
 
 public function getSecondFiveTypes()
 {
     $types = Type::skip(5)->take(5)->get();
 
-    return response()->json(['Types' => $types]);
+    return response()->json(['SecondFiveTypes' => $types]);
 }
 
 public function getThirdFiveTypes()
 {
     $types = Type::skip(10)->take(5)->get();
 
-    return response()->json(['Types' => $types]);
+    return response()->json(['ThirdFiveTypes' => $types]);
 }
 
 

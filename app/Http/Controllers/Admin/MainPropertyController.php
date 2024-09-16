@@ -106,6 +106,7 @@ class MainPropertyController extends Controller
     {
          // Validate the incoming request data
          $request->validate([
+
             'category_id' => 'required|exists:categories,id',
             'type_id' => 'required|exists:types,id',
             'location_id' => 'required|exists:locations,id',
@@ -114,7 +115,7 @@ class MainPropertyController extends Controller
             'post_id' => 'required|exists:posts,id',
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string|max:5000',
-           // 'property_images.*'=> 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+
         ]);
 
         $PropertyEntered = Property::create($request->except('property_images'));
@@ -176,6 +177,7 @@ class MainPropertyController extends Controller
     {
          // Validate the incoming request data
          $request->validate([
+
             'category_id' => 'required|exists:categories,id',
             'type_id' => 'required|exists:types,id',
             'location_id' => 'required|exists:locations,id',
@@ -184,7 +186,7 @@ class MainPropertyController extends Controller
             'post_id' => 'required|exists:posts,id',
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string|max:5000',
-           // 'property_images.*'=> 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+
         ]);
         $PropertyEntered = Property::findOrFail($id);
 
