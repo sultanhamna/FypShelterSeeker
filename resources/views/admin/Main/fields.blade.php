@@ -139,6 +139,11 @@
         'multiple' => true,
     ])
     !!}
+    <span class="text-danger">
+        @error('property_images')
+            {{ $message }}
+        @enderror
+    </span>
 </div>
 </br>
 <div class="mb-3 text-center">
