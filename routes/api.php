@@ -42,6 +42,7 @@ Route::get('type',[FilterSearchController::class,'getType'])->name('api.type');
 Route::get('Firstype',[FilterSearchController::class,'getFirstFiveTypes'])->name('api.Firstype');
 Route::get('Secondtype',[FilterSearchController::class,'getSecondFiveTypes'])->name('Secondtype');
 Route::get('Thirdtype',[FilterSearchController::class,'getThirdFiveTypes'])->name('api.Thirdtype');
+Route::get('BuyAndRent',[FilterSearchController::class,'getBuyAndRent'])->name('api.BuyAndRent');
 //Route::get('post/{id}',[FilterSearchController::class,'getAllPosts'])->name('api.post');
 
 //Route::get('location/{id}',[FilterSearchController::class,'getAlllocation'])->name('api.location');

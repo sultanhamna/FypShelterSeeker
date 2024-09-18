@@ -84,37 +84,13 @@ public function getSize()
     return response()->json(['size' => $size]);
 }
 
-
-
-public function getAllPosts($id)
+public function getBuyAndRent()
 {
-    // Fetch properties where related 'post' has a specific value
-    $properties = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize')
-        ->whereHas('post', function ($query) use ($id) {
-            $query->where('id', $id); // Filter based on the provided post ID
-        })
-        ->get()
-        ->transform(function ($property) {
-            return [
-                'id' => $property->id,
-                'category' => $property->category->category_name,
-                'type' => $property->type->property_type,
-                'location' => $property->location->property_location,
-                'status' => $property->status->property_status,
-                'area_size' => $property->areaSize->property_size,
-                'post' => $property->post->property_post,
-                'price' => $property->price,
-                'description' => $property->description,
-                'images' => $property->Images->map(function ($image) {
-                    return [
-                        'images' => $image->property_images,
-                    ];
-                }),
-            ];
-        });
+   // $Size = Size::where('id', $id)->get();
+   $Buy = Post::take(1)->get();
+    $Rent = Post::skip(1)->take(1)->get();
 
-    // Return properties with detailed 'post' information as JSON
-    return response()->json(['properties' => $properties]);
+    return response()->json(['Buy' =>  $Buy , 'Rent' =>$Rent]);
 }
 
 
