@@ -93,7 +93,7 @@ public function getBuyAndRent()
     return response()->json(['Buy' =>  $Buy , 'Rent' =>$Rent]);
 }
 
-
+/*
 
 public function getPropertiesByFilters(Request $request)
 {
@@ -158,6 +158,73 @@ public function getPropertiesByFilters(Request $request)
     return response()->json(['properties' => $properties]);
 }
 
+*/
+public function getPropertiesByFilters(Request $request)
+{
+    // Fetch all the inputs (post_id, location_id, category_id, type_id)
+    $postId = $request->input('post_id');
+    $locationId = $request->input('location_id');
+    $categoryId = $request->input('category_id');
+    $typeId = $request->input('type_id');
+
+    // Ensure properties are not shown unless at least one filter is selected
+    if (!$postId && !$locationId && !$categoryId && !$typeId) {
+        return response()->json(['message' => 'Please select at least one filter'], 400);
+    }
+
+    // Start querying properties with eager-loaded relationships
+    $propertiesQuery = Property::with('post', 'category', 'type', 'location', 'status', 'areaSize', 'Images');
+
+    // Apply filters based on the provided inputs from both home and filters page
+    if ($postId) {
+        $propertiesQuery->where('post_id', $postId);
+    }
+
+    if ($locationId) {
+        $propertiesQuery->where('location_id', $locationId);
+    }
+
+    if ($categoryId) {
+        $propertiesQuery->where('category_id', $categoryId);
+    }
+
+    if ($typeId) {
+        $propertiesQuery->where('type_id', $typeId);
+    }
+
+    // Fetch the filtered properties
+    $properties = $propertiesQuery->get();
+
+    // If no properties match the filters, return a message
+    if ($properties->isEmpty()) {
+        return response()->json(['message' => 'No properties match your criteria'], 404);
+    }
+
+    // Transform and return the filtered properties
+    $properties = $properties->transform(function ($property) {
+        return [
+            'id' => $property->id,
+            'category' => $property->category->category_name,
+            'type' => $property->type->property_type,
+            'location' => $property->location->property_location,
+            'location_latitude' => $property->location->location_latitude,
+            'location_longitude' => $property->location->location_longitude,
+            'status' => $property->status->property_status,
+            'area_size' => $property->areaSize->property_size,
+            'post' => $property->post->property_post,
+            'price' => $property->price,
+            'description' => $property->description,
+            'image' => url('storage/' . $property->Images->first()->property_images),
+            'images' => $property->Images->map(function ($image) {
+                return [
+                    'images' => url('storage/' . $image->property_images),
+                ];
+            }),
+        ];
+    });
+
+    return response()->json(['properties' => $properties]);
+}
 
 
 
