@@ -169,6 +169,7 @@ public function getPropertiesByFilters(Request $request)
     $categoryId = $request->query('category_id');
     $typeId = $request->query('type_id');
 
+
     // Ensure properties are not shown unless at least one filter is selected
     if (!$postId && !$locationId && !$categoryId && !$typeId) {
         return response()->json(['message' => 'Please select at least one filter'], 400);
@@ -199,7 +200,7 @@ public function getPropertiesByFilters(Request $request)
 
     // If no properties match the filters, return a message
     if ($properties->isEmpty()) {
-        return response()->json(['message' => 'No properties match your criteria'], 404);
+        return response()->json(['message' => 'No properties match your criteria'], 200);
     }
 
     // Transform and return the filtered properties
