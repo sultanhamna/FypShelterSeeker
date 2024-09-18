@@ -159,13 +159,15 @@ public function getPropertiesByFilters(Request $request)
 }
 
 */
+
+
 public function getPropertiesByFilters(Request $request)
 {
-    // Fetch all the inputs (post_id, location_id, category_id, type_id)
-    $postId = $request->input('post_id');
-    $locationId = $request->input('location_id');
-    $categoryId = $request->input('category_id');
-    $typeId = $request->input('type_id');
+    // Fetch the query parameters from the URL
+    $postId = $request->query('post_id');
+    $locationId = $request->query('location_id');
+    $categoryId = $request->query('category_id');
+    $typeId = $request->query('type_id');
 
     // Ensure properties are not shown unless at least one filter is selected
     if (!$postId && !$locationId && !$categoryId && !$typeId) {
