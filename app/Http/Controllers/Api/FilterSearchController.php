@@ -168,7 +168,7 @@ public function getPropertiesByFilters(Request $request)
             'post' => $property->post->property_post,
             'price' => $property->price,
             'description' => $property->description,
-            'image' =>$property->Images->first()->property_images,
+            'image' => url('storage/' .$property->Images->first()->property_images),
             'images' => $property->Images->map(function ($image) {
                 return [
                     'images' =>  url('storage/' . $image->property_images),
