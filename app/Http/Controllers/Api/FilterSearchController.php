@@ -200,7 +200,7 @@ public function getPropertiesByFilters(Request $request)
 
     // If no properties match the filters, return a message
     if ($properties->isEmpty()) {
-        return response()->json(['message' => 'No properties match your criteria'], 200);
+        return response()->json(['message' => 'No properties match your criteria'], 404);
     }
 
     // Transform and return the filtered properties
