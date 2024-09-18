@@ -86,8 +86,8 @@ public function getSize()
 
 public function getBuyAndRent()
 {
-   // $Size = Size::where('id', $id)->get();
-   $Buy = Post::take(1)->get();
+
+    $Buy = Post::take(1)->get();
     $Rent = Post::skip(1)->take(1)->get();
 
     return response()->json(['Buy' =>  $Buy , 'Rent' =>$Rent]);
