@@ -127,7 +127,7 @@ public function getPropertiesByFilters(Request $request)
 
     // Check if the result is empty, return an empty response if no match
     if ($properties->isEmpty()) {
-        return response()->json(['message' => 'No properties match your criteria'], 404);
+        return response()->json(['message' => 'No properties match your criteria'], 200);
     }
 
     // Transform the filtered properties into a structured format
