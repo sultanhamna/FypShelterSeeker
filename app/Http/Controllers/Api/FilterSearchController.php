@@ -171,7 +171,8 @@ public function getPropertiesByFilters(Request $request)
             'image' =>$property->Images->first()->property_images,
             'images' => $property->Images->map(function ($image) {
                 return [
-                    'images' => $image->property_images,
+                    'images' =>  url('storage/' . $image->property_images),
+
                 ];
             }),
         ];
