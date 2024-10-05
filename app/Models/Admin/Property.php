@@ -8,6 +8,7 @@ use App\Models\Admin\Status;
 use App\Models\Admin\AreaSize;
 use App\Models\Admin\Post;
 use App\Models\Admin\Image;
+use App\Models\Admin\Favourite;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -63,4 +64,12 @@ class Property extends Model
     {
         return $this->belongsTo(Post::class,'post_id');
     }
+
+    public function favorites()
+   {
+
+    return $this->hasMany(Favorite::class);
+
+   }
+
 }
