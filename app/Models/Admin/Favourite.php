@@ -11,8 +11,8 @@ class Favourite extends Model
     use HasFactory;
     protected $fillable =
     [
-        'users_id',
-        'properties_id'
+        'user_id',
+        'property_id'
     ];
 
     public function user()
