@@ -51,6 +51,9 @@ Route::get('properties',[FilterSearchController::class,'getPropertiesByFilters']
 
 //Route::get('propertiesCategoryandType',[FilterSearchController::class,'getPropertiesByFiltersCategoryandType'])->name('api.propertiesCategoryandType');
 
+Route::post('/add', [FavoriteController::class, 'addFavorite'])->name('api.add');
+Route::any('/delete', [FavoriteController::class, 'removeFavorite'])->name('api.delete');
+Route::get('/show', [FavoriteController::class, 'listFavorites'])->name('api.show');
 
 
 
