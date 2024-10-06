@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\ApiUserController;
 use App\Http\Controllers\Api\ApiMainController;
 use App\Http\Controllers\Api\ApiImageController;
@@ -43,18 +44,13 @@ Route::get('type',[FilterSearchController::class,'getType'])->name('api.type');
 Route::get('Firstype',[FilterSearchController::class,'getFirstFiveTypes'])->name('api.Firstype');
 Route::get('Secondtype',[FilterSearchController::class,'getSecondFiveTypes'])->name('Secondtype');
 Route::get('Thirdtype',[FilterSearchController::class,'getThirdFiveTypes'])->name('api.Thirdtype');
-Route::get('BuyAndRent',[FilterSearchController::class,'getBuyAndRent'])->name('api.BuyAndRent');
-//Route::get('post/{id}',[FilterSearchController::class,'getAllPosts'])->name('api.post');
-
-//Route::get('location/{id}',[FilterSearchController::class,'getAlllocation'])->name('api.location');
-
 Route::get('properties',[FilterSearchController::class,'getPropertiesByFilters'])->name('api.properties');
 
-//Route::get('propertiesCategoryandType',[FilterSearchController::class,'getPropertiesByFiltersCategoryandType'])->name('api.propertiesCategoryandType');
 
 Route::post('/add', [FavouriteController::class, 'addFavorite'])->name('api.add');
-Route::any('/delete', [FavouriteController::class, 'removeFavorite'])->name('api.delete');
+Route::delete('/delete', [FavouriteController::class, 'removeFavorite'])->name('api.delete');
 Route::get('/show', [FavouriteController::class, 'listFavorites'])->name('api.show');
+
 
 
 
