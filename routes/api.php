@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ApiUserController;
 use App\Http\Controllers\Api\ApiMainController;
 use App\Http\Controllers\Api\ApiImageController;
 use App\Http\Controllers\Api\FilterSearchController;
+use App\Http\Controllers\Api\FavouriteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
