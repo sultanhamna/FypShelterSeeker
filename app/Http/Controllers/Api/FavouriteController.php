@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -10,12 +10,9 @@ class FavouriteController extends Controller
 {
     public function addFavorite(Request $request)
     {
-        /*
-        $request->validate
-        ([
+        $request->validate([
             'property_id' => 'required|exists:properties,id',
-        ]);
-         // Validate that the property_id exists in the properties table
+        ]);  // Validate that the property_id exists in the properties table
 
         // Check if the property is already favorited by this user
         $favorite = Favorite::where('user_id', Auth::id())
@@ -31,28 +28,29 @@ class FavouriteController extends Controller
             'user_id' => Auth::id(),  // Current logged-in user
             'property_id' => $request->property_id,  // The property to be favorited
         ]);
-*/
+
         return response()->json(['message' => 'Property added to favorites'], 201);
     }
 
     public function removeFavorite(Request $request)
-{
-    $request->validate([
-        'property_id' => 'required|exists:properties,id',
-    ]);
+    {
+        $request->validate([
+            'property_id' => 'required|exists:properties,id',
+        ]);
 
-    $favorite = Favorite::where('user_id', Auth::id())
-                        ->where('property_id', $request->property_id)
-                        ->first();
+        $favorite = Favorite::where('user_id', Auth::id())
+                            ->where('property_id', $request->property_id)
+                            ->first();
 
-    if (!$favorite) {
-        return response()->json(['message' => 'Property not in favorites'], 404);
+        if (!$favorite) {
+            return response()->json(['message' => 'Property not in favorites'], 404);
+        }
+
+        $favorite->delete();  // Remove the favorite entry
+
+        return response()->json(['message' => 'Property removed from favorites'], 200);
     }
 
-    $favorite->delete();  // Remove the favorite entry
-
-    return response()->json(['message' => 'Property removed from favorites'], 200);
-}
 
 public function listFavorites()
 {
@@ -60,7 +58,7 @@ public function listFavorites()
         $query->where('user_id', Auth::id());  // Get properties where the logged-in user favorited them
     })->get();
 
-    return response()->json($favorites, 200);
+    return response()->json($favorites, 200);
 }
 
 
