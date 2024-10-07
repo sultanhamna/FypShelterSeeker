@@ -55,7 +55,7 @@ class FavouriteController extends Controller
 
 public function listFavorites()
 {
-    $favorites = Property::whereHas('favourites', function ($query) {
+    $favorites = Property::whereHas('favorites', function ($query) {
         $query->where('user_id', Auth::id());  // Get properties where the logged-in user favorited them
     })->get();
 
