@@ -19,19 +19,10 @@ use App\Http\Controllers\Api\FavouriteController;
 |
 */
 
-
-// Group the routes with 'auth:sanctum' middleware
-Route::middleware('auth:sanctum')->group(function () {
-    // Route to get the authenticated user
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
-    // Routes for handling favorites
-    Route::post('/add', [FavouriteController::class, 'addFavorite'])->name('api.add');
-    Route::delete('/delete', [FavouriteController::class, 'removeFavorite'])->name('api.delete');
-    Route::get('/show', [FavouriteController::class, 'listFavorites'])->name('api.show');
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
+
 
 Route::post('Login',[ApiUserController::class,'login'])->name('api.login');
 
@@ -55,6 +46,10 @@ Route::get('Secondtype',[FilterSearchController::class,'getSecondFiveTypes'])->n
 Route::get('Thirdtype',[FilterSearchController::class,'getThirdFiveTypes'])->name('api.Thirdtype');
 Route::get('properties',[FilterSearchController::class,'getPropertiesByFilters'])->name('api.properties');
 
+
+Route::post('/add', [FavouriteController::class, 'addFavorite'])->name('api.add');
+Route::delete('/delete', [FavouriteController::class, 'removeFavorite'])->name('api.delete');
+Route::get('/show', [FavouriteController::class, 'listFavorites'])->name('api.show');
 
 
 

@@ -10,6 +10,7 @@ class FavouriteController extends Controller
 {
     public function addFavorite(Request $request)
     {
+        /*
         $request->validate
         ([
             'property_id' => 'required|exists:properties,id',
@@ -30,7 +31,7 @@ class FavouriteController extends Controller
             'user_id' => Auth::id(),  // Current logged-in user
             'property_id' => $request->property_id,  // The property to be favorited
         ]);
-
+*/
         return response()->json(['message' => 'Property added to favorites'], 201);
     }
 
