@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin\Property;
+use App\Models\Admin\Favourite;
 class FavouriteController extends Controller
 {
     public function addFavorite(Request $request)
@@ -15,7 +16,7 @@ class FavouriteController extends Controller
         ]);  // Validate that the property_id exists in the properties table
 
         // Check if the property is already favorited by this user
-        $favorite = Favorite::where('user_id', Auth::id())
+        $favorite = Favourite::where('user_id', Auth::id())
                             ->where('property_id', $request->property_id)
                             ->first();
 
@@ -24,7 +25,7 @@ class FavouriteController extends Controller
         }
 
         // Add to favorites
-        Favorite::create([
+        Favourite::create([
             'user_id' => Auth::id(),  // Current logged-in user
             'property_id' => $request->property_id,  // The property to be favorited
         ]);
@@ -38,7 +39,7 @@ class FavouriteController extends Controller
             'property_id' => 'required|exists:properties,id',
         ]);
 
-        $favorite = Favorite::where('user_id', Auth::id())
+        $favorite = Favourite::where('user_id', Auth::id())
                             ->where('property_id', $request->property_id)
                             ->first();
 
@@ -54,7 +55,7 @@ class FavouriteController extends Controller
 
 public function listFavorites()
 {
-    $favorites = Property::whereHas('favorites', function ($query) {
+    $favorites = Property::whereHas('favourites', function ($query) {
         $query->where('user_id', Auth::id());  // Get properties where the logged-in user favorited them
     })->get();
 
