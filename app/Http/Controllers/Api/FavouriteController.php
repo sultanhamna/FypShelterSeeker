@@ -58,7 +58,7 @@ public function listFavorites()
         $query->where('user_id', Auth::id());  // Get properties where the logged-in user favorited them
     })->get();
 
-    return response()->json($favorites, 200);
+    return response()->json($favorites,200);
 }
 
 
