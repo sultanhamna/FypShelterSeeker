@@ -19,15 +19,19 @@ use App\Http\Controllers\Api\FavouriteController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request)
- {
-    return $request->user();
+
+// Group the routes with 'auth:sanctum' middleware
+Route::middleware('auth:sanctum')->group(function () {
+    // Route to get the authenticated user
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    // Routes for handling favorites
     Route::post('/add', [FavouriteController::class, 'addFavorite'])->name('api.add');
     Route::delete('/delete', [FavouriteController::class, 'removeFavorite'])->name('api.delete');
     Route::get('/show', [FavouriteController::class, 'listFavorites'])->name('api.show');
-
 });
-
 
 Route::post('Login',[ApiUserController::class,'login'])->name('api.login');
 
