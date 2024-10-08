@@ -5,7 +5,14 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Admin\Post;
 use App\Models\Admin\Property;
+use App\Models\Admin\Location;
+use App\Models\Admin\Type;
+use App\Models\Admin\Status;
+use App\Models\Admin\AreaSize;
+use App\Models\Admin\Image;
+
 use App\Models\Admin\Favourite;
 class FavouriteController extends Controller
 {
@@ -53,14 +60,42 @@ class FavouriteController extends Controller
     }
 
 
-public function listFavorites()
-{
-    $favorites = Property::whereHas('favorites', function ($query) {
-        $query->where('user_id', Auth::id());  // Get properties where the logged-in user favorited them
-    })->get();
+    public function listFavorites()
+    {
+        // Get the logged-in user ID
+        $userId = Auth::id();
 
-    return response()->json($favorites,200);
-}
+        // Fetch the favorite properties for the logged-in user, including relationships
+        $favorites = Property::whereHas('favorites', function ($query) use ($userId) {
+            $query->where('user_id', $userId);  // Get properties where the logged-in user favorited them
+        })
+        ->with(['category', 'type', 'location', 'Images'])  // Load related data
+        ->get();
+
+        // If no properties are found in favorites, return a message
+        if ($favorites->isEmpty()) {
+            return response()->json(['message' => 'No favorite properties found'], 404);
+        }
+
+        // Transform the favorite properties data to send in response
+        $favorites = $favorites->map(function ($property) {
+            return [
+                'id' => $property->id,
+                'category' => $property->category->category_name,
+                'type' => $property->type->property_type,
+                'location' => $property->location->property_location,
+                'status' => $property->status->property_status,
+                'area_size' => $property->areaSize->property_size,
+                'post' => $property->post->property_post,
+                'price' => $property->price,
+                'description' => $property->description,
+                'image' => url('storage/' . $property->Images->first()->property_images),  // Fetch first image of the property
+            ];
+        });
+
+        // Return the transformed data as a JSON response
+        return response()->json(['favorites' => $favorites], 200);
+    }
 
 
 }
