@@ -20,21 +20,11 @@ class FavouriteController extends Controller
     {
         $request->validate([
             'property_id' => 'required|exists:properties,id',
-        ]);  // Validate that the property_id exists in the properties table
+        ]);
 
-        // Check if the property is already favorited by this user
-        $favorite = Favourite::where('user_id', Auth::id())
-                            ->where('property_id', $request->property_id)
-                            ->first();
-
-        if ($favorite) {
-            return response()->json(['message' => 'Property already favorited'], 409);
-        }
-
-        // Add to favorites
         Favourite::create([
-            'user_id' => Auth::id(),  // Current logged-in user
-            'property_id' => $request->property_id,  // The property to be favorited
+            'user_id' => Auth::id(),
+            'property_id' => $request->property_id,
         ]);
 
         return response()->json(['message' => 'Property added to favorites'], 201);
@@ -54,7 +44,7 @@ class FavouriteController extends Controller
             return response()->json(['message' => 'Property not in favorites'], 404);
         }
 
-        $favorite->delete();  // Remove the favorite entry
+        $favorite->delete();
 
         return response()->json(['message' => 'Property removed from favorites'], 200);
     }
@@ -62,22 +52,20 @@ class FavouriteController extends Controller
 
     public function listFavorites()
     {
-        // Get the logged-in user ID
+
         $userId = Auth::id();
 
-        // Fetch the favorite properties for the logged-in user, including relationships
         $favorites = Property::whereHas('favorites', function ($query) use ($userId) {
-            $query->where('user_id', $userId);  // Get properties where the logged-in user favorited them
+            $query->where('user_id', $userId);
         })
-        ->with(['category', 'type', 'location', 'Images'])  // Load related data
+        ->with(['category', 'type', 'location', 'Images'])
         ->get();
 
-        // If no properties are found in favorites, return a message
         if ($favorites->isEmpty()) {
             return response()->json(['message' => 'No favorite properties found'], 404);
         }
 
-        // Transform the favorite properties data to send in response
+
         $favorites = $favorites->map(function ($property) {
             return [
                 'id' => $property->id,
@@ -89,11 +77,11 @@ class FavouriteController extends Controller
                 'post' => $property->post->property_post,
                 'price' => $property->price,
                 'description' => $property->description,
-                'image' => url('storage/' . $property->Images->first()->property_images),  // Fetch first image of the property
+                'image' => url('storage/' . $property->Images->first()->property_images),
             ];
         });
 
-        // Return the transformed data as a JSON response
+
         return response()->json(['favorites' => $favorites], 200);
     }
 
