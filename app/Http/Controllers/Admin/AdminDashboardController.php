@@ -23,7 +23,7 @@ class AdminDashboardController extends Controller
         $Categories= Category::count();
         $Location= Location::count();
 
-        // Query to get the count of properties for each category
+
     $residentialCount = Property::whereHas('category', function($query) {
         $query->where('category_name', 'Residential');
     })->count();
@@ -106,7 +106,7 @@ class AdminDashboardController extends Controller
 
         $admin->name = $request->input('name');
         $admin->email = $request->input('email');
-        // Check if password is provided before updating
+
         if ($request->filled('password'))
         {
         $admin->password = Hash::make($request->input('password'));

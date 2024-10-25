@@ -130,17 +130,16 @@ class MainPropertyController extends Controller
 
 
                 $filename =  time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                // dd($filename);
+
                 $propertyFilePath = $file->storeAs('adminCategory', $filename, 'public');
 
-                // dd($propertyFilePath);
+
                 $images[] = Image::create([
                     'property_id' => $PropertyEntered->id,
                     'property_images' => $propertyFilePath,
                 ]);
             }
 
-           // dd($PropertyEntered);
             return redirect()->route('index.Property')->with('success', 'Property created successfully');
         }
     }
@@ -158,7 +157,7 @@ class MainPropertyController extends Controller
      */
     public function edit(string $id)
     {
-         // dd($id);
+
          $categories= Category::all();
          $types= Type::all();
          $posts= Post::all();
@@ -167,7 +166,7 @@ class MainPropertyController extends Controller
          $locations= Location::all();
          $Images= Image::all();
          $data =  Property::with('type','category','status','areaSize','location','Images','post')->findorfail($id);
-         // dd($data);
+
          return view('admin/Main/editProperty', compact(['data','posts','categories','types','statuses','sizes','locations','Images']));
     }
 
@@ -220,7 +219,7 @@ class MainPropertyController extends Controller
     {
         try
         {
-            // Find the category by its ID with properties eager loaded
+
             $property = Property::with('Images')->findOrFail($id);
 
             if ($property)

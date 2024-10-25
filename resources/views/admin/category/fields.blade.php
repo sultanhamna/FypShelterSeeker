@@ -4,7 +4,7 @@
    {!! Form::label('categoryName', 'Category Name',['class' => 'form-label',]) !!}
 </b>
 &nbsp;
-<b> <small>** Residential , Commercial ,Plot **</small></b>
+<b> <small>** Residential , Commercial , Plot **</small></b>
     {!! Form::text('category_name', !empty($data->category_name) ? $data->category_name : null, [
         'class' => 'form-control',
         'id' => 'categoryName',

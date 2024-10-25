@@ -93,9 +93,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        // dd($id);
+
         $data = Category::findorfail($id);
-        // dd($data);
+
         return view('admin/category/editCategory', compact(['data',]));
     }
 

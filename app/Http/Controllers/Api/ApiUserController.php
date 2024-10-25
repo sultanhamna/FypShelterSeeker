@@ -37,7 +37,7 @@ class ApiUserController extends Controller
 
     }
 
-/*
+
     public function store(Request $request)
 {
     $request->validate(
@@ -68,7 +68,7 @@ class ApiUserController extends Controller
         ]);
     }
 }
-*/
+/*
 public function store(Request $request)
 {
     try {
@@ -123,7 +123,7 @@ public function store(Request $request)
     }
 }
 
-
+*/
 }
 
 
