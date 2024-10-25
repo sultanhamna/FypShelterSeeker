@@ -64,7 +64,7 @@ class ApiUserController extends Controller
         return response()->json([
             'access_token' => $token,
 
-            'message' => 'User created successfully. Your access token has been generated.'
+            'message' => 'User Registered successfully. Your access token has been Generated.'
         ]);
     }
 }
@@ -122,7 +122,6 @@ public function store(Request $request)
         ], 500); // 500 Internal Server Error
     }
 }
-
 */
 }
 
