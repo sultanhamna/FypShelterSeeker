@@ -37,43 +37,8 @@ class ApiUserController extends Controller
 
     }
 
-/*
     public function store(Request $request)
-{
-    $request->validate(
-        [
-            "name"=> 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
-            'email' => 'required|string|max:255|email|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/',
-            'password' => 'required|min:8|confirmed|string|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+{};:,<.>])/u',
-        ]
-        );
-            $dataEntered= User::create([
-             "name"=> $request->name,
-             "email"=> $request->email,
-             "password"=>Hash::make( $request->password)
-            ]);
-
-    if ($dataEntered == null)
-     {
-        return response()->json(['error' => 'Failed to create user'], 500);
-    }
-     else
-      {
-        $token = $dataEntered->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'access_token' => $token,
-
-            'message' => 'User created successfully. Your access token has been generated.'
-        ]);
-    }
-}
-*/
-
-public function store(Request $request)
-{
-
-
+    {
         $validator = Validator::make($request->all(), [
             "name" => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'email' => 'required|string|max:255|email|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/',
@@ -107,7 +72,7 @@ public function store(Request $request)
                 'message' => 'User created successfully. Your access token has been generated.'
             ]);
         }
-}
+    }
 
 
 }
