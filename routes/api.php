@@ -32,7 +32,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('Login',[ApiUserController::class,'login'])->name('api.login');
 
-//Route::post('login', 'UserController@loginb');
 
 Route::post('Register',[ApiUserController::class,'store'])->name('api.register');
 
