@@ -37,7 +37,7 @@ class ApiUserController extends Controller
 
     }
 
-
+/*
     public function store(Request $request)
 {
     $request->validate(
@@ -64,49 +64,42 @@ class ApiUserController extends Controller
         return response()->json([
             'access_token' => $token,
 
-            'message' => 'User Registered successfully. Your access token has been Generated.'
+            'message' => 'User created successfully. Your access token has been generated.'
         ]);
     }
 }
-/*
+*/
+
 public function store(Request $request)
 {
-    try {
-        // Validate the request
-        $validator = \Validator::make($request->all(), [
+
+
+        $validator = Validator::make($request->all(), [
             "name" => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'email' => 'required|string|max:255|email|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/',
-            'password' => [
-                'required',
-                'string',
-                'min:8',
-                'regex:/[a-z]/',          // Must contain at least one lowercase letter
-                'regex:/[A-Z]/',          // Must contain at least one uppercase letter
-                'regex:/\d/',             // Must contain at least one digit
-                'regex:/[!@#$%^&*()\-_=+{};:,<.>]/' // Optional: Special characters (if needed)
+            'password' => ['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/\d/','regex:/[!@#$%^&*()\-_=+{};:,<.>]/'
             ],
 
         ]);
-        // dd($validator->fails());
-        // Check if the validation fails
+
         if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors(),
-            ], 422); // 422 Unprocessable Entity
+            return response()->json(['errors' => $validator->errors(),], 422);
         }
 
-        // Create the user
+
         $dataEntered = User::create([
             "name" => $request->name,
             "email" => $request->email,
-            "password" => bcrypt($request->password), // Encrypt the password
+            "password" => bcrypt($request->password),
         ]);
 
-        // Check if user creation failed
+
         if ($dataEntered == null) {
             return response()->json(['error' => 'Failed to create user'], 500);
-        } else {
-            // Generate the access token
+        }
+        else
+        {
+
             $token = $dataEntered->createToken('auth_token')->plainTextToken;
 
             return response()->json([
@@ -114,15 +107,9 @@ public function store(Request $request)
                 'message' => 'User created successfully. Your access token has been generated.'
             ]);
         }
-    } catch (\Exception $e) {
-        // Return a JSON response for any exception that occurs
-        return response()->json([
-            'error' => 'An error occurred while processing your request.',
-            'message' => $e->getMessage(), // Include the exception message for debugging (optional)
-        ], 500); // 500 Internal Server Error
-    }
 }
-*/
+
+
 }
 
 
