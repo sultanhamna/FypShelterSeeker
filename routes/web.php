@@ -18,8 +18,7 @@ use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\Admin\MainPropertyController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Admin\PostController;
-//use App\Http\Controllers\CalculatorController;
-//use App\Http\Controllers\Api\FilterSearchController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +47,7 @@ Route::get('/contact',[ContactController::class,'index'])->name('home.contact');
 Route::get('/services',[ServicesController::class,'index'])->name('home.services');
 
 Route::get('/agent',[AgentController::class,'index'])->name('home.agent');
+Route::get('/main',[ContentController::class,'index'])->name('home.main');
 });
 
 
