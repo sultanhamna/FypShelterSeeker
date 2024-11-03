@@ -51,7 +51,6 @@
         toastr.error('{{ session('error') }}');
     @endif
 </script>
-
     <script type="text/javascript">
         $(function() {
             var category_table = $('#category_table').DataTable({

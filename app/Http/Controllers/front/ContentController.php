@@ -26,7 +26,7 @@ class ContentController extends Controller
         $sizes= AreaSize::all();
         $locations= Location::all();
         $Images= Image::all();
-        $properties = Property::with('type','category','status','areaSize','location','Images','post')->get();
+        $properties = Property::with('type','category','status','areaSize','location','Images','post')->paginate(9);
 
         return view('front.Content.content', compact(['properties','posts','categories','types','statuses','sizes','locations','Images']));
     }
@@ -38,6 +38,42 @@ class ContentController extends Controller
     {
         //
     }
+
+
+    public function filter(Request $request)
+    {
+        $query = Property::with(['type', 'category', 'location', 'Images', 'post']);
+
+        // Apply filters
+        if ($request->category_name) {
+            $query->where('category_id', $request->category_name);
+        }
+
+        if ($request->property_post) {
+            $query->where('post_id', $request->property_post);
+        }
+
+        if ($request->property_type) {
+            $query->where('type_id', $request->property_type);
+        }
+
+        if ($request->property_location) {
+            $query->where('location_id', $request->property_location);
+        }
+
+        // Get paginated properties
+        $properties = $query->paginate(9)->appends($request->query());
+
+        // Fetch filter options
+        $categories = Category::all();
+        $types = Type::all();
+        $locations = Location::all();
+        $posts = Post::all();
+
+        // Return view with properties and filter values
+        return view('front.Content.content', compact('properties', 'categories', 'types', 'locations', 'posts', 'request'));
+    }
+
 
     /**
      * Store a newly created resource in storage.

@@ -51,11 +51,6 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
                     <form action="{{route('user.store')}}" method="post">
                         @csrf
                         <div class="mb-3">
@@ -111,5 +106,9 @@
     </div>
     @include('admin.partial.script')
 </body>
-
+<script>
+    @if(session('error'))
+        toastr.error('{{ session('error') }}');
+    @endif
+</script>
 </html>

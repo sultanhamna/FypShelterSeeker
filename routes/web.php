@@ -48,6 +48,10 @@ Route::get('/services',[ServicesController::class,'index'])->name('home.services
 
 Route::get('/agent',[AgentController::class,'index'])->name('home.agent');
 Route::get('/main',[ContentController::class,'index'])->name('home.main');
+
+// Route to handle property filtering
+
+Route::get('/filter',[ContentController::class,'filter'])->name('properties.filter');
 });
 
 
