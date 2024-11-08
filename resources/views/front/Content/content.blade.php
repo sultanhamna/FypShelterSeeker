@@ -231,9 +231,9 @@
                                             @endif
 
                                             <!-- WhatsApp Button with Icon -->
-                                            <a href="https://wa.me/03021608143" class="btn btn-success btn-sm whatsapp-btn" target="_blank" title="WhatsApp">
-                                                <i class="fab fa-whatsapp"></i>
-                                            </a>
+<a href="https://wa.me/+923021608143?text=Hello, I'm interested in this property" class="btn btn-success btn-sm whatsapp-btn" target="_blank" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
                                             <!-- Call Button with Icon -->
                                             <a href="tel:+9203246903759" class="btn btn-info btn-sm call-btn" title="Call">
