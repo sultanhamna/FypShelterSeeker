@@ -554,7 +554,7 @@
         // Check if the monthly payment exceeds the user's salary
         let resultMessage;
         if (monthlyPayment > monthlySalary) {
-            resultMessage = ` The salary is unsufficent . Please increase the number of years.`;
+            resultMessage = ` The salary is  . Please increase the number of years.`;
         } else {
             resultMessage = `You will need to pay ${monthlyPayment.toFixed(2)} every month for ${years} years.`;
         }
