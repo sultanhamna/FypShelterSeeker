@@ -44,25 +44,28 @@ class ContentController extends Controller
     {
         $query = Property::with(['type', 'category', 'location', 'Images', 'post']);
 
-        // Apply filters
-        if ($request->category_name) {
-            $query->where('category_id', $request->category_name);
-        }
+        // Check if any filters are applied
+        if ($request->category_name || $request->property_post || $request->property_type || $request->property_location) {
+            // Apply filters
+            if ($request->category_name) {
+                $query->where('category_id', $request->category_name);
+            }
+            if ($request->property_post) {
+                $query->where('post_id', $request->property_post);
+            }
+            if ($request->property_type) {
+                $query->where('type_id', $request->property_type);
+            }
+            if ($request->property_location) {
+                $query->where('location_id', $request->property_location);
+            }
 
-        if ($request->property_post) {
-            $query->where('post_id', $request->property_post);
+            // Paginate results based on filtered query
+            $properties = $query->paginate(9)->appends($request->query());
+        } else {
+            // Display latest 18 properties by default when no filters are applied
+            $properties = $query->latest()->paginate(9);
         }
-
-        if ($request->property_type) {
-            $query->where('type_id', $request->property_type);
-        }
-
-        if ($request->property_location) {
-            $query->where('location_id', $request->property_location);
-        }
-
-        // Get paginated properties
-        $properties = $query->paginate(9)->appends($request->query());
 
         // Fetch filter options
         $categories = Category::all();
@@ -71,7 +74,7 @@ class ContentController extends Controller
         $posts = Post::all();
 
         // Return view with properties and filter values
-        return view('front.Content.content', compact('properties', 'categories', 'types', 'locations', 'posts', 'request'));
+        return view('front.Content.content', compact('properties', 'categories', 'types', 'locations', 'posts'));
     }
 
 

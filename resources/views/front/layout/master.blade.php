@@ -10,25 +10,28 @@
             padding: 20px;
         }
 
-        .property-wrap {
+
+        .property-wrap .img img
+        {
+            width: 100%; /* Makes image responsive */
+            height: 300px; /* Set a fixed height */
+            object-fit: cover; /* Crops image to fit container while maintaining aspect ratio */
+            display: block;
             border: 1px solid #ddd;
-            padding: 15px;
+            padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
 
-        .img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .button-group a
+         {
+         margin: 0 5px;
+         width: 40px;
+         text-align: center;
+         color: #fff; /* Ensures icon color is always white */
+         }
 
         .text {
             padding: 10px;

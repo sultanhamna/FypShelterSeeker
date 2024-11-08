@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\MainPropertyController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Admin\PostController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +37,7 @@ use App\Http\Controllers\Admin\PostController;
 
 /////////////////  FrontEnd Routes /////////////////
 
-//Route::get('/',[ContentController::class,'index'])->name('home.main');
+Route::get('/',[ContentController::class,'index'])->name('home.main');
 
 Route::group([], function ()
 {
@@ -47,7 +48,6 @@ Route::get('/contact',[ContactController::class,'index'])->name('home.contact');
 Route::get('/services',[ServicesController::class,'index'])->name('home.services');
 
 Route::get('/agent',[AgentController::class,'index'])->name('home.agent');
-Route::get('/main',[ContentController::class,'index'])->name('home.main');
 
 // Route to handle property filtering
 
@@ -65,7 +65,7 @@ Route::get('/user',[UserDataController::class,'index'])->name('user.data');
 
 /////////////// Login and Register Routes  ////////////////
 
-Route::get('/',[UserController::class,'index'])->name('login.page');
+Route::get('/login.page',[UserController::class,'index'])->name('login.page');
 
 Route::post('/login',[UserController::class,'login'])->name('login');
 
@@ -163,7 +163,6 @@ Route::any('/deleteProperty/{id}',[MainPropertyController::class,'destroy'])->na
 });
 
 Route::get('/Property',[PropertyController::class,'displayProperty'])->name('Property');
-
 
 
 

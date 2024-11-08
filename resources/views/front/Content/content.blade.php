@@ -20,11 +20,11 @@
 			</div>
         </div>
         <section class="ftco-section ftco-no-pb">
-    	    <div class="container">
-	    	    <div class="row">
-					<div class="col-md-12">
-						<div class="search-wrap-1 ftco-animate">
-                            <form action="{{route('properties.filter')}}" method="get" class="search-property-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="search-wrap-1 ftco-animate">
+                            <form action="{{ route('properties.filter') }}" method="get" class="search-property-1">
                                 @csrf
                                 <div class="row">
                                     <!-- Property Location Field -->
@@ -36,23 +36,10 @@
                                                     <select name="property_location" id="property_location" class="form-control">
                                                         <option value="">Location</option>
                                                         @foreach ($locations as $location)
-                                                            <option value="{{ $location->id }}">{{ $location->property_location }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                     <!-- Property Category Field -->
-                                    <div class="col-lg align-items-end">
-                                        <div class="form-group">
-                                            <label for="#">Property Category</label>
-                                            <div class="form-field">
-                                                <div class="select-wrap">
-                                                    <select name="property_category" id="property_category" class="form-control">
-                                                        <option value="">Category</option>
-                                                        @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                            <option value="{{ $location->id }}"
+                                                                {{ request('property_location') == $location->id ? 'selected' : '' }}>
+                                                                {{ $location->property_location }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -60,7 +47,27 @@
                                         </div>
                                     </div>
 
-                                     <!-- Property Type Field -->
+                                    <!-- Property Category Field -->
+                                    <div class="col-lg align-items-end">
+                                        <div class="form-group">
+                                            <label for="#">Property Category</label>
+                                            <div class="form-field">
+                                                <div class="select-wrap">
+                                                    <select name="category_name" id="category_name" class="form-control">
+                                                        <option value="">Category</option>
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}"
+                                                                {{ request('category_name') == $category->id ? 'selected' : '' }}>
+                                                                {{ $category->category_name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Property Type Field -->
                                     <div class="col-lg align-items-end">
                                         <div class="form-group">
                                             <label for="#">Property Type</label>
@@ -69,7 +76,10 @@
                                                     <select name="property_type" id="property_type" class="form-control">
                                                         <option value="">Type</option>
                                                         @foreach ($types as $type)
-                                                            <option value="{{ $type->id }}">{{ $type->property_type }}</option>
+                                                            <option value="{{ $type->id }}"
+                                                                {{ request('property_type') == $type->id ? 'selected' : '' }}>
+                                                                {{ $type->property_type }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -80,13 +90,16 @@
                                     <!-- Property Post Field -->
                                     <div class="col-lg align-items-end">
                                         <div class="form-group">
-                                            <label for="#">Property post</label>
+                                            <label for="#">Property Post</label>
                                             <div class="form-field">
                                                 <div class="select-wrap">
                                                     <select name="property_post" id="property_post" class="form-control">
                                                         <option value="">Post</option>
                                                         @foreach ($posts as $post)
-                                                            <option value="{{ $post->id }}">{{ $post->property_post }}</option>
+                                                            <option value="{{ $post->id }}"
+                                                                {{ request('property_post') == $post->id ? 'selected' : '' }}>
+                                                                {{ $post->property_post }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -98,102 +111,174 @@
                                     <div class="col-lg align-self-end">
                                         <div class="form-group">
                                             <div class="form-field">
-                                            <button id="searchButton" class="form-control btn btn-primary">
-                                                Search Property
-                                            </button>
+                                                <button id="searchButton" class="form-control btn btn-primary">
+                                                    Search Property
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-					</div>
-	    	    </div>
-	        </div>
-        </section>
-
-        <section class="ftco-section goto-here">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-                        <span class="subheading">What we offer</span>
-                        <h2 class="mb-2">Exclusive Offer For You</h2>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    @if($properties->isEmpty())
-                        <div class="col-12 text-center">
-                            <p>No properties found matching your search criteria.</p>
-                        </div>
-                    @else
-                        @foreach($properties as $property)
-                            <div class="col-md-4">
-                                <div class="property-wrap">
-                                    <div class="img">
-                                        @if(count($property->Images) > 0)
-                                            <div id="carouselExampleControls{{ $property->id }}" class="carousel slide" data-ride="carousel">
-                                                <div class="carousel-inner">
-                                                    @foreach($property->Images as $key => $image)
-                                                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                                            <img src="{{ asset('storage/'.$image->property_images) }}" alt="Property Image">
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                                <a class="carousel-control-prev" href="#carouselExampleControls{{ $property->id }}" role="button" data-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="carousel-control-next" href="#carouselExampleControls{{ $property->id }}" role="button" data-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="text">
-                                        <p class="price mb-3"><span class="">{{ $property->price }}</span></p>
-                                        <h3 class="mb-0"><a href="properties-single.html">{{ $property->type->property_type }}</a></h3>
-                                        <span class="location d-inline-block mb-3"><i class="fas fa-map-marker-alt"></i> &nbsp;{{ $property->location->property_location }}</span>
-                                        <ul class="property_list">
-                                            <li><span class=""></span>{{ $property->status->property_status }}</li>
-                                            <li><span class=""></span>{{ $property->post->property_post }}</li>
-                                            <li><span class=""></span>{{ $property->areaSize->property_size }}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-                </div>
-
-               <!-- Start Pagination Area -->
-<div class="pagination-area text-center mt-4">
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            <!-- Previous Page Link -->
-            @if ($properties->onFirstPage())
-                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-            @else
-                <li class="page-item"><a class="page-link" href="{{ $properties->previousPageUrl() }}" rel="prev">&laquo;</a></li>
-            @endif
-
-            <!-- Pagination Links -->
-            @foreach ($properties->getUrlRange(1, $properties->lastPage()) as $page => $url)
-                <li class="page-item {{ $page == $properties->currentPage() ? 'active' : '' }}">
-                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                </li>
-            @endforeach
-
-            <!-- Next Page Link -->
-            @if ($properties->hasMorePages())
-                <li class="page-item"><a class="page-link" href="{{ $properties->nextPageUrl() }}" rel="next">&raquo;</a></li>
-            @else
-                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-            @endif
-        </ul>
-    </nav>
-</div>
-
             </div>
         </section>
+
+
+      <section class="ftco-section goto-here">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+                <span class="subheading">What we offer</span>
+                <h2 class="mb-2">Exclusive Offer For You</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            @if($properties->isEmpty())
+                <div class="col-12 text-center">
+                    <p>No properties matching your search criteria.</p>
+                </div>
+            @else
+                @foreach($properties as $property)
+                    <div class="col-md-4">
+                        <div class="property-wrap">
+                            <div class="img">
+                                @if(count($property->Images) > 0)
+                                    <div id="carouselExampleControls{{ $property->id }}" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @foreach($property->Images as $key => $image)
+                                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                                    <img src="{{ asset('storage/'.$image->property_images) }}" alt="Property Image" style="width: 100%; height: 250px; object-fit: cover;">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleControls{{ $property->id }}" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleControls{{ $property->id }}" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="text">
+                                <p class="price mb-3"><span>{{ $property->price }}</span></p>
+                                <h3 class="mb-0"><a href="properties-single.html">{{ $property->type->property_type }}</a></h3>
+                                <span class="location d-inline-block mb-3"><i class="fas fa-map-marker-alt"></i> &nbsp;{{ $property->location->property_location }}</span>
+                                <ul class="property_list">
+                                    <li><span></span>{{ $property->status->property_status }}</li>
+                                    <li><span></span>{{ $property->post->property_post }}</li>
+                                    <li><span></span>{{ $property->category->category_name }}</li>
+                                </ul>
+
+                                <div class="button-group mt-3">
+                                    <!-- Display the Calculate Button only for "buy" properties -->
+                                    @if($property->post->property_post == 'Buy') <!-- Adjust this condition based on your actual field -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calculatorModal{{ $property->id }}">
+                                            <i class="fas fa-calculator"></i> <!-- Font Awesome calculator icon -->
+                                        </button>
+
+                                        <!-- Modal for Calculator -->
+                                        <div class="modal fade" id="calculatorModal{{ $property->id }}" tabindex="-1" role="dialog" aria-labelledby="calculatorModalLabel{{ $property->id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="calculatorModalLabel{{ $property->id }}">Property Purchase Calculator</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="monthly_salary{{ $property->id }}">Monthly Salary:</label>
+                                                            <input type="number" id="monthly_salary{{ $property->id }}" class="form-control" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="years{{ $property->id }}">Number of Years:</label>
+                                                            <input type="number" id="years{{ $property->id }}" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="property_price{{ $property->id }}">Property Price:</label>
+                                                            <input type="number" id="property_price{{ $property->id }}" class="form-control" value="{{ $property->price }}" readonly required>
+                                                        </div>
+                                                        <button type="button" class="btn btn-primary" onclick="calculateMonthlyPayment({{ $property->price }}, {{ $property->id }})">Calculate</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal for Result -->
+                                        <div class="modal fade" id="resultModal{{ $property->id }}" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel{{ $property->id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="resultModalLabel{{ $property->id }}">Calculation Result</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" id="resultBody{{ $property->id }}">
+                                                        <!-- Result will be displayed here -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    <!-- WhatsApp Button with Icon -->
+                                    <a href="https://wa.me/03021608143" class="btn btn-success btn-sm whatsapp-btn" target="_blank" title="WhatsApp">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+
+                                    <!-- Call Button with Icon -->
+                                    <a href="tel:+9203246903759" class="btn btn-info btn-sm call-btn" title="Call">
+                                        <i class="fas fa-phone"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+        @if(request()->has('category_name') || request()->has('property_post') || request()->has('property_type') || request()->has('property_location'))
+            @if($properties->hasPages())
+                <div class="pagination-area text-center mt-4">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <!-- Previous Page Link -->
+                            @if ($properties->onFirstPage())
+                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                            @else
+                                <li class="page-item"><a class="page-link" href="{{ $properties->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                            @endif
+
+                            <!-- Pagination Links -->
+                            @foreach ($properties->getUrlRange(1, $properties->lastPage()) as $page => $url)
+                                <li class="page-item {{ $page == $properties->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+
+                            <!-- Next Page Link -->
+                            @if ($properties->hasMorePages())
+                                <li class="page-item"><a class="page-link" href="{{ $properties->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                            @else
+                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                            @endif
+                        </ul>
+                    </nav>
+                </div>
+            @endif
+        @endif
+    </div>
+</section>
+
 
 
     <section class="ftco-section">
@@ -441,4 +526,46 @@
        }, 3000); // Reset after 3 seconds for demo
     });
  </script>
-@endsection
+ @endsection
+
+ <script>
+    function calculateMonthlyPayment(propertyPrice, propertyId) {
+        // Get input values from the modal
+        const monthlySalary = parseFloat(document.getElementById('monthly_salary' + propertyId).value);
+        const years = parseInt(document.getElementById('years' + propertyId).value);
+
+        // Log input values for debugging
+        console.log("Monthly Salary: ", monthlySalary);
+        console.log("Years: ", years);
+        console.log("Property Price: ", propertyPrice);
+
+        // Validate input values
+        if (isNaN(monthlySalary) || monthlySalary <= 0) {
+            alert('Please enter a valid salary.');
+            return; // Exit if the input is not valid
+        }
+
+        if (isNaN(years) || years <= 0) {
+            alert('Please enter a valid number of years.');
+            return; // Exit if the input is not valid
+        }
+
+        // Calculate the total number of months for the loan
+        const totalMonths = years * 12;
+
+        // Calculate the monthly payment
+        const monthlyPayment = propertyPrice / totalMonths;
+
+        // Prepare result message
+        const resultMessage = `You will need to pay ${monthlyPayment.toFixed(2)} every month for ${years} years.`;
+
+        // Display the result in the result modal
+        document.getElementById('resultBody' + propertyId).innerText = resultMessage;
+        $('#calculatorModal' + propertyId).modal('hide');
+
+
+
+        // Show the result modal
+        $('#resultModal' + propertyId).modal('show');
+    }
+</script>

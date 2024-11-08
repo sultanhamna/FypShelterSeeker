@@ -15,6 +15,7 @@
                 <a class="nav-link  " href="{{ route('index.category') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-building"></i></div>
                     <b class="sidecontent"> Category</b>
+
                 </a>
                 <a class="nav-link " href="{{ route('index.Type') }}">
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-home"></i></div>
