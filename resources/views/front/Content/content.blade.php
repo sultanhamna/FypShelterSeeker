@@ -125,160 +125,159 @@
             </div>
         </section>
 
-
-      <section class="ftco-section goto-here">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-                <span class="subheading">What we offer</span>
-                <h2 class="mb-2">Exclusive Offer For You</h2>
-            </div>
-        </div>
-
-        <div class="row">
-            @if($properties->isEmpty())
-                <div class="col-12 text-center">
-                    <p>No properties matching your search criteria.</p>
+        <section class="ftco-section goto-here">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+                        <span class="subheading">What we offer</span>
+                        <h2 class="mb-2">Exclusive Offer For You</h2>
+                    </div>
                 </div>
-            @else
-                @foreach($properties as $property)
-                    <div class="col-md-4">
-                        <div class="property-wrap">
-                            <div class="img">
-                                @if(count($property->Images) > 0)
-                                    <div id="carouselExampleControls{{ $property->id }}" class="carousel slide" data-ride="carousel">
-                                        <div class="carousel-inner">
-                                            @foreach($property->Images as $key => $image)
-                                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                                    <img src="{{ asset('storage/'.$image->property_images) }}" alt="Property Image" style="width: 100%; height: 250px; object-fit: cover;">
+
+                <div class="row">
+                    @if($properties->isEmpty())
+                        <div class="col-12 text-center">
+                            <p>No properties matching your search criteria.</p>
+                        </div>
+                    @else
+                        @foreach($properties as $property)
+                            <div class="col-md-4">
+                                <div class="property-wrap">
+                                    <div class="img">
+                                        @if(count($property->Images) > 0)
+                                            <div id="carouselExampleControls{{ $property->id }}" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    @foreach($property->Images as $key => $image)
+                                                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                                            <img src="{{ asset('storage/'.$image->property_images) }}" alt="Property Image" style="width: 100%; height: 250px; object-fit: cover;">
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-                                            @endforeach
-                                        </div>
-                                        <a class="carousel-control-prev" href="#carouselExampleControls{{ $property->id }}" role="button" data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#carouselExampleControls{{ $property->id }}" role="button" data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
+                                                <a class="carousel-control-prev" href="#carouselExampleControls{{ $property->id }}" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#carouselExampleControls{{ $property->id }}" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
-                            </div>
-                            <div class="text">
-                                <p class="price mb-3"><span>{{ $property->price }}</span></p>
-                                <h3 class="mb-0"><a href="properties-single.html">{{ $property->type->property_type }}</a></h3>
-                                <span class="location d-inline-block mb-3"><i class="fas fa-map-marker-alt"></i> &nbsp;{{ $property->location->property_location }}</span>
-                                <ul class="property_list">
-                                    <li><span></span>{{ $property->status->property_status }}</li>
-                                    <li><span></span>{{ $property->post->property_post }}</li>
-                                    <li><span></span>{{ $property->category->category_name }}</li>
-                                </ul>
+                                    <div class="text">
+                                        <p class="price mb-3"><span>{{ $property->price }}</span></p>
+                                        <h3 class="mb-0"><a href="properties-single.html">{{ $property->type->property_type }}</a></h3>
+                                        <span class="location d-inline-block mb-3"><i class="fas fa-map-marker-alt"></i> &nbsp;{{ $property->location->property_location }}</span>
+                                        <ul class="property_list">
+                                            <li><span></span>{{ $property->status->property_status }}</li>
+                                            <li><span></span>{{ $property->post->property_post }}</li>
+                                            <li><span></span>{{ $property->category->category_name }}</li>
+                                        </ul>
 
-                                <div class="button-group mt-3">
-                                    <!-- Display the Calculate Button only for "buy" properties -->
-                                    @if($property->post->property_post == 'Buy') <!-- Adjust this condition based on your actual field -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calculatorModal{{ $property->id }}">
-                                            <i class="fas fa-calculator"></i> <!-- Font Awesome calculator icon -->
-                                        </button>
+                                        <div class="button-group mt-3">
+                                            <!-- Display the Calculate Button only for "buy" properties -->
+                                            @if($property->post->property_post == 'Buy')
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calculatorModal{{ $property->id }}">
+                                                    <i class="fas fa-calculator"></i>
+                                                </button>
 
-                                        <!-- Modal for Calculator -->
-                                        <div class="modal fade" id="calculatorModal{{ $property->id }}" tabindex="-1" role="dialog" aria-labelledby="calculatorModalLabel{{ $property->id }}" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="calculatorModalLabel{{ $property->id }}">Property Purchase Calculator</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <label for="monthly_salary{{ $property->id }}">Monthly Salary:</label>
-                                                            <input type="number" id="monthly_salary{{ $property->id }}" class="form-control" required>
+                                                <!-- Modal for Calculator -->
+                                                <div class="modal fade" id="calculatorModal{{ $property->id }}" tabindex="-1" role="dialog" aria-labelledby="calculatorModalLabel{{ $property->id }}" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="calculatorModalLabel{{ $property->id }}">Property Purchase Calculator</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="monthly_salary{{ $property->id }}">Monthly Salary:</label>
+                                                                    <input type="number" id="monthly_salary{{ $property->id }}" class="form-control" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="years{{ $property->id }}">Number of Years:</label>
+                                                                    <input type="number" id="years{{ $property->id }}" class="form-control" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="property_price{{ $property->id }}">Property Price:</label>
+                                                                    <input type="number" id="property_price{{ $property->id }}" class="form-control" value="{{ $property->price }}" readonly required>
+                                                                </div>
+                                                                <button type="button" class="btn btn-primary" onclick="calculateMonthlyPayment({{ $property->price }}, {{ $property->id }})">Calculate</button>
+                                                            </div>
                                                         </div>
-
-                                                        <div class="form-group">
-                                                            <label for="years{{ $property->id }}">Number of Years:</label>
-                                                            <input type="number" id="years{{ $property->id }}" class="form-control" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="property_price{{ $property->id }}">Property Price:</label>
-                                                            <input type="number" id="property_price{{ $property->id }}" class="form-control" value="{{ $property->price }}" readonly required>
-                                                        </div>
-                                                        <button type="button" class="btn btn-primary" onclick="calculateMonthlyPayment({{ $property->price }}, {{ $property->id }})">Calculate</button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                        <!-- Modal for Result -->
-                                        <div class="modal fade" id="resultModal{{ $property->id }}" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel{{ $property->id }}" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="resultModalLabel{{ $property->id }}">Calculation Result</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body" id="resultBody{{ $property->id }}">
-                                                        <!-- Result will be displayed here -->
+                                                <!-- Modal for Result -->
+                                                <div class="modal fade" id="resultModal{{ $property->id }}" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel{{ $property->id }}" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="resultModalLabel{{ $property->id }}">Calculation Result</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body" id="resultBody{{ $property->id }}">
+                                                                <!-- Result will be displayed here -->
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endif
+
+                                            <!-- WhatsApp Button with Property Preview -->
+                                            <a
+                                                href="https://wa.me/03021608143?text={{ urlencode("Check out this property:\n\nType: " . $property->type->property_type . "\nLocation: " . $property->location->property_location . "\nPrice: " . $property->price . "\nStatus: " . $property->status->property_status . "\nCategory: " . $property->category->category_name . "\n\nFind more details on Shelter Seeker!") }}"
+                                                class="btn btn-success btn-sm whatsapp-btn"
+                                                target="_blank"
+                                                title="WhatsApp">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </a>
+
+                                            <!-- Call Button with Icon -->
+                                            <a href="tel:+9203246903759" class="btn btn-info btn-sm call-btn" title="Call">
+                                                <i class="fas fa-phone"></i>
+                                            </a>
                                         </div>
-                                    @endif
-
-                                    <!-- WhatsApp Button with Icon -->
-                                    <a href="https://wa.me/03021608143" class="btn btn-success btn-sm whatsapp-btn" target="_blank" title="WhatsApp">
-                                        <i class="fab fa-whatsapp"></i>
-                                    </a>
-
-                                    <!-- Call Button with Icon -->
-                                    <a href="tel:+9203246903759" class="btn btn-info btn-sm call-btn" title="Call">
-                                        <i class="fas fa-phone"></i>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endif
-        </div>
-        @if(request()->has('category_name') || request()->has('property_post') || request()->has('property_type') || request()->has('property_location'))
-            @if($properties->hasPages())
-                <div class="pagination-area text-center mt-4">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center">
-                            <!-- Previous Page Link -->
-                            @if ($properties->onFirstPage())
-                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                            @else
-                                <li class="page-item"><a class="page-link" href="{{ $properties->previousPageUrl() }}" rel="prev">&laquo;</a></li>
-                            @endif
-
-                            <!-- Pagination Links -->
-                            @foreach ($properties->getUrlRange(1, $properties->lastPage()) as $page => $url)
-                                <li class="page-item {{ $page == $properties->currentPage() ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                </li>
-                            @endforeach
-
-                            <!-- Next Page Link -->
-                            @if ($properties->hasMorePages())
-                                <li class="page-item"><a class="page-link" href="{{ $properties->nextPageUrl() }}" rel="next">&raquo;</a></li>
-                            @else
-                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                            @endif
-                        </ul>
-                    </nav>
+                        @endforeach
+                    @endif
                 </div>
-            @endif
-        @endif
-    </div>
-</section>
+                <!-- Pagination (if filters applied and pagination available) -->
+                @if(request()->has('category_name') || request()->has('property_post') || request()->has('property_type') || request()->has('property_location'))
+                    @if($properties->hasPages())
+                        <div class="pagination-area text-center mt-4">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+                                    @if ($properties->onFirstPage())
+                                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                    @else
+                                        <li class="page-item"><a class="page-link" href="{{ $properties->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                                    @endif
 
+                                    @foreach ($properties->getUrlRange(1, $properties->lastPage()) as $page => $url)
+                                        <li class="page-item {{ $page == $properties->currentPage() ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endforeach
+
+                                    @if ($properties->hasMorePages())
+                                        <li class="page-item"><a class="page-link" href="{{ $properties->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                                    @else
+                                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                    @endif
+                                </ul>
+                            </nav>
+                        </div>
+                    @endif
+                @endif
+            </div>
+        </section>
 
 
     <section class="ftco-section">
@@ -554,7 +553,7 @@
         // Check if the monthly payment exceeds the user's salary
         let resultMessage;
         if (monthlyPayment > monthlySalary) {
-            resultMessage = ` The salary is less than your Monthly payment . Please increase the number of years.`;
+            resultMessage = ` The salary is unsufficent . Please increase the number of years.`;
         } else {
             resultMessage = `You will need to pay ${monthlyPayment.toFixed(2)} every month for ${years} years.`;
         }
