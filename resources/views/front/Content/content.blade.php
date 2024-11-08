@@ -534,11 +534,6 @@
         const monthlySalary = parseFloat(document.getElementById('monthly_salary' + propertyId).value);
         const years = parseInt(document.getElementById('years' + propertyId).value);
 
-        // Log input values for debugging
-        console.log("Monthly Salary: ", monthlySalary);
-        console.log("Years: ", years);
-        console.log("Property Price: ", propertyPrice);
-
         // Validate input values
         if (isNaN(monthlySalary) || monthlySalary <= 0) {
             alert('Please enter a valid salary.');
@@ -556,16 +551,19 @@
         // Calculate the monthly payment
         const monthlyPayment = propertyPrice / totalMonths;
 
-        // Prepare result message
-        const resultMessage = `You will need to pay ${monthlyPayment.toFixed(2)} every month for ${years} years.`;
+        // Check if the monthly payment exceeds the user's salary
+        let resultMessage;
+        if (monthlyPayment > monthlySalary) {
+            resultMessage = ` The salary is less than your Monthly payment . Please increase the number of years.`;
+        } else {
+            resultMessage = `You will need to pay ${monthlyPayment.toFixed(2)} every month for ${years} years.`;
+        }
 
         // Display the result in the result modal
         document.getElementById('resultBody' + propertyId).innerText = resultMessage;
+
+        // Close the calculator modal and show the result modal
         $('#calculatorModal' + propertyId).modal('hide');
-
-
-
-        // Show the result modal
         $('#resultModal' + propertyId).modal('show');
     }
 </script>
