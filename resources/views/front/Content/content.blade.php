@@ -230,14 +230,10 @@
                                         </div>
                                     @endif
 
-                                   <!-- WhatsApp Button with dynamic property details -->
-                                    <a
-                                        href="https://wa.me/03021608143?text={{ urlencode('Property Details:%0A' . 'Price: ' . $property->price . '%0A' . 'Type: ' . $property->type->property_type . '%0A' . 'Location: ' . $property->location->property_location . '%0A' . 'Status: ' . $property->status->property_status) }}"
-                                        class="btn btn-success btn-sm whatsapp-btn"
-                                        target="_blank"
-                                        title="WhatsApp"><i class="fab fa-whatsapp"></i>
+                                    <!-- WhatsApp Button with Icon -->
+                                    <a href="https://wa.me/03021608143" class="btn btn-success btn-sm whatsapp-btn" target="_blank" title="WhatsApp">
+                                        <i class="fab fa-whatsapp"></i>
                                     </a>
-
 
                                     <!-- Call Button with Icon -->
                                     <a href="tel:+9203246903759" class="btn btn-info btn-sm call-btn" title="Call">
