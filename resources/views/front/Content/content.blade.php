@@ -231,8 +231,8 @@
                                             @endif
 
                                             <!-- WhatsApp Button with Icon -->
-                                            <a href="https://wa.me/+923021608143?text=Hello, I'm interested in the property at {{ $property->location->property_location }}, priced at {{ $property->price }}" class="btn btn-success btn-sm whatsapp-btn" target="_blank" title="WhatsApp">
-                                                <i class="fab fa-whatsapp"></i>
+                                            <a href="https://wa.me/+923021608143?text={{ urlencode("Check out this property:\n\nType: " . $property->type->property_type . "\nLocation: " . $property->location->property_location . "\nPrice: " . $property->price . "\nStatus: " . $property->status->property_status . "\nCategory: " . $property->category->category_name . "\n\nFind more details on Shelter Seeker!") }}"class="btn btn-success btn-sm whatsapp-btn"target="_blank"title="WhatsApp">
+                                               <i class="fab fa-whatsapp"></i>
                                             </a>
 
                                             <!-- Call Button with Icon -->
