@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/add', [FavouriteController::class, 'addFavorite'])->name('api.add');
     Route::delete('/delete', [FavouriteController::class, 'removeFavorite'])->name('api.delete');
     Route::get('/show', [FavouriteController::class, 'listFavorites'])->name('api.show');
-    Route::post('update ',[ApiUserController::class,'updateProfile'])->name('user.update');
+    Route::post('update',[ApiUserController::class,'updateProfile'])->name('user.update');
 });
 
 
