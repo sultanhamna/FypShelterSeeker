@@ -78,4 +78,10 @@ class UserController extends Controller
         Auth::logout();
         return view('front.auth.login');
     }
+
+
+
+
+
+
 }

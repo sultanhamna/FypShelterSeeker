@@ -74,6 +74,31 @@ class ApiUserController extends Controller
         }
     }
 
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            "name" => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
+            'email' => 'required|string|max:255|email|unique:users,email,' . Auth::id(),
+            'password' => ['nullable','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/\d/','regex:/[!@#$%^&*()\-_=+{};:,<.>]/'
+            ],
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Profile updated successfully!',
+            'user' => $user
+        ]);
+    }
 
 }
 
