@@ -42,7 +42,7 @@ class ApiUserController extends Controller
         $validator = Validator::make($request->all(), [
             "name" => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'email' => 'required|string|max:255|email|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/',
-            'password' => ['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/\d/','regex:/[!@#$%^&*()\-_=+{};:,<.>]/'
+            'password' => ['required','confirmed','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/\d/','regex:/[!@#$%^&*()\-_=+{};:,<.>]/'
             ],
 
         ]);
