@@ -98,10 +98,10 @@ class AdminDashboardController extends Controller
         $admin = Auth::user();
 
         $request->validate([
-        'name' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
+        'name' => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/u',
         'email' => 'required|string|email|max:255|unique:users,email,' . $admin->id,
         'password' => 'nullable|min:8|confirmed|string|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+{};:,<.>])/u',
-        'password_confirmation' =>'nullable|string|min:8|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+{};:,<.>])/u'
+       // 'password_confirmation' =>'nullable|string|min:8|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+{};:,<.>])/u'
         ]);
 
         $admin->name = $request->input('name');

@@ -79,7 +79,7 @@ class ApiUserController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            "name" => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
+            "name" => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/u',
             'email' => 'required|string|max:255|email|unique:users,email,' . Auth::id(),
             'password' => ['nullable','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/\d/','regex:/[!@#$%^&*()\-_=+{};:,<.>]/'
             ],
