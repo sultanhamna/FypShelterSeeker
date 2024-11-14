@@ -37,7 +37,7 @@ use App\Http\Controllers\Admin\PostController;
 
 /////////////////  FrontEnd Routes /////////////////
 
-Route::get('/',[ContentController::class,'index'])->name('home.main');
+Route::get('home.main',[ContentController::class,'index'])->name('home.main');
 
 Route::group([], function ()
 {
@@ -65,7 +65,7 @@ Route::get('/user',[UserDataController::class,'index'])->name('user.data');
 
 /////////////// Login and Register Routes  ////////////////
 
-Route::get('/login.page',[UserController::class,'index'])->name('login.page');
+Route::get('/',[UserController::class,'index'])->name('login.page');
 
 Route::post('/login',[UserController::class,'login'])->name('login');
 
