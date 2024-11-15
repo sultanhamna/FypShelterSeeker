@@ -114,7 +114,7 @@ class MainPropertyController extends Controller
             'area_size_id' => 'required|exists:area_sizes,id',
             'post_id' => 'required|exists:posts,id',
             'price' => 'required|numeric|min:0',
-            'description' => 'nullable|string|max:5000',
+            'description' => 'required|string|max:5000',
             'property_images' => 'required',
 
         ]);
@@ -185,7 +185,7 @@ class MainPropertyController extends Controller
             'area_size_id' => 'required|exists:area_sizes,id',
             'post_id' => 'required|exists:posts,id',
             'price' => 'required|numeric|min:0',
-            'description' => 'nullable|string|max:5000',
+            'description' => 'required|string|max:5000',
 
         ]);
         $PropertyEntered = Property::findOrFail($id);
