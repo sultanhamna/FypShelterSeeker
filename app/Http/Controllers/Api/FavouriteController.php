@@ -66,18 +66,25 @@ class FavouriteController extends Controller
         }
 
 
-        $favorites = $favorites->map(function ($property) {
+        $favorites = $favorites->transform(function ($property) {
             return [
                 'id' => $property->id,
                 'category' => $property->category->category_name,
                 'type' => $property->type->property_type,
                 'location' => $property->location->property_location,
+                'location_latitude' => $property->location->location_latitude,
+                'location_longitude' => $property->location->location_longitude,
                 'status' => $property->status->property_status,
                 'area_size' => $property->areaSize->property_size,
                 'post' => $property->post->property_post,
                 'price' => $property->price,
                 'description' => $property->description,
                 'image' => url('storage/' . $property->Images->first()->property_images),
+                'images' => $property->Images->map(function ($image) {
+                    return [
+                        'images' => url('storage/' . $image->property_images),
+                    ];
+                }),
             ];
         });
 
