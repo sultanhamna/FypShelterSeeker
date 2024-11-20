@@ -9,7 +9,6 @@
                         <tr>
                             <th style="color: #6A9C89">Name</th>
                             <th style="color: #6A9C89">Email</th>
-                            <th style="color: #6A9C89">Role</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,10 +36,7 @@
                         data: 'email',
                         name: 'email'
                     },
-                    {
-                        data: 'role',
-                        name: 'role'
-                    },
+
                 ]
             });
 
