@@ -113,7 +113,7 @@ class PostController extends Controller
     {
         try
         {
-            // Find the post by its ID with property eager loaded
+
             $post = Post::with('property')->findOrFail($id);
 
             if ($post->property()->count() > 0)

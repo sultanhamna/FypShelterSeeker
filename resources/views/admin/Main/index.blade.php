@@ -115,7 +115,7 @@
                     if (willDelete) {
                         var href = $(this).data('href');
                         var data = {
-                            _token: '{{ csrf_token() }}' // Ensure the CSRF token is included
+                            _token: '{{ csrf_token() }}'
                         };
 
                         $.ajax({
