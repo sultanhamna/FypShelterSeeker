@@ -140,7 +140,7 @@
     ])
     !!}
     <span class="text-danger">
-        @error('property_images')
+        @error('property_images.*')
             {{ $message }}
         @enderror
     </span>

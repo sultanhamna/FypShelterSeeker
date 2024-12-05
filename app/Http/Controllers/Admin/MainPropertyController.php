@@ -115,7 +115,7 @@ class MainPropertyController extends Controller
             'post_id' => 'required|exists:posts,id',
             'price' => 'required|numeric|min:0',
             'description' => 'required|string|max:5000',
-            'property_images' => 'required',
+            'property_images.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
 
         ]);
 
@@ -186,6 +186,7 @@ class MainPropertyController extends Controller
             'post_id' => 'required|exists:posts,id',
             'price' => 'required|numeric|min:0',
             'description' => 'required|string|max:5000',
+            'property_images.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
 
         ]);
         $PropertyEntered = Property::findOrFail($id);

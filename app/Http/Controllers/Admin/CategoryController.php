@@ -70,6 +70,7 @@ class CategoryController extends Controller
         {
            return redirect()->back()->with("error","Category is not Created");
         }
+
         else
         {
             $categoryFilePath = $request->file('category_icon')->storeAs('adminCategory', time() . '.' . $request->file('category_icon')->getClientOriginalExtension(), 'public');
