@@ -91,8 +91,8 @@ class PropertyLocationController extends Controller
     {
         $request->validate([
             'property_location' => 'required|string|max:255',
-            'location_latitude' => 'required|numeric',
-            'location_longitude' => 'required|numeric',
+           'location_latitude' => 'required|numeric|between:-90,90',
+           'location_longitude' => 'required|numeric|between:-180,180',
         ]);
         $locationUpdated=   Location::findorfail($id)->update($request->all());
 
