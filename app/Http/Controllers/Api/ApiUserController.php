@@ -40,7 +40,7 @@ class ApiUserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|regex:/^[a-zA-Z][a-zA-Z\s]*$/u',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z]+(\s[a-zA-Z]+)*$/u',
             'email' => 'required|string|max:255|email|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/',
             'password' => ['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/\d/','regex:/[!@#$%^&*()\-_=+{};:,<.>]/'
             ],
@@ -79,7 +79,8 @@ class ApiUserController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            "name" => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/u',
+
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z]+(\s[a-zA-Z]+)*$/u',
             'email' => 'required|string|max:255|email|unique:users,email,' . Auth::id(),
             'password' => ['nullable','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/\d/','regex:/[!@#$%^&*()\-_=+{};:,<.>]/'
             ],
