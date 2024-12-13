@@ -31,37 +31,12 @@ use App\Http\Controllers\Admin\PostController;
 |
 */
 
-//Route::get('/', function () {
-  //  return view('front.Content.content');
-//});
-
-/////////////////  FrontEnd Routes /////////////////
-
-Route::get('home.main',[ContentController::class,'index'])->name('home.main');
-
-Route::group([], function ()
-{
-Route::get('/about',[AboutController::class,'index'])->name('home.about');
-
-Route::get('/contact',[ContactController::class,'index'])->name('home.contact');
-
-Route::get('/services',[ServicesController::class,'index'])->name('home.services');
-
-Route::get('/agent',[AgentController::class,'index'])->name('home.agent');
-
-// Route to handle property filtering
-
-Route::get('/filter',[ContentController::class,'filter'])->name('properties.filter');
-});
-
-
 
 
 ///////// User Data Route///////////////////
 
 Route::get('/user',[UserDataController::class,'index'])->name('user.data');
 
-//Route::get('user/data', 'Admin\UserDataController@index')->name('user.data');
 
 /////////////// Login and Register Routes  ////////////////
 
@@ -161,8 +136,4 @@ Route::any('/deleteProperty/{id}',[MainPropertyController::class,'destroy'])->na
 
 
 });
-
-Route::get('/Property',[PropertyController::class,'displayProperty'])->name('Property');
-
-
 

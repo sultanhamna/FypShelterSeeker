@@ -37,9 +37,6 @@ Route::post('Login',[ApiUserController::class,'login'])->name('api.login');
 Route::post('Register',[ApiUserController::class,'store'])->name('api.register');
 
 
-Route::get('main',[ApiMainController::class,'getAlldata'])->name('api.main');
-
-Route::get('image',[ApiImageController::class,'getAllimages'])->name('api.image');
 
 
 Route::get('location',[FilterSearchController::class,'getLocation'])->name('api.Location');
