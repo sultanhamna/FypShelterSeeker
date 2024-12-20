@@ -85,7 +85,7 @@
 
 /* Header Styles */
 header {
-    background-color: #c7d3ac; /* Background color */
+    background-color: white; /* Background color */
     color: black; /* Text color */
     padding: 15px 0;
     position: fixed;
