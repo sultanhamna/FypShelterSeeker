@@ -79,7 +79,7 @@
 }
 
 .product-card .btn:hover {
-    background-color: #f39c12;
+    background-color:#FF00FF;
 }
 
 
@@ -132,7 +132,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #f39c12; /* Hover color */
+    color: #FF00FF; /* Hover color */
 }
 
 /* Mobile Responsive Styles */
