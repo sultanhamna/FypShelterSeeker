@@ -85,14 +85,14 @@
 
 /* Header Styles */
 header {
-    background-color: #c7d3ac; /* Dark background for the header */
-    color: black; /* White text color */
+    background-color: #c7d3ac; /* Background color */
+    color: black; /* Text color */
     padding: 15px 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000; /* Ensure the header stays on top */
-    background-image: url('https://example.com/your-image.jpg'); /* Change the URL to your desired background image */
+    background-image: url('https://example.com/your-image.jpg'); /* Change the URL to your background image */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -135,30 +135,27 @@ nav ul li a:hover {
     color: #f39c12; /* Hover color */
 }
 
-/* Mobile responsive styles */
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
-    /* Adjust the logo size */
     header .logo h3 {
         font-size: 1.8em;
     }
 
-    /* Hide the navigation by default on mobile */
     nav ul {
-        display: none;
+        display: none; /* Hide navigation menu by default */
         flex-direction: column;
         width: 100%;
         align-items: center;
         position: absolute;
         top: 60px;
         left: 0;
-        background-color: #c7d3ac; /* Same background color */
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Optional: add shadow for a clean look */
+        background-color: #c7d3ac;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         padding: 20px 0;
     }
 
-    /* Show the navigation when active */
-    nav.active ul {
-        display: flex;
+    nav ul.active {
+        display: flex; /* Show menu when active */
     }
 
     nav ul li {
@@ -166,11 +163,10 @@ nav ul li a:hover {
     }
 
     nav ul li a {
-        font-size: 1.2em; /* Increase font size for readability */
+        font-size: 1.2em;
         color: black;
     }
 
-    /* Hamburger menu (3 lines) */
     .menu-toggle {
         display: flex;
         flex-direction: column;
@@ -184,14 +180,10 @@ nav ul li a:hover {
         background-color: black;
     }
 
-    /* Adjust padding for mobile header */
     .header-container {
         padding: 0 15px;
     }
 }
-
-
-
 
 /* Footer Styles */
 footer {

@@ -63,18 +63,3 @@
   </section>
 @endsection
 
-@section('scripts')
-<script>
-   // JavaScript for Hamburger Menu
-document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.getElementById("mobile-menu");
-    const navMenu = document.querySelector("header nav ul");
-
-    menuToggle.addEventListener("click", function () {
-        navMenu.classList.toggle("active");
-    });
-});
-
-</script>
-
-@endsection

@@ -29,3 +29,16 @@
   <script src="{{asset('assets/front/js/main.js')}}"></script>
 
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+       const menuToggle = document.getElementById("mobile-menu");
+       const navMenu = document.querySelector("nav ul");
+
+       menuToggle.addEventListener("click", function () {
+           navMenu.classList.toggle("active");
+       });
+   });
+
+
+   </script>
