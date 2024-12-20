@@ -76,10 +76,16 @@
     text-decoration: none;
     border-radius: 5px;
     display: inline-block;
+    transition: background-color 0.3s; /* Smooth transition */
 }
 
-.product-card .btn:hover {
-    background-color:#FF00FF;
+.product-card .btn:hover,
+.product-card .btn:active {
+    background-color: #FF00FF;  /* Magenta color for hover, focus, and active states */
+}
+
+.product-card .btn:focus {
+    outline: none; /* Remove focus outline if you want */
 }
 
 
