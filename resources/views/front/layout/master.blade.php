@@ -92,6 +92,10 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000; /* Ensure the header stays on top */
+    background-image: url('https://example.com/your-image.jpg'); /* Change the URL to your desired background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .header-container {
@@ -131,13 +135,66 @@ nav ul li a:hover {
     color: #f39c12; /* Hover color */
 }
 
-/* Optional: Adding a background image to the header */
-header {
-    background-image: url('https://example.com/your-image.jpg'); /* Change the URL to your desired background image */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    /* Adjust the logo size */
+    header .logo h1 {
+        font-size: 1.8em;
+    }
+
+    /* Stack the nav links vertically */
+    nav ul {
+        display: none; /* Hide navigation by default */
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #c7d3ac; /* Same background color */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Optional: add shadow for a clean look */
+        padding: 20px 0;
+    }
+
+    /* Show navigation links when active */
+    nav.active ul {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        font-size: 1.2em; /* Increase font size for readability */
+        color: black;
+    }
+
+    /* Hamburger menu */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+    }
+
+    .menu-toggle .bar {
+        width: 30px;
+        height: 4px;
+        background-color: black;
+    }
+
+    /* Make the hamburger icon visible */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Adjust padding for mobile header */
+    .header-container {
+        padding: 0 15px;
+    }
 }
+
 
 /* Footer Styles */
 footer {

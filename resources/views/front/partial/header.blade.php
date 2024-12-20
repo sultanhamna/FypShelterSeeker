@@ -3,6 +3,12 @@
         <div class="logo">
             <h1><b>Electronics Repair Shop</b></h1>
         </div>
+        <!-- Mobile Hamburger Menu -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
