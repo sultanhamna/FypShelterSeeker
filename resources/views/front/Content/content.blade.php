@@ -13,7 +13,7 @@
       <h2>Our Products</h2>
       <div class="product-list">
         @foreach ($products as $product)
-          <div class="product-card">
+        <div class="product-card">
             <!-- Carousel for Product Images -->
             @if ($product->Pics->isNotEmpty())
               <div id="carouselExampleIndicators{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
@@ -25,7 +25,8 @@
                 <div class="carousel-inner">
                   @foreach ($product->Pics as $key => $image)
                     <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                      <img src="{{ asset('storage/' . $image->product_image) }}" class="d-block w-100" alt="{{ $product->name }}">
+                      <!-- Set fixed height for the image -->
+                      <img src="{{ asset('storage/' . $image->product_image) }}" class="d-block w-100" style="height: 200px; object-fit: cover;" alt="{{ $product->name }}">
                     </div>
                   @endforeach
                 </div>
@@ -39,23 +40,23 @@
                 </button>
               </div>
             @else
-              <img src="{{ asset('storage/default-product.jpg') }}" alt="No Image" class="d-block w-100">
+              <!-- Set fixed height for the image when no product image exists -->
+              <img src="{{ asset('storage/default-product.jpg') }}" alt="No Image" class="d-block w-100" style="height: 200px; object-fit: cover;">
             @endif
 
             <!-- Display Product Location and Timing -->
             <p><strong>Location:</strong> {{ $product->product_location }}</p>
             <p><strong>Timing:</strong> {{ $product->timing }}</p>
 
-            <!-- View Details Button -->
-            <a href="{{route('product.detail', $product->id)}}" class="btn">View Details</a>
 
-            <!-- Google Maps Icon -->
+            <!-- Google Maps Icon (without text) -->
             @if($product->location_latitude && $product->location_longitude)
               <a href="https://www.google.com/maps?q={{ $product->location_latitude }},{{ $product->location_longitude }}" target="_blank" class="btn btn-info mt-2">
-                <i class="fas fa-map-marker-alt"></i> View on Google Maps
+                <i class="fas fa-map-marker-alt"></i> <!-- No text, just the icon -->
               </a>
             @endif
           </div>
+
         @endforeach
       </div>
     </div>
