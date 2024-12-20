@@ -107,9 +107,9 @@ header {
     padding: 0 20px;
 }
 
-header .logo h1 {
+header .logo h3 {
     font-family: 'Arial', sans-serif;
-    font-size: 2.2em;
+    font-size: 2em;
     margin: 0;
     letter-spacing: 1px;
 }
@@ -138,13 +138,13 @@ nav ul li a:hover {
 /* Mobile responsive styles */
 @media (max-width: 768px) {
     /* Adjust the logo size */
-    header .logo h1 {
+    header .logo h3 {
         font-size: 1.8em;
     }
 
-    /* Stack the nav links vertically */
+    /* Hide the navigation by default on mobile */
     nav ul {
-        display: none; /* Hide navigation by default */
+        display: none;
         flex-direction: column;
         width: 100%;
         align-items: center;
@@ -156,7 +156,7 @@ nav ul li a:hover {
         padding: 20px 0;
     }
 
-    /* Show navigation links when active */
+    /* Show the navigation when active */
     nav.active ul {
         display: flex;
     }
@@ -170,7 +170,7 @@ nav ul li a:hover {
         color: black;
     }
 
-    /* Hamburger menu */
+    /* Hamburger menu (3 lines) */
     .menu-toggle {
         display: flex;
         flex-direction: column;
@@ -184,11 +184,6 @@ nav ul li a:hover {
         background-color: black;
     }
 
-    /* Make the hamburger icon visible */
-    .menu-toggle {
-        display: flex;
-    }
-
     /* Adjust padding for mobile header */
     .header-container {
         padding: 0 15px;
@@ -196,12 +191,13 @@ nav ul li a:hover {
 }
 
 
+
+
 /* Footer Styles */
 footer {
-    background-color: #c7d3ac; /* Dark background color */
-    color: black; /* White text color */
+    background-color: #c7d3ac; /* Background color for footer */
+    color: black; /* Text color */
     padding: 40px 0;
-    text-align: center;
     font-size: 1em;
 }
 
@@ -211,11 +207,13 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    flex-wrap: wrap; /* Enable wrapping for smaller screens */
 }
 
 .footer-section {
     flex: 1;
-    margin: 0 20px;
+    margin: 10px 20px; /* Add space between sections */
+    text-align: center; /* Center-align text for consistency */
 }
 
 footer h3 {
@@ -249,11 +247,8 @@ footer ul li a:hover {
 
 .social-links {
     display: flex;
-    justify-content: space-around;
-}
-
-.social-links li {
-    margin: 0 10px;
+    justify-content: center;
+    gap: 15px; /* Add spacing between social links */
 }
 
 .social-links li a {
@@ -267,28 +262,30 @@ footer ul li a:hover {
 }
 
 .footer-bottom {
-    background-color: #f39c12; /* Darker background for footer bottom */
+    background-color: #f39c12; /* Footer bottom background color */
     padding: 20px 0;
     color: white;
     font-size: 1em;
+    text-align: center;
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .footer-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center-align content */
     }
 
     .footer-section {
         margin-bottom: 20px;
-        text-align: center;
     }
 
     .social-links {
-        justify-content: center;
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        gap: 10px;
     }
 }
+
 
         .property-wrap .img img
         {
