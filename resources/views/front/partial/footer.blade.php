@@ -3,7 +3,7 @@
         <div class="footer-section">
             <h3>Contact Us</h3>
             <p>New Shahama Abu Dhabi UAE</p>
-            <p>Email: <a href="mailto:asdfghjkl@gmail.com" style="color: black;">asdfghjkl@gmail.com</a></p>
+            <p>Email: <a href="mailto:alrafaqelectronics@gmail.com" style="color: black;">alrafaqelectronics@gmail.com</a></p>
             <p>Phone: <a href="tel:+971505704498" style="color: black;">+971505704498</a></p>
         </div>
 
