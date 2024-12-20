@@ -211,7 +211,7 @@ footer {
 footer h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: #f39c12; /* Gold color for headings */
+    color: #FF00FF; /* Gold color for headings */
 }
 
 footer p, footer ul {
@@ -254,7 +254,7 @@ footer ul li a:hover {
 }
 
 .footer-bottom {
-    background-color: #f39c12; /* Footer bottom background color */
+    background-color: #FF00FF; /* Footer bottom background color */
     padding: 20px 0;
     color: black;
     font-size: 1em;
