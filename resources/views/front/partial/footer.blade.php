@@ -4,7 +4,7 @@
             <h3>Contact Us</h3>
             <p>123 Repair St, City, Country</p>
             <p>Email: <a href="mailto:hamnasultan220@gmail.com" style="color: black;">hamnasultan220@gmail.com</a></p>
-            <p>Phone: <a href="tel:+1234567890" style="color: black;">+123-456-7890</a></p>
+            <p>Phone: <a href="tel:+971505704498" style="color: black;">+123-456-7890</a></p>
         </div>
 
         <div class="footer-section">
@@ -18,6 +18,6 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2024 Electronics Repair Shop. All rights reserved.</p>
+        <p>&copy; 2024  AL RAFAQ Electronics & Ac Repair. All rights reserved.</p>
     </div>
 </footer>

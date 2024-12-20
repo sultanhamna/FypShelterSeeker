@@ -1,7 +1,9 @@
 <header>
     <div class="header-container">
         <div class="logo">
-            <h5><b>Electronics Repair Shop</b></h5>
+            <h5><b>AL  RAFAQ
+                <br>
+                  Electronics & Ac Repairs</b></h5>
         </div>
         <!-- Mobile Hamburger Menu -->
         <div class="menu-toggle" id="mobile-menu">
