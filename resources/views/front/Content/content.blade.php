@@ -51,7 +51,7 @@
 
             <!-- Google Maps Icon (without text) -->
             @if($product->location_latitude && $product->location_longitude)
-              <a href="https://www.google.com/maps?q={{ $product->location_latitude }},{{ $product->location_longitude }}" target="_blank" class="btn btn-info mt-2">
+              <a href="https://www.google.com/maps?q={{ $product->location_latitude }},{{ $product->location_longitude }}&key=AIzaSyBdnV89cve-FxaeOY-t-X71rvov5F5pq6Y" target="_blank" class="btn btn-info mt-2">
                 <i class="fas fa-map-marker-alt"></i> <!-- No text, just the icon -->
               </a>
             @endif
