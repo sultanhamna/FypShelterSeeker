@@ -6,7 +6,6 @@
       <div class="container">
 
       </div>
-
   </div>
 
   <section id="products" class="products">
@@ -48,7 +47,14 @@
             <p><strong>Timing:</strong> {{ $product->timing }}</p>
 
             <!-- View Details Button -->
-            <a href="{{route('product.detail' , $product->id)}}" class="btn">View Details</a>
+            <a href="{{route('product.detail', $product->id)}}" class="btn">View Details</a>
+
+            <!-- Google Maps Icon -->
+            @if($product->location_latitude && $product->location_longitude)
+              <a href="https://www.google.com/maps?q={{ $product->location_latitude }},{{ $product->location_longitude }}" target="_blank" class="btn btn-info mt-2">
+                <i class="fas fa-map-marker-alt"></i> View on Google Maps
+              </a>
+            @endif
           </div>
         @endforeach
       </div>

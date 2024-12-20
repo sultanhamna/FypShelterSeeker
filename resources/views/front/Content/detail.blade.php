@@ -20,30 +20,31 @@
   <section id="product-details" class="product-details">
     <div class="container">
       <div class="row">
+        <!-- Product Image (Half screen) -->
         <div class="col-md-6">
-          <!-- Product Image -->
           @if ($product->Pics->isNotEmpty())
             <img src="{{ asset('storage/' . $product->Pics->first()->product_image) }}" alt="{{ $product->name }}" class="img-fluid">
           @else
             <img src="{{ asset('storage/default-product.jpg') }}" alt="No Image" class="img-fluid">
           @endif
         </div>
+
+        <!-- Google Map (Other Half of screen) -->
         <div class="col-md-6">
-          <!-- Product Details -->
           <h3>{{ $product->name }}</h3>
           <p><strong>Location:</strong> {{ $product->product_location }}</p>
           <p><strong>Timing:</strong> {{ $product->timing }}</p>
 
-          <!-- View Details Button (Optional) -->
-          <a href="#" class="btn btn-primary">View Details</a>
+          <!-- Google Map Section -->
+          <h4 class="mt-4">Location on Google Map</h4>
+          <div id="google-map" style="height: 400px;"></div>
         </div>
       </div>
 
-      <!-- Google Map Section -->
+      <!-- View Details Button -->
       <div class="row mt-5">
         <div class="col-md-12">
-          <h4>Location on Google Map</h4>
-          <div id="google-map" style="height: 400px;"></div>
+          <a href="#" class="btn btn-primary">View Details</a>
         </div>
       </div>
     </div>
@@ -53,7 +54,7 @@
 
 @section('scripts')
   <!-- Google Maps API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAP_API_KEY&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdnV89cve-FxaeOY-t-X71rvov5F5pq6Y&callback=initMap" async defer></script>
 
   <script>
     function initMap() {

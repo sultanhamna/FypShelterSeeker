@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap-datepicker.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/jquery.timepicker.css')}}">
 
+    <head>
+        <!-- Add Font Awesome CDN -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+      </head>
 
     <link rel="stylesheet" href="{{asset('assets/front/css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/icomoon.css')}}">
