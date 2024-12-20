@@ -1,6 +1,6 @@
 @extends('front.layout.master')
 @section('content')
-  <div class="hero-wrap bg-img" style="background-image: url('assets/front/images/bg.jpg');" data-stellar-background-ratio="0.5">
+  <div class="hero-wrap bg-img" style="background-image: url('assets/front/images/bg1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="overlay-2"></div>
       <div class="container">
