@@ -85,7 +85,7 @@
 
 /* Header Styles */
 header {
-    background-color: #c7d3ac; /* Background color */
+    background-color: white; /* Background color */
     color: black; /* Text color */
     padding: 15px 0;
     position: fixed;
@@ -187,7 +187,7 @@ nav ul li a:hover {
 
 /* Footer Styles */
 footer {
-    background-color: #c7d3ac; /* Background color for footer */
+    background-color: white; /* Background color for footer */
     color: black; /* Text color */
     padding: 40px 0;
     font-size: 1em;
@@ -256,7 +256,7 @@ footer ul li a:hover {
 .footer-bottom {
     background-color: #f39c12; /* Footer bottom background color */
     padding: 20px 0;
-    color: white;
+    color: black;
     font-size: 1em;
     text-align: center;
 }
