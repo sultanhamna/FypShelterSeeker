@@ -46,6 +46,11 @@
                     <div class="sb-nav-link-icon sidecontent"><i class="fas fa-landmark"></i></div>
                     <b class="sidecontent"> Property</b>
                 </a>
+
+                <a class="nav-link " href="{{ route('index.product') }}">
+                    <div class="sb-nav-link-icon sidecontent"><i class="fas fa-landmark"></i></div>
+                    <b class="sidecontent"> Product</b>
+                </a>
             </div>
         </div>
     </nav>

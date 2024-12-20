@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\front\ContentController;
+use App\Http\Controllers\ShowProductController;
 use App\Http\Controllers\front\AboutController;
 use App\Http\Controllers\front\ContactController;
 use App\Http\Controllers\front\ServicesController;
@@ -10,15 +10,13 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserDataController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PropertyLocationController;
 use App\Http\Controllers\Admin\PropertyStatusController;
 use App\Http\Controllers\Admin\PropertyAreaSizeController;
 use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\Admin\MainPropertyController;
-use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Admin\PostController;
-
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +29,11 @@ use App\Http\Controllers\Admin\PostController;
 |
 */
 
+Route::get('/',[ShowProductController::class,'index'])->name('content');
 
+// In routes/web.php
+
+Route::get('/product/{id}', [ShowProductController::class, 'show'])->name('product.detail');
 
 ///////// User Data Route///////////////////
 
@@ -40,7 +42,7 @@ Route::get('/user',[UserDataController::class,'index'])->name('user.data');
 
 /////////////// Login and Register Routes  ////////////////
 
-Route::get('/',[UserController::class,'index'])->name('login.page');
+Route::get('/login.page',[UserController::class,'index'])->name('login.page');
 
 Route::post('/login',[UserController::class,'login'])->name('login');
 
@@ -134,6 +136,15 @@ Route::get('/editProperty/{id}',[MainPropertyController::class,'edit'])->name('e
 Route::post('/updateProperty/{id}',[MainPropertyController::class,'update'])->name('update.Property');
 Route::any('/deleteProperty/{id}',[MainPropertyController::class,'destroy'])->name('delete.Property');
 
+
+
+
+Route::get('/indexProduct', [ProductController::class, 'index'])->name('index.product');
+Route::get('/createProduct', [ProductController::class, 'create'])->name('create.product');
+Route::post('/storeProduct', [ProductController::class, 'store'])->name('store.product');
+Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('edit.product');
+Route::any('/deleteProduct/{id}', [ProductController::class, 'destroy'])->name('delete.product');
+Route::post('/updateProduct/{id}', [ProductController::class, 'update'])->name('update.product');
 
 });
 

@@ -35,6 +35,7 @@ class PropertyLocationController extends Controller
         return view('admin.Location.index');
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
