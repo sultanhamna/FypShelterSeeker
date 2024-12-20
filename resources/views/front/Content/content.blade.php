@@ -62,3 +62,18 @@
     </div>
   </section>
 @endsection
+
+@section('scripts')
+<script>
+    // Get the mobile menu button (hamburger icon)
+    const mobileMenu = document.getElementById('mobile-menu');
+    // Get the nav element that holds the menu
+    const nav = document.querySelector('nav');
+
+    // Add click event listener to toggle the 'active' class
+    mobileMenu.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+</script>
+
+@endsection

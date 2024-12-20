@@ -1,7 +1,7 @@
 <header>
     <div class="header-container">
         <div class="logo">
-            <h1><b>Electronics Repair Shop</b></h1>
+            <h3><b>Electronics Repair Shop</b></h3>
         </div>
         <!-- Mobile Hamburger Menu -->
         <div class="menu-toggle" id="mobile-menu">
