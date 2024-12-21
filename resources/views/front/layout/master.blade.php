@@ -79,16 +79,27 @@
     transition: background-color 0.3s; /* Smooth transition */
 }
 
+/* For Mobile Devices */
 @media (max-width: 768px) {
-    #mapModal .modal-dialog {
-        max-width: 100%; /* Full width on smaller screens */
-        margin: 0;
+    .modal-dialog {
+        margin: 0; /* Remove margin for full-screen effect */
+        width: 100%; /* Make the modal take full width */
+        height: 100%; /* Make the modal take full height */
     }
-    #mapModal .modal-body {
-        padding: 0;
+    .modal-content {
+        height: 100%; /* Ensure the content area takes full height */
+        border-radius: 0; /* Remove corners for full screen effect */
     }
-    #mapModal iframe {
-        height: 300px; /* Adjust iframe height for smaller screens */
+    .modal-body {
+        padding: 0; /* Remove padding */
+        height: 100%; /* Make body take full height */
+    }
+    .ratio {
+        height: 100%; /* Ensure iframe fills the entire body */
+    }
+    iframe {
+        width: 100%; /* Make iframe full-width */
+        height: 100vh; /* Make iframe take full height of the screen */
     }
 }
 
