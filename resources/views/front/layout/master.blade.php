@@ -79,22 +79,6 @@
     transition: background-color 0.3s; /* Smooth transition */
 }
 
-.hero-wrap {
-    background-image: url('assets/front/images/bg1.jpg');
-    background-size: cover; /* Ensures the image covers the entire container */
-    background-position: center center; /* Ensures the image is centered */
-    background-attachment: fixed; /* For a parallax effect */
-}
-
-@media (max-width: 768px) {
-    .hero-wrap {
-        background-attachment: scroll; /* Disable the fixed background effect on smaller screens */
-        background-size: auto 100%; /* Ensure the image resizes properly */
-        background-position: top center; /* Adjust the position if needed */
-    }
-}
-
-
 /* For Mobile Devices */
 @media (max-width: 768px) {
     .modal-dialog {
@@ -116,6 +100,30 @@
     iframe {
         width: 100%; /* Make iframe full-width */
         height: 100vh; /* Make iframe take full height of the screen */
+    }
+}
+
+.hero-wrap {
+    background-size: cover;  /* Ensure the background image covers the container */
+    background-position: center;  /* Center the background image */
+    background-repeat: no-repeat;  /* Prevent the background from repeating */
+    width: 100%;  /* Make sure the container takes the full width */
+    height: 100vh;  /* Set a default height */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767px) {
+    .hero-wrap {
+        background-size: contain;  /* Ensure the image fits within the container */
+        height: 60vh;  /* Adjust the height for mobile devices */
+    }
+}
+
+/* Media query for larger screens (e.g., laptops) */
+@media (min-width: 768px) {
+    .hero-wrap {
+        background-size: cover;  /* Keep it covering the entire container on larger screens */
+        height: 100vh;  /* Full viewport height */
     }
 }
 
