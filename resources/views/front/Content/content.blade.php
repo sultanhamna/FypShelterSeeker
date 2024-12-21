@@ -1,12 +1,13 @@
 @extends('front.layout.master')
 @section('content')
-  <div class="hero-wrap bg-img" style="background-image: url('assets/front/images/bg1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="overlay-2"></div>
-      <div class="container">
+<div class="hero-wrap bg-img" style="background-image: url('assets/front/images/bg1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="overlay-2"></div>
+    <div class="container">
+        <!-- Content here -->
+    </div>
+</div>
 
-      </div>
-  </div>
 
   <section id="products" class="products">
     <div class="container">

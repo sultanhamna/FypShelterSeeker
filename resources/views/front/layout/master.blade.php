@@ -79,6 +79,22 @@
     transition: background-color 0.3s; /* Smooth transition */
 }
 
+.hero-wrap {
+    background-image: url('assets/front/images/bg1.jpg');
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center center; /* Ensures the image is centered */
+    background-attachment: fixed; /* For a parallax effect */
+}
+
+@media (max-width: 768px) {
+    .hero-wrap {
+        background-attachment: scroll; /* Disable the fixed background effect on smaller screens */
+        background-size: auto 100%; /* Ensure the image resizes properly */
+        background-position: top center; /* Adjust the position if needed */
+    }
+}
+
+
 /* For Mobile Devices */
 @media (max-width: 768px) {
     .modal-dialog {

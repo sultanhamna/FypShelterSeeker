@@ -28,18 +28,16 @@ class ProductController extends Controller
                     return $action;
                 })
 
-                ->addColumn('product_image', function ($row)
-           {
 
-               $image = '';
-if ($row->Pics && $row->Pics->isNotEmpty()) {
-    // Access the first image in the collection
-    $productImage = $row->Pics->first()->product_image; // Correctly access the product_image field
-    $image = '<img src="' . asset('storage/' . $productImage) . '" style="width: 50px; height: 50px; margin-right: 5px;" />';
-}
 
-               return $image;
-           })
+                ->addColumn('product_image', function ($row) {
+                    $image = '';
+                    if ($row->Pics && $row->Pics->first()) {
+                        $image = '<img src="' . asset('storage/' . $row->Pics->first()->product_image) . '" style="width: 50px; height: 50px; margin-right: 5px;" />';
+                    }
+                    return $image;
+                })
+
                 ->removecolumn('id')
                 ->rawColumns(['action'])
                 ->make(true);
