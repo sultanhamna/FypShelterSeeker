@@ -101,8 +101,6 @@ public function update(Request $request  , $id)
 {
     $request->validate([
         'product_location' => 'required|string|max:255',
-        'location_latitude' => 'required|numeric',
-        'location_longitude' => 'required|numeric',
         'timing' => 'required',
         'product_image.*' => 'required',
 
@@ -127,6 +125,7 @@ public function update(Request $request  , $id)
                 'product_image' => $propertyFilePath,
             ]);
         }
+
     }
         return redirect()->route('index.product')->with('success', 'Product updated successfully');
 
