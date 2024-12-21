@@ -80,14 +80,18 @@
 }
 
 @media (max-width: 768px) {
-    .modal-content {
-        border-radius: 0; /* Remove rounded corners for fullscreen modal on mobile */
+    #mapModal .modal-dialog {
+        max-width: 100%; /* Full width on smaller screens */
+        margin: 0;
     }
-
-    iframe {
-        height: 300px; /* Adjust iframe height for smaller devices */
+    #mapModal .modal-body {
+        padding: 0;
+    }
+    #mapModal iframe {
+        height: 300px; /* Adjust iframe height for smaller screens */
     }
 }
+
 
 .product-card .btn:hover,
 .product-card .btn:active {
