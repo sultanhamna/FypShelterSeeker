@@ -32,39 +32,6 @@
     </span>
 </div>
 
-
-<div class="form-group mb-3">
-    <b>
-        {!! Form::label('locationLatitude', 'Latitude', ['class' => 'form-label']) !!}
-    </b>
-    {!! Form::number('location_latitude', !empty($data->location_latitude) ? $data->location_latitude : null, [
-        'class' => 'form-control',
-        'id' => 'locationLatitude',
-        'step' => 'any',// Allows any decimal value
-    ]) !!}
-    <span class="text-danger">
-        @error('location_latitude')
-            {{ $message }}
-        @enderror
-    </span>
-</div>
-
-<div class="form-group mb-3">
-    <b>
-        {!! Form::label('locationLongitude', 'Longitude', ['class' => 'form-label']) !!}
-    </b>
-    {!! Form::number('location_longitude', !empty($data->location_longitude) ? $data->location_longitude : null, [
-        'class' => 'form-control',
-        'id' => 'locationLongitude',
-        'step' => 'any',// Allows any decimal value
-    ]) !!}
-    <span class="text-danger">
-        @error('location_longitude')
-            {{ $message }}
-        @enderror
-    </span>
-</div>
-
 <div class="form-group mb-3">
     <b>
         {!! Form::label('product_image', 'Product Image',['class' => 'form-label',])!!}

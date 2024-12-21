@@ -25,8 +25,6 @@
                                                 <tr>
 
                                                     <th style="color: #6A9C89">Product &nbsp; Location</th>
-                                                    <th style="color: #6A9C89">Location &nbsp; Latitude</th>
-                                                    <th style="color: #6A9C89">Location &nbsp; Longitude</th>
                                                     <th style="color: #6A9C89">Shop &nbsp; Timing</th>
                                                     <th style="color: #6A9C89">Product &nbsp; Image</th>
                                                     <th style="color: #6A9C89">Action</th>
@@ -66,14 +64,6 @@
                     {
                         data: 'product_location',
                         name: 'product_location'
-                    },
-                    {
-                        data: 'location_latitude',
-                        name: 'location_latitude'
-                    },
-                    {
-                        data: 'location_longitude',
-                        name: 'location_longitude'
                     },
 
                     {

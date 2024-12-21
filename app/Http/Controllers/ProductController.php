@@ -57,8 +57,6 @@ if ($row->Pics && $row->Pics->isNotEmpty()) {
     {
         $request->validate([
             'product_location' => 'required|string|max:255',
-            'location_latitude' => 'required|numeric',
-            'location_longitude' => 'required|numeric',
             'timing' => 'required|string|max:255',
             'product_image*' => 'required|array',
 
