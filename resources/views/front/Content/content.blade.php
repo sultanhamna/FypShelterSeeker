@@ -49,12 +49,28 @@
             <p><strong>Timing:</strong> {{ $product->timing }}</p>
 
 
-            <!-- Google Maps Icon (without text) -->
-            @if($product->location_latitude && $product->location_longitude)
-              <a href="https://www.google.com/maps?q={{ $product->location_latitude }},{{ $product->location_longitude }}&key=AIzaSyBdnV89cve-FxaeOY-t-X71rvov5F5pq6Y" target="_blank" class="btn btn-info mt-2">
-                <i class="fas fa-map-marker-alt"></i> <!-- No text, just the icon -->
-              </a>
-            @endif
+            <!-- View Location Button -->
+<button class="btn btn-info mt-2" data-bs-toggle="modal" data-bs-target="#mapModal">
+    <i class="fas fa-map-marker-alt"></i> View Location
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mapModalLabel">Location</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d29038.464692054087!2d54.66114493016416!3d24.52672225147706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3e5e4e1a9db0e57d%3A0x5cab20368e2e8d3b!2sAl%20Rahbah%20-%20New%20Shahamah%20-%20Abu%20Dhabi%20-%20United%20Arab%20Emirates!3m2!1d24.5248688!2d54.683555299999995!5e0!3m2!1sen!2s!4v1734756941553!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
           </div>
 
         @endforeach
@@ -62,4 +78,3 @@
     </div>
   </section>
 @endsection
-

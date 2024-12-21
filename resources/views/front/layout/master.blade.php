@@ -79,6 +79,16 @@
     transition: background-color 0.3s; /* Smooth transition */
 }
 
+@media (max-width: 768px) {
+    .modal-content {
+        border-radius: 0; /* Remove rounded corners for fullscreen modal on mobile */
+    }
+
+    iframe {
+        height: 300px; /* Adjust iframe height for smaller devices */
+    }
+}
+
 .product-card .btn:hover,
 .product-card .btn:active {
     background-color: #FF00FF;  /* Magenta color for hover, focus, and active states */
